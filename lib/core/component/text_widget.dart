@@ -64,8 +64,9 @@ class TextWidget extends StatelessWidget {
       text,
       style: TextStyle(
         fontFamily: "Pretendard",
+        fontSize: textSize,
         color: color,
-        fontWeight: fontWeight(textWeight)
+        fontWeight: fontWeight(textWeight),
       ),
     );
   }
