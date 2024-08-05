@@ -8,8 +8,10 @@ class HomeScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      titleSpacing: 0,
       title: Row(
         children: [
+          SizedBox(width: 20.w),
           ImageWidget(
             image: 'assets/image/logo_with_text.png',
             width: 96.w,
