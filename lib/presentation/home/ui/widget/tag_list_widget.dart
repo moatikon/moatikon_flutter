@@ -3,14 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/presentation/home/view_model/tag_state.dart';
 import '../../../../core/component/text_widget.dart';
+import '../../../../core/util/tag_list.dart';
 
 class TagListWidget extends StatelessWidget {
   const TagListWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<String> tagList = ["전체", "식사류", "음료", "물건", "기타"];
-
     return BlocBuilder<TagState, int>(
       builder: (context, state) {
         return SizedBox(
