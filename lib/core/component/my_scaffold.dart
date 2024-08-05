@@ -3,13 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyScaffold extends StatelessWidget {
   final PreferredSizeWidget? appbar;
-  final Widget? body, floatingActionButton;
+  final Widget? body, floatingActionButton, bottomSheet;
 
   const MyScaffold({
     super.key,
     this.appbar,
     this.body,
     this.floatingActionButton,
+    this.bottomSheet,
   });
 
   @override
@@ -23,6 +24,7 @@ class MyScaffold extends StatelessWidget {
             appBar: appbar,
             body: body,
             floatingActionButton: floatingActionButton,
+            bottomSheet: bottomSheet,
           ),
         ),
       ),
