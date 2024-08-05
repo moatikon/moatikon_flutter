@@ -2,13 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/core/component/my_scaffold.dart';
-import 'package:moatikon_flutter/presentation/add/ui/widget/add_screen_bottom_sheet.dart';
-import 'package:moatikon_flutter/presentation/add/ui/widget/add_screen_image_button_widget.dart';
-import 'package:moatikon_flutter/presentation/add/ui/widget/add_screen_app_bar.dart';
-import 'package:moatikon_flutter/presentation/add/ui/widget/add_screen_calender_widget.dart';
-import 'package:moatikon_flutter/presentation/add/ui/widget/add_screen_select_tag_widget.dart';
-import 'package:moatikon_flutter/presentation/add/ui/widget/add_screen_slider_widget.dart';
-import 'package:moatikon_flutter/presentation/add/ui/widget/add_screen_text_field_widget.dart';
+
+import '../widget/add_screen_app_bar.dart';
+import '../widget/add_screen_bottom_sheet.dart';
+import '../widget/add_screen_calender_widget.dart';
+import '../widget/add_screen_image_button_widget.dart';
+import '../widget/add_screen_select_tag_widget.dart';
+import '../widget/add_screen_slider_widget.dart';
+import '../widget/add_screen_text_field_widget.dart';
 
 class AddScreen extends StatefulWidget {
   const AddScreen({super.key});

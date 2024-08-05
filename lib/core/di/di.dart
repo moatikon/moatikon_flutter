@@ -2,10 +2,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moatikon_flutter/data/tikon/data_source/remote/remote_tikon_data_source.dart';
 import 'package:moatikon_flutter/data/tikon/repository/tikon_repository_impl.dart';
 import 'package:moatikon_flutter/domain/tikon/use_case/get_all_tikon_list_use_case.dart';
-import 'package:moatikon_flutter/presentation/add/view_model/slider_state.dart';
-import 'package:moatikon_flutter/presentation/add/view_model/tag_state.dart';
 import 'package:moatikon_flutter/presentation/home/view_model/tag_state.dart';
 import 'package:moatikon_flutter/presentation/home/view_model/tikon_bloc.dart';
+import '../../presentation/add_tikon/view_model/slider_state.dart';
+import '../../presentation/add_tikon/view_model/tag_state.dart';
 
 Future<List<BlocProvider>> di() async {
 

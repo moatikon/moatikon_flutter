@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/core/util/tag_list.dart';
-import 'package:moatikon_flutter/presentation/add/view_model/tag_state.dart';
 
 import '../../../../core/component/text_widget.dart';
+import '../../view_model/tag_state.dart';
 
 class AddScreenSelectTagWidget extends StatelessWidget {
   const AddScreenSelectTagWidget({super.key});
