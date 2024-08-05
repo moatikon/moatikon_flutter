@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/core/component/image_widget.dart';
+import 'package:moatikon_flutter/presentation/add/ui/view/add_screen.dart';
 
 class HomeScreenFloatingActionButton extends StatelessWidget {
   const HomeScreenFloatingActionButton({super.key});
@@ -8,7 +9,7 @@ class HomeScreenFloatingActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const AddScreen())),
       child: Container(
         decoration: const BoxDecoration(
           color: Color(0xFFEA4E46),
