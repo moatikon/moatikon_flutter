@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/core/di/di.dart';
-import 'package:moatikon_flutter/presentation/home/ui/view/home_screen.dart';
+import 'package:moatikon_flutter/presentation/splash/ui/view/splash_screen.dart';
 
 void main() async {
   runApp(MyApp(
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
             appBarTheme: const AppBarTheme(color: Colors.white),
             scaffoldBackgroundColor: Colors.white,
           ),
-          home: const HomeScreen(),
+          home: const SplashScreen(),
         ),
       ),
     );
