@@ -1,17 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moatikon_flutter/presentation/home/view_model/tikon_model.dart';
+import 'package:moatikon_flutter/domain/tikon/entity/tikon_entity.dart';
+import 'package:moatikon_flutter/presentation/home/view_model/tag_state.dart';
 
 import '../../../../core/component/image_widget.dart';
 import '../../../../core/component/text_widget.dart';
 
 class TikonListWidget extends StatelessWidget {
-  final TikonModel tikonModel;
+  final List<TikonEntity> tikonList;
 
-  const TikonListWidget({super.key, required this.tikonModel});
+  const TikonListWidget({super.key, required this.tikonList});
 
   @override
   Widget build(BuildContext context) {
+    final tagState = context.watch<TagState>().state;
+    List<TikonEntity> filterTikonList = tikonList.where((element) {
+      switch(tagState){
+        case 1: return element.category == "식사류";
+        case 2: return element.category == "음료";
+        case 3: return element.category == "물건";
+        case 4: return element.category == "기타";
+        default: return true;
+      }
+    }).toList();
+
+
     String dDayFactory(int dDay){
       if(dDay == 1){
         return "D-Day";
@@ -24,9 +38,9 @@ class TikonListWidget extends StatelessWidget {
 
     return ListView.builder(
       shrinkWrap: true,
-      itemCount: tikonModel.tikonList.length,
+      itemCount: filterTikonList.length,
       itemBuilder: (_, index) {
-        final tikonData = tikonModel.tikonList[index];
+        final tikonData = filterTikonList[index];
 
         return Padding(
           padding: const EdgeInsets.only(top: 20, bottom: 10),
