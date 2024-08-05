@@ -25,7 +25,7 @@ class TikonListWidget extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: tikonModel.tikonList.length,
-      itemBuilder: (context, index) {
+      itemBuilder: (_, index) {
         final tikonData = tikonModel.tikonList[index];
 
         return Padding(

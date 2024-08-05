@@ -18,7 +18,7 @@ class TagListWidget extends StatelessWidget {
           child: ListView.builder(
             itemCount: tagList.length,
             scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
+            itemBuilder: (_, index) {
               bool isSelected = state == index;
 
               return Padding(
