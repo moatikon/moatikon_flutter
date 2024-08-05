@@ -5,6 +5,7 @@ import 'package:moatikon_flutter/core/component/my_scaffold.dart';
 import 'package:moatikon_flutter/core/component/text_widget.dart';
 import 'package:moatikon_flutter/core/util/bloc_state_enum.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikon_entity.dart';
+import 'package:moatikon_flutter/presentation/home/ui/widget/home_screen_floating_action_button.dart';
 import 'package:moatikon_flutter/presentation/home/ui/widget/tikon_list_widget.dart';
 import 'package:moatikon_flutter/presentation/home/view_model/tikon_bloc.dart';
 import 'package:moatikon_flutter/presentation/home/view_model/tikon_state.dart';
@@ -17,6 +18,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MyScaffold(
       appbar: const HomeScreenAppBar(),
+      floatingActionButton: const HomeScreenFloatingActionButton(),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15.w),
         child: Column(
