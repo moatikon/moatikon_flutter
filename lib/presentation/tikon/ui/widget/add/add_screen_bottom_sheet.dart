@@ -7,7 +7,7 @@ import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_bloc.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_event.dart';
 
 class AddScreenBottomSheet extends StatelessWidget {
-  final String tikonName, storeName;
+  final TextEditingController tikonName, storeName;
   final int addScreenTagState, disCount;
 
   const AddScreenBottomSheet({
@@ -41,32 +41,31 @@ class AddScreenBottomSheet extends StatelessWidget {
             AddTikon(
               addTikonRequest: AddTikonRequest(
                 image: "https://www.contis.ph/cdn/shop/products/CokeinCan.jpg?v=1689558538&width=1200",
-                storeName: storeName,
-                tikonName: tikonName,
+                storeName: storeName.text,
+                tikonName: tikonName.text,
                 category: categoryBuilder(addScreenTagState),
                 dDay: 10,
                 disCount: disCount,
               ),
             ),
           );
-
           Navigator.pop(context);
         },
         child: Container(
-          width: MediaQuery.of(context).size.width - 40,
+          width: MediaQuery.of(context).size.width - 40.w,
           decoration: BoxDecoration(
               color: const Color(0xFFEA4E46),
               borderRadius: BorderRadius.circular(8.r)
           ),
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 17.h),
-            child: const Row(
+            child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextWidget(
                   text: "추가하기",
-                  textSize: 20,
+                  textSize: 20.sp,
                   textWeight: TextWeight.medium,
                   color: Colors.white,
                 ),

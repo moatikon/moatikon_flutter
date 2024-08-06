@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/core/component/my_scaffold.dart';
-import 'package:moatikon_flutter/presentation/tikon/view_model/add/slider_state.dart';
-import 'package:moatikon_flutter/presentation/tikon/view_model/add/tag_state.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_screen_slider_state.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_screen_tag_state.dart';
 
 import '../../widget/add/add_screen_app_bar.dart';
 import '../../widget/add/add_screen_bottom_sheet.dart';
@@ -51,13 +51,13 @@ class _AddScreenState extends State<AddScreen> {
   @override
   Widget build(BuildContext context) {
     final int addScreenTagState = context.watch<AddScreenTagState>().state;
-    final int disCount = context.watch<SliderState>().state.toInt() * 10;
+    final int disCount = context.watch<AddScreenSliderState>().state.toInt() * 10;
 
     return MyScaffold(
       appbar: const AddScreenAppBar(),
       bottomSheet: AddScreenBottomSheet(
-        tikonName: tikonNameController.text,
-        storeName: storeNameController.text,
+        tikonName: tikonNameController,
+        storeName: storeNameController,
         addScreenTagState: addScreenTagState,
         disCount: disCount,
       ),

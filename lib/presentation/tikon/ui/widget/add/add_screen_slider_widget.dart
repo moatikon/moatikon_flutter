@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/component/text_widget.dart';
-import '../../../view_model/add/slider_state.dart';
+import '../../../view_model/add/add_screen_slider_state.dart';
 
 class AddScreenSliderWidget extends StatefulWidget {
   const AddScreenSliderWidget({super.key});
@@ -15,7 +15,7 @@ class AddScreenSliderWidget extends StatefulWidget {
 class _AddScreenSliderWidgetState extends State<AddScreenSliderWidget> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SliderState, double>(
+    return BlocBuilder<AddScreenSliderState, double>(
       builder: (context, state) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,7 +36,7 @@ class _AddScreenSliderWidgetState extends State<AddScreenSliderWidget> {
               activeColor: const Color(0xFFFF857E),
               value: state,
               onChanged: (value) {
-                context.read<SliderState>().changeState(value);
+                context.read<AddScreenSliderState>().changeState(value);
               },
             ),
           ],
