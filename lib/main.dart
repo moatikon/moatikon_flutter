@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             appBarTheme: const AppBarTheme(color: Colors.white, surfaceTintColor: Colors.white,titleSpacing: 0),
+            bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.white, surfaceTintColor: Colors.white),
             scaffoldBackgroundColor: Colors.white,
           ),
           home: const SplashScreen(),
