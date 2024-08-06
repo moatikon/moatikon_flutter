@@ -7,6 +7,7 @@ class ImageWidget extends StatelessWidget {
   final ImageType imageType;
   final Color? color;
   final double? width, height;
+  final BoxFit? fit;
 
   const ImageWidget({
     super.key,
@@ -15,6 +16,7 @@ class ImageWidget extends StatelessWidget {
     this.width,
     this.height,
     this.color,
+    this.fit,
   });
 
   @override
@@ -26,6 +28,7 @@ class ImageWidget extends StatelessWidget {
           width: width,
           height: height,
           color: color,
+          fit: fit,
         );
       case ImageType.network:
         return Image.network(
@@ -33,6 +36,7 @@ class ImageWidget extends StatelessWidget {
           width: width,
           height: height,
           color: color,
+          fit: fit,
         );
     }
   }
