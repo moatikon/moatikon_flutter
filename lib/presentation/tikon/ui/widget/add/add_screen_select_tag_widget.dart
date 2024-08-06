@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/core/util/tag_list.dart';
-import 'package:moatikon_flutter/presentation/tikon/view_model/add/tag_state.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_screen_tag_state.dart';
 
 import '../../../../../core/component/text_widget.dart';
 

@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/core/component/text_widget.dart';
 import 'package:moatikon_flutter/core/util/tag_list.dart';
-import 'package:moatikon_flutter/presentation/tikon/view_model/home/tag_state.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/home/home_screen_tag_state.dart';
 
 class TagListWidget extends StatelessWidget {
   const TagListWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TagState, int>(
+    return BlocBuilder<HomeScreenTagState, int>(
       builder: (context, state) {
         return SizedBox(
           height: 25.h,
@@ -23,7 +23,7 @@ class TagListWidget extends StatelessWidget {
               return Padding(
                 padding: EdgeInsets.only(right: 10.w),
                 child: GestureDetector(
-                  onTap: () => context.read<TagState>().changeState(index),
+                  onTap: () => context.read<HomeScreenTagState>().changeState(index),
                   child: Container(
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
