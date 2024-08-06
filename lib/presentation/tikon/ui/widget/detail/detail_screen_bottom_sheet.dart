@@ -9,24 +9,24 @@ class DetailScreenBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 10.h),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       color: Colors.white,
       child: Container(
-        width: MediaQuery.of(context).size.width - 60.w,
+        width: MediaQuery.of(context).size.width - 40.w,
         decoration: BoxDecoration(
             color: const Color(0xFFEA4E46),
-            borderRadius: BorderRadius.circular(20.r)
+            borderRadius: BorderRadius.circular(8.r)
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 20.h),
+          padding: EdgeInsets.symmetric(vertical: 17.h),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextWidget(
                 text: "기프티콘 사용완료",
-                textSize: 25.sp,
-                textWeight: TextWeight.semiBold,
+                textSize: 20.sp,
+                textWeight: TextWeight.medium,
                 color: Colors.white,
               ),
             ],
