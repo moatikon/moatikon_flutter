@@ -1,21 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/core/component/text_widget.dart';
+import 'package:moatikon_flutter/data/tikon/dto/request/add_tikon_request.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_bloc.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_event.dart';
 
 class AddScreenBottomSheet extends StatelessWidget {
-  const AddScreenBottomSheet({super.key});
+  final String tikonName, storeName;
+  final int addScreenTagState, disCount;
+
+  const AddScreenBottomSheet({
+    super.key,
+    required this.tikonName,
+    required this.storeName,
+    required this.addScreenTagState,
+    required this.disCount,
+  });
 
   @override
   Widget build(BuildContext context) {
+    String categoryBuilder(int index){
+      switch(index){
+        case 0:
+          return "식사류";
+        case 1:
+          return "음료";
+        case 2:
+          return "물건";
+        default:
+          return "기타";
+      }
+    }
+
     return Padding(
       padding: EdgeInsets.only(bottom: 20.h),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          context.read<TikonBloc>().add(
+            AddTikon(
+              addTikonRequest: AddTikonRequest(
+                image: "https://www.contis.ph/cdn/shop/products/CokeinCan.jpg?v=1689558538&width=1200",
+                storeName: storeName,
+                tikonName: tikonName,
+                category: categoryBuilder(addScreenTagState),
+                dDay: 10,
+                disCount: disCount,
+              ),
+            ),
+          );
+
+          Navigator.pop(context);
+        },
         child: Container(
           width: MediaQuery.of(context).size.width - 40,
           decoration: BoxDecoration(
-            color: const Color(0xFFEA4E46),
-            borderRadius: BorderRadius.circular(8.r)
+              color: const Color(0xFFEA4E46),
+              borderRadius: BorderRadius.circular(8.r)
           ),
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 17.h),

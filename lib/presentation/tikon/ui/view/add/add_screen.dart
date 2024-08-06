@@ -1,15 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/core/component/my_scaffold.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/add/slider_state.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/add/tag_state.dart';
 
-import '../widget/add_screen_app_bar.dart';
-import '../widget/add_screen_bottom_sheet.dart';
-import '../widget/add_screen_calender_widget.dart';
-import '../widget/add_screen_image_button_widget.dart';
-import '../widget/add_screen_select_tag_widget.dart';
-import '../widget/add_screen_slider_widget.dart';
-import '../widget/add_screen_text_field_widget.dart';
+import '../../widget/add/add_screen_app_bar.dart';
+import '../../widget/add/add_screen_bottom_sheet.dart';
+import '../../widget/add/add_screen_calender_widget.dart';
+import '../../widget/add/add_screen_image_button_widget.dart';
+import '../../widget/add/add_screen_select_tag_widget.dart';
+import '../../widget/add/add_screen_slider_widget.dart';
+import '../../widget/add/add_screen_text_field_widget.dart';
 
 class AddScreen extends StatefulWidget {
   const AddScreen({super.key});
@@ -47,9 +50,17 @@ class _AddScreenState extends State<AddScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final int addScreenTagState = context.watch<AddScreenTagState>().state;
+    final int disCount = context.watch<SliderState>().state.toInt() * 10;
+
     return MyScaffold(
       appbar: const AddScreenAppBar(),
-      bottomSheet: const AddScreenBottomSheet(),
+      bottomSheet: AddScreenBottomSheet(
+        tikonName: tikonNameController.text,
+        storeName: storeNameController.text,
+        addScreenTagState: addScreenTagState,
+        disCount: disCount,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(20.w),
