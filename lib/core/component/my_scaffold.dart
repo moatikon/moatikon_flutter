@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class MyScaffold extends StatelessWidget {
   final PreferredSizeWidget? appbar;
   final Widget? body, floatingActionButton, bottomSheet;
+  final Color? backgroundColor;
 
   const MyScaffold({
     super.key,
@@ -11,6 +12,7 @@ class MyScaffold extends StatelessWidget {
     this.body,
     this.floatingActionButton,
     this.bottomSheet,
+    this.backgroundColor
   });
 
   @override
@@ -21,6 +23,7 @@ class MyScaffold extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.only(top: 10.h),
           child: Scaffold(
+            backgroundColor: backgroundColor,
             appBar: appbar,
             body: body,
             floatingActionButton: floatingActionButton,
