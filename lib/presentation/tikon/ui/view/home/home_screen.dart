@@ -5,12 +5,12 @@ import 'package:moatikon_flutter/core/component/my_scaffold.dart';
 import 'package:moatikon_flutter/core/component/text_widget.dart';
 import 'package:moatikon_flutter/core/util/bloc_state_enum.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikon_entity.dart';
-import 'package:moatikon_flutter/presentation/home/ui/widget/home_screen_floating_action_button.dart';
-import 'package:moatikon_flutter/presentation/home/ui/widget/tikon_list_widget.dart';
-import 'package:moatikon_flutter/presentation/home/view_model/tikon_bloc.dart';
-import 'package:moatikon_flutter/presentation/home/view_model/tikon_state.dart';
-import '../widget/home_screen_app_bar.dart';
-import '../widget/tag_list_widget.dart';
+import 'package:moatikon_flutter/presentation/tikon/ui/widget/home/home_screen_floating_action_button.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_bloc.dart';
+import 'package:moatikon_flutter/presentation/tikon/ui/widget/home/tag_list_widget.dart';
+import 'package:moatikon_flutter/presentation/tikon/ui/widget/home/tikon_list_widget.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_state.dart';
+import '../../widget/home/home_screen_app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

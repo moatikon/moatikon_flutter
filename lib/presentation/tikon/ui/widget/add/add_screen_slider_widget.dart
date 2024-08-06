@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/component/text_widget.dart';
-import '../../view_model/slider_state.dart';
+import '../../../../../core/component/text_widget.dart';
+import '../../../view_model/add/slider_state.dart';
 
 class AddScreenSliderWidget extends StatefulWidget {
   const AddScreenSliderWidget({super.key});

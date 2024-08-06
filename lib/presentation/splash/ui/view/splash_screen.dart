@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/core/component/bhs_text_widget.dart';
 import 'package:moatikon_flutter/core/component/image_widget.dart';
 import 'package:moatikon_flutter/core/component/my_scaffold.dart';
-import 'package:moatikon_flutter/presentation/home/ui/view/home_screen.dart';
-import 'package:moatikon_flutter/presentation/home/view_model/tikon_bloc.dart';
-import 'package:moatikon_flutter/presentation/home/view_model/tikon_event.dart';
+import 'package:moatikon_flutter/presentation/tikon/ui/view/home/home_screen.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_bloc.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_event.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
