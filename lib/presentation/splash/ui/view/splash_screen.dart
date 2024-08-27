@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moatikon_flutter/core/moa_navigator.dart';
 import 'package:moatikon_flutter/presentation/on_boarding/ui/view/on_boarding_screen.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_bloc.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_event.dart';
@@ -21,17 +22,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     context.read<TikonBloc>().add(GetAllTikonListEvent());
-    Future.delayed(const Duration(seconds: 1)).then(
-      (value) {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const OnBoardingScreen(),
-          ),
-          (route) => false,
-        );
-      },
-    );
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      MoaNavigator.go(context, const OnBoardingScreen());
+    });
   }
 
   @override
