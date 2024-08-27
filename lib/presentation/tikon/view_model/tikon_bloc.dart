@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:moatikon_flutter/domain/tikon/entity/tikon_entity.dart';
 import 'package:moatikon_flutter/domain/tikon/use_case/add_tikon_use_case.dart';
 import 'package:moatikon_flutter/domain/tikon/use_case/get_all_tikon_list_use_case.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_event.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_state.dart';
+import '../../../domain/tikon/entity/tikons_entity.dart';
 
-class TikonBloc extends Bloc<TikonEvent, TikonState<List<TikonEntity>>> {
+class TikonBloc extends Bloc<TikonEvent, TikonState<TikonsEntity>> {
   final GetAllTikonListUseCase _getAllTikonListUseCase;
   final AddTikonUseCase _addTikonUseCase;
 
@@ -20,7 +20,7 @@ class TikonBloc extends Bloc<TikonEvent, TikonState<List<TikonEntity>>> {
   }
 
   void _getAllTikonListHandler(GetAllTikonListEvent event,
-      Emitter<TikonState<List<TikonEntity>>> emit) async {
+      Emitter<TikonState<TikonsEntity>> emit) async {
     try{
       emit(Loading());
       final newEntity = await _getAllTikonListUseCase.execute();
@@ -32,7 +32,7 @@ class TikonBloc extends Bloc<TikonEvent, TikonState<List<TikonEntity>>> {
 
   Future<void> _addTikonHandler(
     AddTikon event,
-    Emitter<TikonState<List<TikonEntity>>> emit,
+    Emitter<TikonState<TikonsEntity>> emit,
   ) async {
     emit(Loading());
     await _addTikonUseCase.execute(event.addTikonRequest);

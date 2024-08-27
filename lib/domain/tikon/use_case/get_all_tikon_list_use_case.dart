@@ -1,5 +1,5 @@
-import 'package:moatikon_flutter/domain/tikon/entity/tikon_entity.dart';
 import 'package:moatikon_flutter/domain/tikon/repository/tikon_repository.dart';
+import '../entity/tikons_entity.dart';
 
 class GetAllTikonListUseCase{
   final TikonRepository _tikonRepository;
@@ -8,5 +8,5 @@ class GetAllTikonListUseCase{
     required TikonRepository tikonRepository,
   }) : _tikonRepository = tikonRepository;
 
-  Future<List<TikonEntity>> execute() => _tikonRepository.getAllTikonList();
+  Future<TikonsEntity> execute() async => _tikonRepository.getAllTikonList();
 }

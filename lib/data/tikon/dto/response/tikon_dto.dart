@@ -13,27 +13,16 @@ class TikonDto {
     required this.disCount,
   });
 
-  factory TikonDto.fromJson(TikonDto json){
+  factory TikonDto.fromJson(Map<String, dynamic> json){
     return TikonDto(
-      image: json.image,
-      storeName: json.storeName,
-      tikonName: json.tikonName,
-      category: json.category,
-      dDay: json.dDay,
-      disCount: json.disCount,
+      image: json['image'],
+      storeName: json['storeName'],
+      tikonName: json['tikonName'],
+      category: json['category'],
+      dDay: json['dDay'],
+      disCount: json['disCount'],
     );
   }
-
-  // factory TikonDto.fromJson(Map<String, dynamic> json){
-  //   return TikonDto(
-  //     image: json['image'],
-  //     storeName: json['storeName'],
-  //     tikonName: json['tikonName'],
-  //     category: json['category'],
-  //     dDay: json['dDay'],
-  //     disCount: json['disCount'],
-  //   );
-  // }
 
   TikonEntity toEntity(){
     return TikonEntity(
