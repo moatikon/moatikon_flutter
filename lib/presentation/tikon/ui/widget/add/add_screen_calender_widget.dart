@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moatikon_flutter/presentation/tikon/view_model/add/purpose_calender_model.dart';
-import 'package:moatikon_flutter/presentation/tikon/view_model/add/purpose_calender_state_cubit.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_tikon_calender_model.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_tikon_calender_state_cubit.dart';
 
 import '../../../../../component/text_widget.dart';
 

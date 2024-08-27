@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:moatikon_flutter/presentation/tikon/ui/widget/add/add_screen_calender_overlay.dart';
-import 'package:moatikon_flutter/presentation/tikon/view_model/add/purpose_calender_model.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_tikon_calender_model.dart';
 
 class AddTikonCalenderStateCubit extends Cubit<AddTikonCalenderModel>{
   AddTikonCalenderStateCubit()
