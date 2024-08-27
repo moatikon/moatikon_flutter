@@ -39,19 +39,21 @@ class AddScreenBottomSheet extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 20.h),
       child: GestureDetector(
         onTap: () {
-          context.read<TikonBloc>().add(
-            AddTikon(
-              addTikonRequest: AddTikonRequest(
-                image: "https://www.contis.ph/cdn/shop/products/CokeinCan.jpg?v=1689558538&width=1200",
-                storeName: storeName.text,
-                tikonName: tikonName.text,
-                category: categoryBuilder(addScreenTagState),
-                finishedTikon: context.read<AddTikonCalenderStateCubit>().dateTimeFormat(),
-                disCount: disCount,
+          if(tikonName.text.isNotEmpty && storeName.text.isNotEmpty){
+            context.read<TikonBloc>().add(
+              AddTikon(
+                addTikonRequest: AddTikonRequest(
+                  image: "https://www.contis.ph/cdn/shop/products/CokeinCan.jpg?v=1689558538&width=1200",
+                  storeName: storeName.text,
+                  tikonName: tikonName.text,
+                  category: categoryBuilder(addScreenTagState),
+                  finishedTikon: context.read<AddTikonCalenderStateCubit>().dateTimeFormat(),
+                  disCount: disCount,
+                ),
               ),
-            ),
-          );
-          Navigator.pop(context);
+            );
+            Navigator.pop(context);
+          }
         },
         child: Container(
           width: MediaQuery.of(context).size.width - 40.w,
