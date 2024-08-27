@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/presentation/tikon/ui/widget/detail/detail_screen_app_bar.dart';
 import 'package:moatikon_flutter/presentation/tikon/ui/widget/detail/detail_screen_bottom_sheet.dart';
 
-import '../../../../../component/image_widget.dart';
-import '../../../../../component/my_scaffold.dart';
+import '../../../../component/image_widget.dart';
+import '../../../../component/my_scaffold.dart';
 
 class DetailScreen extends StatelessWidget {
   final String image;

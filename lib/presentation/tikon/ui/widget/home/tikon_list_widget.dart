@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikon_entity.dart';
-import 'package:moatikon_flutter/presentation/tikon/ui/view/detail/detail_screen.dart';
+import 'package:moatikon_flutter/presentation/tikon/ui/view/detail_screen.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/home/home_screen_tag_state.dart';
 
 import '../../../../../component/image_widget.dart';

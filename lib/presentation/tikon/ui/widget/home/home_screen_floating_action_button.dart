@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../component/image_widget.dart';
 import '../../../view_model/add/add_screen_slider_state.dart';
 import '../../../view_model/add/add_screen_tag_state.dart';
-import '../../view/add/add_screen.dart';
+import '../../view/add_screen.dart';
 
 class HomeScreenFloatingActionButton extends StatelessWidget {
   const HomeScreenFloatingActionButton({super.key});

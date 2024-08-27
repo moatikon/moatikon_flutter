@@ -5,14 +5,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_screen_slider_state.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_screen_tag_state.dart';
 
-import '../../../../../component/my_scaffold.dart';
-import '../../widget/add/add_screen_app_bar.dart';
-import '../../widget/add/add_screen_bottom_sheet.dart';
-import '../../widget/add/add_screen_calender_widget.dart';
-import '../../widget/add/add_screen_image_button_widget.dart';
-import '../../widget/add/add_screen_select_tag_widget.dart';
-import '../../widget/add/add_screen_slider_widget.dart';
-import '../../widget/add/add_screen_text_field_widget.dart';
+import '../../../../component/my_scaffold.dart';
+import '../widget/add/add_screen_app_bar.dart';
+import '../widget/add/add_screen_bottom_sheet.dart';
+import '../widget/add/add_screen_calender_widget.dart';
+import '../widget/add/add_screen_image_button_widget.dart';
+import '../widget/add/add_screen_select_tag_widget.dart';
+import '../widget/add/add_screen_slider_widget.dart';
+import '../widget/add/add_screen_text_field_widget.dart';
 
 class AddScreen extends StatefulWidget {
   const AddScreen({super.key});

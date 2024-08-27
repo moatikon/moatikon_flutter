@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/component/moa_button.dart';
 import 'package:moatikon_flutter/core/moa_navigator.dart';
-import 'package:moatikon_flutter/presentation/tikon/ui/view/home/home_screen.dart';
+import 'package:moatikon_flutter/presentation/tikon/ui/view/home_screen.dart';
 
 import '../../../../component/text_widget.dart';
 

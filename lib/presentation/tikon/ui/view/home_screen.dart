@@ -7,10 +7,10 @@ import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_bloc.dart';
 import 'package:moatikon_flutter/presentation/tikon/ui/widget/home/tag_list_widget.dart';
 import 'package:moatikon_flutter/presentation/tikon/ui/widget/home/tikon_list_widget.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_state.dart';
-import '../../../../../component/my_scaffold.dart';
-import '../../../../../component/text_widget.dart';
-import '../../../../../core/bloc_state_enum.dart';
-import '../../widget/home/home_screen_app_bar.dart';
+import '../../../../component/my_scaffold.dart';
+import '../../../../component/text_widget.dart';
+import '../../../../core/bloc_state_enum.dart';
+import '../widget/home/home_screen_app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
