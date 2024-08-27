@@ -50,7 +50,7 @@ class _SignInScreenState extends State<SignInScreen> {
       bottomSheet: Padding(
         padding: EdgeInsets.only(bottom: 20.h),
         child: GestureDetector(
-          onTap: () => MoaNavigator.go(context, const SignUpScreen()),
+          onTap: () => MoaNavigator.pushReplacement(context, const SignUpScreen()),
           child: Text.rich(
             TextSpan(
               children: [

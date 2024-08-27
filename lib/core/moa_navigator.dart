@@ -47,7 +47,7 @@ class MoaNavigator {
     );
   }
 
-  static void go(BuildContext context, Widget screen){
+  static void go(BuildContext context, Widget screen) {
     Navigator.pushAndRemoveUntil(
       context,
       PageRouteBuilder(
@@ -58,8 +58,7 @@ class MoaNavigator {
           const end = Offset.zero;
           const curve = Curves.easeInOut;
 
-          var tween =
-          Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+          var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
           var offsetAnimation = animation.drive(tween);
 
           return SlideTransition(
@@ -68,7 +67,30 @@ class MoaNavigator {
           );
         },
       ),
-          (route) => false,
+      (route) => false,
+    );
+  }
+
+  static void pushReplacement(BuildContext context, Widget screen) {
+    Navigator.pushReplacement(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (_, __, ___) => screen,
+        transitionDuration: const Duration(milliseconds: 300),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(1.0, 0.0);
+          const end = Offset.zero;
+          const curve = Curves.easeInOut;
+
+          var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+          var offsetAnimation = animation.drive(tween);
+
+          return SlideTransition(
+            position: offsetAnimation,
+            child: child,
+          );
+        },
+      ),
     );
   }
 
@@ -76,11 +98,11 @@ class MoaNavigator {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => screen),
-          (route) => false,
+      (route) => false,
     );
   }
 
-  static void pop(BuildContext context){
+  static void pop(BuildContext context) {
     Navigator.pop(context);
   }
 }
