@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/component/moa_button.dart';
 import 'package:moatikon_flutter/core/moa_navigator.dart';
-import 'package:moatikon_flutter/presentation/tikon/ui/view/home_screen.dart';
+import 'package:moatikon_flutter/presentation/auth/ui/view/sign_up_screen.dart';
 
 import '../../../../component/text_widget.dart';
+import '../../../auth/ui/view/sign_in_screen.dart';
 
 class OnBoardingBottomSheet extends StatelessWidget {
   const OnBoardingBottomSheet({super.key});
@@ -17,7 +18,7 @@ class OnBoardingBottomSheet extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           MoaButton(
-            onTap: () => MoaNavigator.go(context, const HomeScreen()),
+            onTap: () => MoaNavigator.push(context, const SignInScreen()),
 
             text: "로그인",
             textSize: 20.sp,
@@ -29,6 +30,8 @@ class OnBoardingBottomSheet extends StatelessWidget {
           ),
           SizedBox(height: 20.h),
           MoaButton(
+            onTap: () => MoaNavigator.push(context, const SignUpScreen()),
+
             text: "회원가입",
             textSize: 20.sp,
             textWeight: TextWeight.medium,
