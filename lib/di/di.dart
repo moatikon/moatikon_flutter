@@ -19,6 +19,7 @@ Future<List<BlocProvider>> di() async {
   AddTikonUseCase addTikonUseCase = AddTikonUseCase(tikonRepository: tikonRepositoryImpl);
 
   return [
+    // tikon
     BlocProvider<AddTikonCalenderStateCubit>(create: (context) => AddTikonCalenderStateCubit()),
     BlocProvider<HomeScreenTagState>(create: (context) => HomeScreenTagState()),
     BlocProvider<AddScreenSliderState>(create: (context) => AddScreenSliderState()),
