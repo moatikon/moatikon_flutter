@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     context.read<TikonBloc>().add(GetAllTikonListEvent());
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      MoaNavigator.go(context, const OnBoardingScreen());
+      Future.delayed(const Duration(seconds: 1)).then((_) => MoaNavigator.teleporting(context, const OnBoardingScreen()));
     });
   }
 

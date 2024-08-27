@@ -15,6 +15,7 @@ class OnBoardingScreen extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20.w),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ImageWidget(
               image: 'assets/image/logo.png',
