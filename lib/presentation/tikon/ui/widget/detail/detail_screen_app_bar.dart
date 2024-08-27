@@ -16,7 +16,7 @@ class DetailScreenAppBar extends StatelessWidget implements PreferredSizeWidget 
           GestureDetector(
             onTap: () => Navigator.pop(context),
             child: ImageWidget(
-              image: 'assets/image/arrow_right_icon.png',
+              image: 'assets/image/arrow_left_icon.png',
               width: 24.w,
             ),
           ),

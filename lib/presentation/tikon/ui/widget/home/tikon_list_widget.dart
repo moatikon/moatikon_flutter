@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moatikon_flutter/core/moa_navigator.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikon_entity.dart';
 import 'package:moatikon_flutter/presentation/tikon/ui/view/detail_screen.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/home/home_screen_tag_state.dart';
@@ -46,12 +47,7 @@ class TikonListWidget extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.only(top: 20, bottom: 10),
             child: GestureDetector(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailScreen(image: tikonData.image),
-                ),
-              ),
+              onTap: () => MoaNavigator.push(context, DetailScreen(image: tikonData.image)),
               behavior: HitTestBehavior.opaque,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,

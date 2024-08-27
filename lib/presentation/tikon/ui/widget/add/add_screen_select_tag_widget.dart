@@ -21,7 +21,7 @@ class AddScreenSelectTagWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextWidget(
-              text: "기프티콘 할인율",
+              text: "태그",
               textSize: 15.sp,
               textWeight: TextWeight.semiBold,
             ),

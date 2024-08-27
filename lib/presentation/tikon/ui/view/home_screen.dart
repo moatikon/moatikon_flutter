@@ -14,6 +14,7 @@ import '../widget/home/home_screen_app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MyScaffold(
@@ -26,37 +27,27 @@ class HomeScreen extends StatelessWidget {
             const TagListWidget(),
             BlocBuilder<TikonBloc, TikonState<List<TikonEntity>>>(
               builder: (context, state) {
-                switch(state.tikonState){
-                  case BlocStateEnum.empty:
-                    return Expanded(
-                      child: Center(
-                        child: TextWidget(
-                          text: "값을 불러오지 못했어요.",
-                          textSize: 25.sp,
-                          textWeight: TextWeight.extraBold,
-                        ),
+                if (state.tikonState == BlocStateEnum.empty ||
+                    state.tikonState == BlocStateEnum.loading) {
+                  return const Expanded(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                } else if (state.tikonState == BlocStateEnum.error) {
+                  return Expanded(
+                    child: Center(
+                      child: TextWidget(
+                        text: "값을 불러오지 못했어요.",
+                        textSize: 25.sp,
+                        textWeight: TextWeight.extraBold,
                       ),
-                    );
-                  case BlocStateEnum.loading:
-                    return const Expanded(
-                      child: Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    );
-                  case BlocStateEnum.error:
-                    return Expanded(
-                      child: Center(
-                        child: TextWidget(
-                          text: context.read<TikonBloc>().state.error,
-                          textSize: 25.sp,
-                          textWeight: TextWeight.extraBold,
-                        ),
-                      ),
-                    );
-                  case BlocStateEnum.loaded:
-                    return TikonListWidget(
-                      tikonList: context.read<TikonBloc>().state.value,
-                    );
+                    ),
+                  );
+                } else {
+                  return TikonListWidget(
+                    tikonList: context.read<TikonBloc>().state.value,
+                  );
                 }
               },
             ),
