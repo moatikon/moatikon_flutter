@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/component/moa_button.dart';
+import 'package:moatikon_flutter/core/moa_navigator.dart';
+import 'package:moatikon_flutter/presentation/tikon/ui/view/home/home_screen.dart';
 
 import '../../../../component/text_widget.dart';
 
@@ -15,6 +17,8 @@ class OnBoardingBottomSheet extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           MoaButton(
+            onTap: () => MoaNavigator.go(context, const HomeScreen()),
+
             text: "로그인",
             textSize: 20.sp,
             textWeight: TextWeight.medium,
