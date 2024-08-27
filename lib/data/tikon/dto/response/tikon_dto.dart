@@ -13,20 +13,29 @@ class TikonDto {
     required this.disCount,
   });
 
-  factory TikonDto.fromJson(Map<String, dynamic> json){
+  factory TikonDto.fromJson(Map<String, dynamic> json) {
+    int genDDay() {
+      DateTime targetDate = DateTime.parse(json['finishedTikon']);
+      DateTime now = DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+      );
 
+      return targetDate.difference(now).inDays;
+    }
 
     return TikonDto(
       image: json['image'],
       storeName: json['storeName'],
       tikonName: json['tikonName'],
       category: json['category'],
-      dDay: DateTime.now().difference(DateTime.parse(json['finishedTikon'])).inDays,
+      dDay: genDDay(),
       disCount: json['disCount'],
     );
   }
 
-  TikonEntity toEntity(){
+  TikonEntity toEntity() {
     return TikonEntity(
       image: image,
       storeName: storeName,

@@ -25,7 +25,7 @@ final Map<String, List<Map<String, dynamic>>> dummyData = {
       "storeName": "코카콜라",
       "tikonName": "코카콜라가 무료!",
       "category": "음료",
-      "finishedTikon": "2024-08-27",
+      "finishedTikon": "2024-08-28",
       "disCount": 100,
     },
   ]

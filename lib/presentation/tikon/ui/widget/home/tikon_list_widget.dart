@@ -29,7 +29,7 @@ class TikonListWidget extends StatelessWidget {
 
 
     String dDayFactory(int dDay){
-      if(dDay == 1){
+      if(dDay == 0){
         return "D-Day";
       } else if (dDay > 30){
         return "D-30+";
