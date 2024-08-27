@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moatikon_flutter/core/component/image_widget.dart';
 
+import '../../../../../component/image_widget.dart';
 import '../../../view_model/add/add_screen_slider_state.dart';
 import '../../../view_model/add/add_screen_tag_state.dart';
 import '../../view/add/add_screen.dart';

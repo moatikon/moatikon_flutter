@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moatikon_flutter/core/di/di.dart';
 import 'package:moatikon_flutter/presentation/splash/ui/view/splash_screen.dart';
+
+import 'di/di.dart';
 
 void main() async {
   runApp(MyApp(

@@ -1,7 +1,7 @@
 import 'package:moatikon_flutter/data/tikon/dto/request/add_tikon_request.dart';
 import 'package:moatikon_flutter/data/tikon/dto/response/tikon_dto.dart';
 
-import '../../../../core/util/dummy_data.dart';
+import '../../../../core/dummy_data.dart';
 import '../../../../domain/tikon/entity/tikon_entity.dart';
 
 class RemoteTikonDataSource{

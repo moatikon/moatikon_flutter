@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/component/text_widget.dart';
+import '../../../../../component/text_widget.dart';
 
 class DetailScreenBottomSheet extends StatelessWidget {
   const DetailScreenBottomSheet({super.key});

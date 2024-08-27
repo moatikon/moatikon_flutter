@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moatikon_flutter/core/component/my_scaffold.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_screen_slider_state.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_screen_tag_state.dart';
 
+import '../../../../../component/my_scaffold.dart';
 import '../../widget/add/add_screen_app_bar.dart';
 import '../../widget/add/add_screen_bottom_sheet.dart';
 import '../../widget/add/add_screen_calender_widget.dart';

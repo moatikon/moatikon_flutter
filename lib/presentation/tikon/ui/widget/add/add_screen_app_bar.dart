@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moatikon_flutter/core/component/image_widget.dart';
+
+import '../../../../../component/image_widget.dart';
 
 class AddScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
   const AddScreenAppBar({super.key});

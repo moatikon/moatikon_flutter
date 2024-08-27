@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/component/image_widget.dart';
-import '../../../../../core/component/text_widget.dart';
+import '../../../../../component/image_widget.dart';
+import '../../../../../component/text_widget.dart';
 
 class AddImageButtonWidget extends StatelessWidget {
   const AddImageButtonWidget({super.key});

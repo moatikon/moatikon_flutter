@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/component/image_widget.dart';
+import '../../../../../component/image_widget.dart';
 
 class DetailScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
   const DetailScreenAppBar({super.key});

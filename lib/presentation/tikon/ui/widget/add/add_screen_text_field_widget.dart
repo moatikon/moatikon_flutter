@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moatikon_flutter/core/component/text_widget.dart';
+
+import '../../../../../component/text_widget.dart';
 
 class AddScreenTextFieldWidget extends StatelessWidget {
   final String title, hintText;

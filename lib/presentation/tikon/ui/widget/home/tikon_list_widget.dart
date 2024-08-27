@@ -5,8 +5,8 @@ import 'package:moatikon_flutter/domain/tikon/entity/tikon_entity.dart';
 import 'package:moatikon_flutter/presentation/tikon/ui/view/detail/detail_screen.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/home/home_screen_tag_state.dart';
 
-import '../../../../../core/component/image_widget.dart';
-import '../../../../../core/component/text_widget.dart';
+import '../../../../../component/image_widget.dart';
+import '../../../../../component/text_widget.dart';
 
 class TikonListWidget extends StatelessWidget {
   final List<TikonEntity> tikonList;

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moatikon_flutter/core/component/text_widget.dart';
-import 'package:moatikon_flutter/core/util/tag_list.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/home/home_screen_tag_state.dart';
+
+import '../../../../../component/text_widget.dart';
+import '../../../../../core/tag_list.dart';
 
 class TagListWidget extends StatelessWidget {
   const TagListWidget({super.key});

@@ -1,4 +1,4 @@
-import 'package:moatikon_flutter/core/util/bloc_state_enum.dart';
+import '../../../core/bloc_state_enum.dart';
 
 abstract class TikonState<T> {
   BlocStateEnum tikonState;

@@ -5,6 +5,7 @@ class MyScaffold extends StatelessWidget {
   final PreferredSizeWidget? appbar;
   final Widget? body, floatingActionButton, bottomSheet;
   final Color? backgroundColor;
+  final EdgeInsetsGeometry? padding;
 
   const MyScaffold({
     super.key,
@@ -12,13 +13,15 @@ class MyScaffold extends StatelessWidget {
     this.body,
     this.floatingActionButton,
     this.bottomSheet,
-    this.backgroundColor
+    this.backgroundColor,
+    this.padding,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
+      padding: padding,
       child: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(top: 10.h),
