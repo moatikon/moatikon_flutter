@@ -14,12 +14,14 @@ class TikonDto {
   });
 
   factory TikonDto.fromJson(Map<String, dynamic> json){
+
+
     return TikonDto(
       image: json['image'],
       storeName: json['storeName'],
       tikonName: json['tikonName'],
       category: json['category'],
-      dDay: json['dDay'],
+      dDay: DateTime.now().difference(DateTime.parse(json['finishedTikon'])).inDays,
       disCount: json['disCount'],
     );
   }

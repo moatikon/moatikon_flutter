@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/data/tikon/dto/request/add_tikon_request.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_tikon_calender_state_cubit.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_bloc.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_event.dart';
 
@@ -45,7 +46,7 @@ class AddScreenBottomSheet extends StatelessWidget {
                 storeName: storeName.text,
                 tikonName: tikonName.text,
                 category: categoryBuilder(addScreenTagState),
-                dDay: 10,
+                finishedTikon: context.read<AddTikonCalenderStateCubit>().dateTimeFormat(),
                 disCount: disCount,
               ),
             ),
