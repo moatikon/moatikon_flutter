@@ -10,6 +10,8 @@ class MoaButton extends StatelessWidget {
   final Color? color, fontColor;
   final Widget? leading;
   final GestureTapCallback? onTap;
+  final EdgeInsets? padding;
+  final BoxBorder? border;
 
   const MoaButton({
     required this.text,
@@ -22,6 +24,8 @@ class MoaButton extends StatelessWidget {
     this.leading,
     this.borderRadius,
     this.onTap,
+    this.padding,
+    this.border,
     super.key,
   });
 
@@ -30,13 +34,14 @@ class MoaButton extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 100),
+      child: Container(
         width: width,
         height: height,
+        padding: padding,
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(borderRadius ?? 0),
+          border: border
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
