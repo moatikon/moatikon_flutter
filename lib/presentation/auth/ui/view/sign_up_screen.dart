@@ -9,6 +9,8 @@ import 'package:moatikon_flutter/presentation/auth/ui/widget/auth_app_bar.dart';
 import 'package:moatikon_flutter/presentation/auth/ui/widget/auth_text_field_widget.dart';
 import 'package:moatikon_flutter/presentation/tikon/ui/view/home_screen.dart';
 
+import '../widget/auth_rich_text_widget.dart';
+
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
@@ -57,30 +59,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
         padding: EdgeInsets.only(bottom: 20.h),
         child: GestureDetector(
           onTap: () => MoaNavigator.pushReplacement(context, const SignInScreen()),
-          child: Text.rich(
-            TextSpan(
-              children: [
-                TextSpan(
-                  text: "모아티콘을 사용헀었다면?",
-                  style: TextStyle(
-                    fontFamily: "Pretendard",
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.w700,
-                    color: const Color(0xFF000000),
-                  ),
-                ),
-                TextSpan(
-                  text: "로그인",
-                  style: TextStyle(
-                    fontFamily: "Pretendard",
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.w700,
-                    color: const Color(0xFFEA4E46),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          child: const AuthRichTextWidget(
+            firstText: "모아티콘을 사용했었다면?",
+            secondText: "로그인",
+          )
         ),
       ),
       body: Padding(

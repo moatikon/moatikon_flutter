@@ -1,38 +1,32 @@
 import '../../../core/bloc_state_enum.dart';
 
-abstract class AuthState<T> {
-  BlocStateEnum tikonState;
-  T? valueOfNull;
+abstract class AuthState {
+  BlocStateEnum authState;
   Object? errorOfNull;
 
   AuthState({
-    required this.tikonState,
-    this.valueOfNull,
+    required this.authState,
     this.errorOfNull,
   });
 
-  T get value => valueOfNull!;
   String get error => errorOfNull!.toString().substring(11);
 }
 
-class Empty<T> extends AuthState<T> {
-  Empty() : super(tikonState: BlocStateEnum.empty);
+class Empty extends AuthState {
+  Empty() : super(authState: BlocStateEnum.empty);
 }
 
-class Loading<T> extends AuthState<T> {
-  Loading() : super(tikonState: BlocStateEnum.loading);
+class Loading extends AuthState {
+  Loading() : super(authState: BlocStateEnum.loading);
 }
 
-class Error<T> extends AuthState<T> {
+class Error extends AuthState {
   final Object exception;
 
   Error({required this.exception})
-      : super(tikonState: BlocStateEnum.error, errorOfNull: exception);
+      : super(authState: BlocStateEnum.error, errorOfNull: exception);
 }
 
-class Loaded<T> extends AuthState<T> {
-  final T? data;
-
-  Loaded({required this.data})
-      : super(tikonState: BlocStateEnum.loaded, valueOfNull: data);
+class Loaded extends AuthState {
+  Loaded() : super(authState: BlocStateEnum.loaded);
 }
