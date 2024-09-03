@@ -19,6 +19,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         super(Empty()) {
     on<SignUpEvent>(_signUpHandler);
     on<SignInEvent>(_signInHandler);
+    on<EmptyEvent>(_emptyHandler);
+  }
+
+  void _emptyHandler(
+      EmptyEvent event,
+      Emitter<AuthState> emit,
+      ) async {
+    emit(Empty());
   }
 
   void _signUpHandler(

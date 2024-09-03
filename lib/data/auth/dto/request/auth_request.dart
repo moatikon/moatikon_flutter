@@ -1,16 +1,16 @@
 class AuthRequest {
-  final String username;
+  final String email;
   final String password;
 
   const AuthRequest({
-    required this.username,
+    required this.email,
     required this.password,
   });
 
   Map<String, dynamic> toJson(){
     Map<String, dynamic> data = <String, dynamic>{};
 
-    data['username'] = username;
+    data['email'] = email;
     data['password'] = password;
 
     return data;
