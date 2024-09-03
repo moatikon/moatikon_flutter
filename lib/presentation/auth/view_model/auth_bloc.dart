@@ -1,3 +1,4 @@
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moatikon_flutter/core/token_secure_storage.dart';
 import 'package:moatikon_flutter/domain/auth/entity/token_entity.dart';
@@ -17,8 +18,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   })  : _signInUsecase = signInUseCase,
         _signUpUsecase = signUpUseCase,
         super(Empty()) {
-    on<SignUpEvent>(_signUpHandler);
-    on<SignInEvent>(_signInHandler);
+    on<SignUpEvent>(_signUpHandler, transformer: droppable());
+    on<SignInEvent>(_signInHandler, transformer: droppable());
     on<EmptyEvent>(_emptyHandler);
   }
 
