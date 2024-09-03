@@ -77,9 +77,21 @@ class _SignInScreenState extends State<SignInScreen> {
               secondText: "회원가입",
             )),
       ),
-      body: BlocListener<AuthBloc, AuthState>(
-        listenWhen: (_, current) => current.authState == BlocStateEnum.loaded,
-        listener: (_, __) => MoaNavigator.go(context, const HomeScreen()),
+      body: MultiBlocListener(
+        listeners: [
+          BlocListener<AuthBloc, AuthState>(
+            listenWhen: (_, current) => current.authState == BlocStateEnum.loaded,
+            listener: (_, __) => MoaNavigator.go(context, const HomeScreen()),
+          ),
+
+          BlocListener<AuthBloc, AuthState>(
+            listenWhen: (_, current) => current.authState == BlocStateEnum.error,
+            listener: (_, __) {
+              _emailController.clear();
+              _passwordController.clear();
+            },
+          ),
+        ],
         child: BlocBuilder<AuthBloc, AuthState>(builder: (_, state) {
           return Padding(
             padding: EdgeInsets.all(20.w),

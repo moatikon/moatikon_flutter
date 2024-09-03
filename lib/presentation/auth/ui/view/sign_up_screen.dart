@@ -106,9 +106,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
         ),
       ),
-      body: BlocListener<AuthBloc, AuthState>(
-        listenWhen: (_, current) => current.authState == BlocStateEnum.loaded,
-        listener: (_, __) => MoaNavigator.go(context, const HomeScreen()),
+      body: MultiBlocListener(
+        listeners: [
+          BlocListener<AuthBloc, AuthState>(
+            listenWhen: (_, current) => current.authState == BlocStateEnum.loaded,
+            listener: (_, __) => MoaNavigator.go(context, const HomeScreen()),
+          ),
+
+          BlocListener<AuthBloc, AuthState>(
+            listenWhen: (_, current) => current.authState == BlocStateEnum.error,
+            listener: (_, __) {
+              _emailController.clear();
+              _passwordController.clear();
+              _passwordCompareController.clear();
+            },
+          ),
+        ],
         child: BlocBuilder<AuthBloc, AuthState>(
           builder: (_, state) {
             return Padding(
