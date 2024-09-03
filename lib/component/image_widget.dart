@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 enum ImageType { png, network }
@@ -31,8 +32,8 @@ class ImageWidget extends StatelessWidget {
           fit: fit,
         );
       case ImageType.network:
-        return Image.network(
-          image,
+        return CachedNetworkImage(
+          imageUrl: image,
           width: width,
           height: height,
           color: color,

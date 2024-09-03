@@ -19,10 +19,10 @@ class TikonListWidget extends StatelessWidget {
     final tagState = context.watch<HomeScreenTagState>().state;
     List<TikonEntity> filterTikonList = tikonList.where((element) {
       switch(tagState){
-        case 1: return element.category == "식사류";
-        case 2: return element.category == "음료";
-        case 3: return element.category == "물건";
-        case 4: return element.category == "기타";
+        case 1: return element.category == "MEAL";
+        case 2: return element.category == "DRINK";
+        case 3: return element.category == "OBJECT";
+        case 4: return element.category == "ETC";
         default: return true;
       }
     }).toList();
