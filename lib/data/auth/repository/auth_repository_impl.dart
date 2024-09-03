@@ -19,4 +19,9 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> signup({required AuthRequest authRequest}) {
     return _remoteAuthDataSource.signup(authRequest: authRequest);
   }
+
+  @override
+  Future<TokenEntity> reIssue() {
+    return _remoteAuthDataSource.reIssue();
+  }
 }

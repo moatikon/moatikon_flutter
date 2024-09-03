@@ -3,10 +3,12 @@ import 'package:moatikon_flutter/data/auth/data_source/remote/remote_auth_data_s
 import 'package:moatikon_flutter/data/auth/repository/auth_repository_impl.dart';
 import 'package:moatikon_flutter/data/tikon/data_source/remote/remote_tikon_data_source.dart';
 import 'package:moatikon_flutter/data/tikon/repository/tikon_repository_impl.dart';
+import 'package:moatikon_flutter/domain/auth/use_case/re_issue_use_case.dart';
 import 'package:moatikon_flutter/domain/auth/use_case/sign_up_use_case.dart';
 import 'package:moatikon_flutter/domain/tikon/use_case/add_tikon_use_case.dart';
 import 'package:moatikon_flutter/domain/tikon/use_case/get_all_tikon_list_use_case.dart';
 import 'package:moatikon_flutter/presentation/auth/view_model/auth_bloc.dart';
+import 'package:moatikon_flutter/presentation/splash/view_model/splash_bloc.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_tikon_calender_state_cubit.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/home/home_screen_tag_state.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_bloc.dart';
@@ -21,6 +23,7 @@ Future<List<BlocProvider>> di() async {
   // auth_use_case
   SignUpUseCase signUpUseCase = SignUpUseCase(authRepository: authRepositoryImpl);
   SignInUseCase signInUseCase = SignInUseCase(authRepository: authRepositoryImpl);
+  ReIssueUseCase reIssueUseCase = ReIssueUseCase(authRepository: authRepositoryImpl);
 
   // tikon
   RemoteTikonDataSource remoteTikonDataSource = RemoteTikonDataSource();
@@ -32,6 +35,7 @@ Future<List<BlocProvider>> di() async {
   return [
     //auth
     BlocProvider<AuthBloc>(create: (context) => AuthBloc(signInUseCase: signInUseCase, signUpUseCase: signUpUseCase)),
+    BlocProvider<SplashBloc>(create: (context) => SplashBloc(reIssueUseCase: reIssueUseCase)),
 
     // tikon
     BlocProvider<AddTikonCalenderStateCubit>(create: (context) => AddTikonCalenderStateCubit()),

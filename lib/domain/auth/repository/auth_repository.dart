@@ -5,4 +5,6 @@ abstract class AuthRepository {
   Future<void> signup({required AuthRequest authRequest});
 
   Future<TokenEntity> signin({required AuthRequest authRequest});
+
+  Future<TokenEntity> reIssue();
 }
