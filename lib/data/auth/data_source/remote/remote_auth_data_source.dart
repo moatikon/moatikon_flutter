@@ -13,6 +13,11 @@ class RemoteAuthDataSource {
   }
 
   Future<TokenEntity> signin({required AuthRequest authRequest}) async {
-    return const TokenDto(accessToken: '', refreshToken: '').toEntity();
+    try{
+      final response = await dio.post('/auth/signin', data: authRequest.toJson());
+      return TokenDto.fromJson(response.data).toEntity();
+    } catch (err) {
+      throw Exception("유저 정보가 일치하지 않습니다.");
+    }
   }
 }
