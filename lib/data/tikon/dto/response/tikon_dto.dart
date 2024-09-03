@@ -31,7 +31,7 @@ class TikonDto {
       tikonName: json['tikonName'],
       category: json['category'],
       dDay: genDDay(),
-      disCount: json['disCount'],
+      disCount: json['discount'],
     );
   }
 
