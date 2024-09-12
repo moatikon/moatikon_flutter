@@ -3,7 +3,7 @@ import 'package:moatikon_flutter/data/tikon/dto/request/add_tikon_request.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikons_entity.dart';
 import 'package:moatikon_flutter/domain/tikon/repository/tikon_repository.dart';
 
-class TikonRepositoryImpl implements TikonRepository{
+class TikonRepositoryImpl implements TikonRepository {
   final RemoteTikonDataSource _remoteTikonDataSource;
 
   const TikonRepositoryImpl({
@@ -16,7 +16,12 @@ class TikonRepositoryImpl implements TikonRepository{
   }
 
   @override
-  Future<void> addTikon(AddTikonRequest request) async {
+  Future<void> addTikon(AddTikonRequest request) {
     return _remoteTikonDataSource.addTikon(request);
+  }
+
+  @override
+  Future<void> completeTikon({required int id}) {
+    return _remoteTikonDataSource.completeTikon(id: id);
   }
 }

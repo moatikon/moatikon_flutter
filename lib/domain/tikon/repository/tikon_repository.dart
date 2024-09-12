@@ -4,4 +4,5 @@ import '../entity/tikons_entity.dart';
 abstract class TikonRepository{
   Future<TikonsEntity> getAllTikonList();
   Future<void> addTikon(AddTikonRequest request);
+  Future<void> completeTikon({required int id});
 }

@@ -33,7 +33,7 @@ class AddScreenBottomSheet extends StatelessWidget {
           if(tikonName.text.isNotEmpty && storeName.text.isNotEmpty && imageFile != null){
             print(disCount.toString());
             context.read<TikonBloc>().add(
-              AddTikon(
+              AddTikonEvent(
                 addTikonRequest: AddTikonRequest(
                   imageFile: imageFile,
                   storeName: storeName.text,

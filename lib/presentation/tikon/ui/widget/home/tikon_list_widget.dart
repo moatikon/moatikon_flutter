@@ -42,12 +42,12 @@ class TikonListWidget extends StatelessWidget {
       child: ListView.builder(
         itemCount: filterTikonList.length,
         itemBuilder: (_, index) {
-          final tikonData = filterTikonList[index];
+          final TikonEntity tikonData = filterTikonList[index];
 
           return Padding(
             padding: const EdgeInsets.only(top: 20, bottom: 10),
             child: GestureDetector(
-              onTap: () => MoaNavigator.push(context, DetailScreen(image: tikonData.image)),
+              onTap: () => MoaNavigator.push(context, DetailScreen(tikonData: tikonData)),
               behavior: HitTestBehavior.opaque,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,

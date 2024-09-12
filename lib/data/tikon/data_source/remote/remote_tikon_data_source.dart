@@ -29,7 +29,22 @@ class RemoteTikonDataSource {
         data: addTikonRequest.toForm(),
       );
       return;
-    } on DioException catch(err) {
+    } on DioException catch(_) {
+      rethrow;
+    }
+  }
+
+  Future<void> completeTikon({required int id}) async {
+    String? accessToken = await TokenSecureStorage.readAccessToken();
+    Map<String, dynamic> header = {"Authorization": "Bearer $accessToken"};
+
+    try {
+      await dio.delete(
+        '/tikon/$id',
+        options: Options(headers: header),
+      );
+      return;
+    } on DioException catch (_) {
       rethrow;
     }
   }

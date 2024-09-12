@@ -4,8 +4,14 @@ abstract class TikonEvent {}
 
 class GetAllTikonListEvent extends TikonEvent {}
 
-class AddTikon extends TikonEvent {
+class AddTikonEvent extends TikonEvent {
   final AddTikonRequest addTikonRequest;
 
-  AddTikon({required this.addTikonRequest});
+  AddTikonEvent({required this.addTikonRequest});
+}
+
+class CompleteTikonEvent extends TikonEvent {
+  final int id;
+
+  CompleteTikonEvent({required this.id});
 }

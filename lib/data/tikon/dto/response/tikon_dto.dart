@@ -39,6 +39,7 @@ class TikonDto {
 
   TikonEntity toEntity() {
     return TikonEntity(
+      id: id,
       image: image,
       storeName: storeName,
       tikonName: tikonName,
