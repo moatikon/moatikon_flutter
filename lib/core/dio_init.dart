@@ -40,6 +40,8 @@ void dioInit() => dio.interceptors.add(
               return handler.reject(err);
             }
           }
+
+          return handler.reject(error);
         },
       ),
     );
