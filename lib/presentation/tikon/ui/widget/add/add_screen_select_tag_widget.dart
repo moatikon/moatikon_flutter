@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_screen_tag_state.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_screen_category_state.dart';
 
 import '../../../../../component/text_widget.dart';
 import '../../../../../core/tag_list.dart';
@@ -15,7 +15,7 @@ class AddScreenSelectTagWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     List<String> subTagList = tagList.sublist(1);
 
-    return BlocBuilder<AddScreenTagState, int>(
+    return BlocBuilder<AddScreenCategoryState, int>(
       builder: (context, state) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +34,7 @@ class AddScreenSelectTagWidget extends StatelessWidget {
                   subTagList.length,
                   (index) {
                     return GestureDetector(
-                      onTap: () => context.read<AddScreenTagState>().changeState(index),
+                      onTap: () => context.read<AddScreenCategoryState>().changeState(index),
                       behavior: HitTestBehavior.opaque,
                       child: Row(
                         children: [

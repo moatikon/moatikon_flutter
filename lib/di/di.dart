@@ -10,10 +10,11 @@ import 'package:moatikon_flutter/domain/tikon/use_case/get_all_tikon_list_use_ca
 import 'package:moatikon_flutter/presentation/auth/view_model/auth_bloc.dart';
 import 'package:moatikon_flutter/presentation/splash/view_model/splash_bloc.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_tikon_calender_state_cubit.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_tikon_image_state_cubit.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/home/home_screen_tag_state.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_bloc.dart';
 import '../../presentation/tikon/view_model/add/add_screen_slider_state.dart';
-import '../../presentation/tikon/view_model/add/add_screen_tag_state.dart';
+import '../../presentation/tikon/view_model/add/add_screen_category_state.dart';
 import '../domain/auth/use_case/sign_in_use_case.dart';
 
 Future<List<BlocProvider>> di() async {
@@ -38,10 +39,11 @@ Future<List<BlocProvider>> di() async {
     BlocProvider<SplashBloc>(create: (context) => SplashBloc(reIssueUseCase: reIssueUseCase)),
 
     // tikon
+    BlocProvider<AddTikonImageStateCubit>(create: (context) => AddTikonImageStateCubit()),
     BlocProvider<AddTikonCalenderStateCubit>(create: (context) => AddTikonCalenderStateCubit()),
     BlocProvider<HomeScreenTagState>(create: (context) => HomeScreenTagState()),
     BlocProvider<AddScreenSliderState>(create: (context) => AddScreenSliderState()),
-    BlocProvider<AddScreenTagState>(create: (context) => AddScreenTagState()),
+    BlocProvider<AddScreenCategoryState>(create: (context) => AddScreenCategoryState()),
     BlocProvider<TikonBloc>(
       create: (context) => TikonBloc(
         getAllTikonListUseCase: getAllTikonListUseCase,

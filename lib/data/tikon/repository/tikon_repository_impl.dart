@@ -17,6 +17,6 @@ class TikonRepositoryImpl implements TikonRepository{
 
   @override
   Future<void> addTikon(AddTikonRequest request) async {
-    _remoteTikonDataSource.addTikon(request);
+    return _remoteTikonDataSource.addTikon(request);
   }
 }

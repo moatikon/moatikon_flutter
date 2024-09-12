@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_screen_slider_state.dart';
-import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_screen_tag_state.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_tikon_image_state_cubit.dart';
 
 import '../../../../component/my_scaffold.dart';
 import '../widget/add/add_screen_app_bar.dart';
@@ -22,6 +25,8 @@ class AddScreen extends StatefulWidget {
 }
 
 class _AddScreenState extends State<AddScreen> {
+  final ImagePicker imagePicker = ImagePicker();
+
   late TextEditingController tikonNameController;
   late FocusNode tikonNameNode;
 
@@ -50,16 +55,13 @@ class _AddScreenState extends State<AddScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final int addScreenTagState = context.watch<AddScreenTagState>().state;
-    final int disCount = context.watch<AddScreenSliderState>().state.toInt() * 10;
+    final XFile? imageFile = context.watch<AddTikonImageStateCubit>().state;
 
     return MyScaffold(
       appbar: const AddScreenAppBar(),
       bottomSheet: AddScreenBottomSheet(
         tikonName: tikonNameController,
         storeName: storeNameController,
-        addScreenTagState: addScreenTagState,
-        disCount: disCount,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -67,7 +69,24 @@ class _AddScreenState extends State<AddScreen> {
           child: Center(
             child: Column(
               children: [
-                const AddImageButtonWidget(),
+                GestureDetector(
+                  onTap: () async {
+                    XFile? imageFile = await imagePicker.pickImage(source: ImageSource.gallery, imageQuality: 100);
+
+                    if(context.mounted){
+                      context.read<AddTikonImageStateCubit>().setFile(imageFile!);
+                    }
+                  },
+                  child: Builder(
+                    builder: (context) {
+                      if(imageFile == null){
+                        return const AddImageButtonWidget();
+                      } else {
+                        return Image.file(File(imageFile.path));
+                      }
+                    }
+                  ),
+                ),
                 SizedBox(height: 20.h),
                 AddScreenTextFieldWidget(
                   title: "기프티콘명",

@@ -1,52 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:moatikon_flutter/data/tikon/dto/request/add_tikon_request.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_tikon_calender_state_cubit.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_tikon_image_state_cubit.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_bloc.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_event.dart';
 
 import '../../../../../component/text_widget.dart';
+import '../../../view_model/add/add_screen_category_state.dart';
+import '../../../view_model/add/add_screen_slider_state.dart';
 
 class AddScreenBottomSheet extends StatelessWidget {
   final TextEditingController tikonName, storeName;
-  final int addScreenTagState, disCount;
 
   const AddScreenBottomSheet({
     super.key,
     required this.tikonName,
     required this.storeName,
-    required this.addScreenTagState,
-    required this.disCount,
   });
 
   @override
   Widget build(BuildContext context) {
-    String categoryBuilder(int index){
-      switch(index){
-        case 0:
-          return "식사류";
-        case 1:
-          return "음료";
-        case 2:
-          return "물건";
-        default:
-          return "기타";
-      }
-    }
+    XFile? imageFile = context.watch<AddTikonImageStateCubit>().state;
+    final int disCount = context.watch<AddScreenSliderState>().state.toInt() * 10;
 
     return Padding(
       padding: EdgeInsets.only(bottom: 20.h),
       child: GestureDetector(
         onTap: () {
-          if(tikonName.text.isNotEmpty && storeName.text.isNotEmpty){
+          if(tikonName.text.isNotEmpty && storeName.text.isNotEmpty && imageFile != null){
+            print(disCount.toString());
             context.read<TikonBloc>().add(
               AddTikon(
                 addTikonRequest: AddTikonRequest(
-                  image: "https://www.contis.ph/cdn/shop/products/CokeinCan.jpg?v=1689558538&width=1200",
+                  imageFile: imageFile,
                   storeName: storeName.text,
                   tikonName: tikonName.text,
-                  category: categoryBuilder(addScreenTagState),
+                  category: context.read<AddScreenCategoryState>().categoryBuilder(),
                   finishedTikon: context.read<AddTikonCalenderStateCubit>().dateTimeFormat(),
                   disCount: disCount,
                 ),
