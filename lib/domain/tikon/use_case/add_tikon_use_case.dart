@@ -8,6 +8,6 @@ class AddTikonUseCase {
       : _tikonRepository = tikonRepository;
 
   Future<void> execute(AddTikonRequest request) async {
-    _tikonRepository.addTikon(request);
+    return _tikonRepository.addTikon(request);
   }
 }

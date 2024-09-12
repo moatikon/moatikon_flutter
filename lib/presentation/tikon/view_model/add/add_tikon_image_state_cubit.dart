@@ -6,7 +6,11 @@ class AddTikonImageStateCubit extends Cubit<XFile?> {
 
   XFile? get file => state;
 
-  void setFile(XFile file){
+  void init() {
+    emit(null);
+  }
+
+  void setFile(XFile file) {
     emit(file);
   }
 }

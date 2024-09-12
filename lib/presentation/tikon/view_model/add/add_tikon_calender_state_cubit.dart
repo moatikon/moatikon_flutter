@@ -18,6 +18,18 @@ class AddTikonCalenderStateCubit extends Cubit<AddTikonCalenderModel>{
           ),
         );
 
+  void init() {
+    emit(AddTikonCalenderModel(
+      isActive: false,
+      overlay: null,
+      date: DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+      ),
+    ));
+  }
+
   void overlayCalenderInset({required BuildContext context}) {
     emit(
       state.copyWith(

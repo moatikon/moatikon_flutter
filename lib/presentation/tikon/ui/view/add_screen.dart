@@ -6,9 +6,12 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_screen_slider_state.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_tikon_calender_state_cubit.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_tikon_image_state_cubit.dart';
 
 import '../../../../component/my_scaffold.dart';
+import '../../view_model/add/add_screen_category_state.dart';
 import '../widget/add/add_screen_app_bar.dart';
 import '../widget/add/add_screen_bottom_sheet.dart';
 import '../widget/add/add_screen_calender_widget.dart';
@@ -51,6 +54,15 @@ class _AddScreenState extends State<AddScreen> {
 
     storeNameController.dispose();
     storeNameNode.dispose();
+  }
+
+  @override
+  void deactivate() {
+    super.deactivate();
+    context.read<AddScreenCategoryState>().init();
+    context.read<AddScreenSliderState>().init();
+    context.read<AddTikonCalenderStateCubit>().init();
+    context.read<AddTikonImageStateCubit>().init();
   }
 
   @override

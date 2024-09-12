@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../component/image_widget.dart';
-import '../../../view_model/add/add_screen_slider_state.dart';
-import '../../../view_model/add/add_screen_category_state.dart';
 import '../../view/add_screen.dart';
 
 class HomeScreenFloatingActionButton extends StatelessWidget {
@@ -13,16 +10,11 @@ class HomeScreenFloatingActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async {
-        await Navigator.push(
+      onTap: () {
+        Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const AddScreen()),
         );
-
-        if (context.mounted) {
-          context.read<AddScreenSliderState>().init();
-          context.read<AddScreenCategoryState>().init();
-        }
       },
       child: Container(
         decoration: const BoxDecoration(
