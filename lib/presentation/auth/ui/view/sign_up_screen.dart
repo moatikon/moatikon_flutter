@@ -13,10 +13,10 @@ import 'package:moatikon_flutter/presentation/auth/ui/widget/auth_app_bar.dart';
 import 'package:moatikon_flutter/presentation/auth/ui/widget/auth_text_field_widget.dart';
 import 'package:moatikon_flutter/presentation/auth/view_model/auth_bloc.dart';
 import 'package:moatikon_flutter/presentation/auth/view_model/auth_event.dart';
+import 'package:moatikon_flutter/presentation/splash/ui/view/splash_screen.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../../../component/toast_message.dart';
-import '../../../tikon/ui/view/home_screen.dart';
 import '../widget/auth_rich_text_widget.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -115,7 +115,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         listeners: [
           BlocListener<AuthBloc, BlocState>(
             listenWhen: (_, current) => current.blocState == BlocStateEnum.loaded,
-            listener: (_, __) => MoaNavigator.go(context, const HomeScreen()),
+            listener: (_, __) => MoaNavigator.go(context, const SplashScreen()),
           ),
 
           BlocListener<AuthBloc, BlocState>(

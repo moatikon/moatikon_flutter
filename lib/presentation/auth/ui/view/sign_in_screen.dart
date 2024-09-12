@@ -13,7 +13,7 @@ import 'package:moatikon_flutter/presentation/auth/ui/widget/auth_rich_text_widg
 import 'package:moatikon_flutter/presentation/auth/ui/widget/auth_text_field_widget.dart';
 import 'package:moatikon_flutter/presentation/auth/view_model/auth_bloc.dart';
 import 'package:moatikon_flutter/presentation/auth/view_model/auth_event.dart';
-import 'package:moatikon_flutter/presentation/tikon/ui/view/home_screen.dart';
+import 'package:moatikon_flutter/presentation/splash/ui/view/splash_screen.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../../../core/bloc/bloc_state_none_value.dart';
@@ -71,7 +71,7 @@ class _SignInScreenState extends State<SignInScreen> {
         listeners: [
           BlocListener<AuthBloc, BlocState>(
             listenWhen: (_, current) => current.blocState == BlocStateEnum.loaded,
-            listener: (_, __) => MoaNavigator.go(context, const HomeScreen()),
+            listener: (_, __) => MoaNavigator.go(context, const SplashScreen()),
           ),
 
           BlocListener<AuthBloc, BlocState>(
