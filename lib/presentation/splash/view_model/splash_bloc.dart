@@ -1,11 +1,12 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moatikon_flutter/core/bloc/bloc_state_none_value.dart';
 import 'package:moatikon_flutter/core/token_secure_storage.dart';
 import 'package:moatikon_flutter/domain/auth/entity/token_entity.dart';
 import 'package:moatikon_flutter/domain/auth/use_case/re_issue_use_case.dart';
 import 'package:moatikon_flutter/presentation/splash/view_model/splash_event.dart';
-import 'package:moatikon_flutter/presentation/splash/view_model/splash_state.dart';
 
-class SplashBloc extends Bloc<SplashEvent, SplashState> {
+class SplashBloc extends Bloc<SplashEvent, BlocState> {
   final ReIssueUseCase _reIssueUseCase;
 
   SplashBloc({required ReIssueUseCase reIssueUseCase})
@@ -14,7 +15,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     on<ReIssueEvent>(reissueHandler);
   }
 
-  void reissueHandler(ReIssueEvent event, Emitter<SplashState> emit) async {
+  void reissueHandler(ReIssueEvent event, Emitter<BlocState> emit) async {
     emit(Loading());
 
     try {
@@ -23,7 +24,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
       await TokenSecureStorage.writeRefreshToken(tokenEntity.refreshToken);
 
       emit(Loaded());
-    } catch (err) {
+    } on DioException catch (err) {
       emit(Error(exception: err));
     }
   }
