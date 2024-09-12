@@ -5,85 +5,41 @@ import '../core/token_secure_storage.dart';
 
 final Dio dio = Dio(BaseOptions(baseUrl: baseUrl));
 
-void dioInit() => dio.interceptors.add(CustomInterceptor());
+void dioInit() => dio.interceptors.add(
+      InterceptorsWrapper(
+        // 요청을 보낼 떄
+        onRequest: (options, handler) {
+          debugPrint('[REQ] [${options.method}] ${options.uri}');
+          return handler.next(options);
+        },
 
-class CustomInterceptor extends Interceptor {
-  final Dio dio = Dio(BaseOptions(baseUrl: baseUrl));
+        onError: (error, handler) async {
+          final Dio dio = Dio(BaseOptions(baseUrl: baseUrl));
 
-  @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    // 요청 보낼때
-    debugPrint('[REQ] [${options.method}] ${options.uri}');
+          debugPrint('[ERR] [${error.requestOptions.method}] ${error.requestOptions.uri}');
 
-    return super.onRequest(options, handler);
-  }
+          if (error.response?.statusCode == 401) {
+            final String? storageRefreshToken = await TokenSecureStorage.readRefreshToken();
+            if (storageRefreshToken == null) return handler.reject(error); // 실패하면 reject
 
-  Future<MaeumgagymReIssueDto> useReIssue(String refreshToken) async {
-    Map<String, String> header = {"RF-TOKEN": refreshToken};
-    final response = await dio.get(
-      '/auth/re-issue',
-      options: Options(headers: header),
+            try{
+              Map<String, String> header = {"RF-TOKEN": storageRefreshToken};
+              final response = await dio.get('/auth/re-issue', options: Options(headers: header));
+
+              final String accessToken = response.data['accessToken'];
+              final String refreshToken = response.data['refreshToken'];
+
+              TokenSecureStorage.writeAccessToken(accessToken);
+              TokenSecureStorage.writeRefreshToken(refreshToken);
+
+              final options = error.requestOptions;
+              options.headers.addAll({'Authorization': accessToken});
+              final fetchData = await dio.fetch(options);
+              return handler.resolve(fetchData);
+            } on DioException catch(err){
+              return handler.reject(err);
+            }
+          }
+        },
+      ),
     );
-
-    final MaeumgagymReIssueDto reIssueResponse = MaeumgagymReIssueDto.fromJson(
-      response.headers,
-    );
-
-    return reIssueResponse;
-  }
-
-  // 에러가 났을때
-  @override
-  void onError(err, ErrorInterceptorHandler handler) async {
-    debugPrint(
-      '[ERR] [${err.requestOptions.method}] ${err.requestOptions.uri} \n'
-          '[Error Message] ${err.message}',
-    );
-
-    if (err.response?.statusCode == 401) {
-      final String? refreshToken = await TokenSecureStorage.readRefreshToken();
-
-      if (refreshToken == null) {
-        return handler.reject(err);
-      }
-
-      try {
-        MaeumgagymReIssueDto reIssueResponse = await useReIssue(refreshToken);
-
-        final options = err.requestOptions;
-        options.headers.addAll({
-          'Authorization': reIssueResponse.accessToken,
-        });
-
-        await TokenSecureStorage.writeAccessToken(reIssueResponse.accessToken);
-        await TokenSecureStorage.writeRefreshToken(reIssueResponse.refreshToken);
-
-        final response = await dio.fetch(options);
-
-        return handler.resolve(response);
-      } on DioException catch (err) {
-        return handler.reject(err);
-      }
-    }
-    return handler.reject(err);
-  }
-}
-
-class MaeumgagymReIssueDto {
-  final String accessToken;
-  final String refreshToken;
-
-  const MaeumgagymReIssueDto({
-    required this.accessToken,
-    required this.refreshToken,
-  });
-
-  factory MaeumgagymReIssueDto.fromJson(Headers json) {
-    String jsonRFToken = json.map['set-cookie']![0];
-
-    return MaeumgagymReIssueDto(
-      accessToken: json.value('authorization').toString(),
-      refreshToken: jsonRFToken.substring(9, jsonRFToken.indexOf(';')),
-    );
-  }
-}
