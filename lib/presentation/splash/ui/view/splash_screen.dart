@@ -43,9 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
         BlocListener<SplashBloc, SplashState>(
           listenWhen: (_, current) => current.splashState == BlocStateEnum.error,
-          listener: (_, __) {
-            MoaNavigator.teleporting(context, const OnBoardingScreen());
-          },
+          listener: (_, __) => MoaNavigator.teleporting(context, const OnBoardingScreen()),
         )
       ],
       child: MyScaffold(
