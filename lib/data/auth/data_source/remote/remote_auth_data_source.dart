@@ -18,8 +18,7 @@ class RemoteAuthDataSource {
     try{
       final response = await dio.post('/auth/signin', data: authRequest.toJson());
       return TokenDto.fromJson(response.data).toEntity();
-    } on DioException catch (err) {
-      print("Error : ${err.response}");
+    } on DioException catch (_) {
       rethrow;
     }
   }
