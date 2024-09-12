@@ -1,14 +1,15 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moatikon_flutter/core/bloc/bloc_state_none_value.dart';
 import 'package:moatikon_flutter/core/token_secure_storage.dart';
 import 'package:moatikon_flutter/domain/auth/entity/token_entity.dart';
 import 'package:moatikon_flutter/presentation/auth/view_model/auth_event.dart';
-import 'package:moatikon_flutter/presentation/auth/view_model/auth_state.dart';
 
 import '../../../domain/auth/use_case/sign_in_use_case.dart';
 import '../../../domain/auth/use_case/sign_up_use_case.dart';
 
-class AuthBloc extends Bloc<AuthEvent, AuthState> {
+class AuthBloc extends Bloc<AuthEvent, BlocState> {
   final SignInUseCase _signInUsecase;
   final SignUpUseCase _signUpUsecase;
 
@@ -25,28 +26,28 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   void _emptyHandler(
       EmptyEvent event,
-      Emitter<AuthState> emit,
+      Emitter<BlocState> emit,
       ) async {
     emit(Empty());
   }
 
   void _signUpHandler(
     SignUpEvent event,
-    Emitter<AuthState> emit,
+    Emitter<BlocState> emit,
   ) async {
     emit(Loading());
 
     try {
       await _signUpUsecase.execute(authRequest: event.authRequest);
       emit(Loaded());
-    } catch (err) {
+    } on DioException catch (err) {
       emit(Error(exception: err));
     }
   }
 
   void _signInHandler(
     SignInEvent event,
-    Emitter<AuthState> emit,
+    Emitter<BlocState> emit,
   ) async {
     emit(Loading());
 
@@ -56,7 +57,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       TokenSecureStorage.writeRefreshToken(tokenEntity.refreshToken);
 
       emit(Loaded());
-    } catch (err) {
+    } on DioException catch (err) {
       emit(Error(exception: err));
     }
   }

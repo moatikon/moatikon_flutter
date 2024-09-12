@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/component/moa_button.dart';
 import 'package:moatikon_flutter/component/my_scaffold.dart';
 import 'package:moatikon_flutter/component/text_widget.dart';
+import 'package:moatikon_flutter/core/bloc/bloc_state_none_value.dart';
 import 'package:moatikon_flutter/core/bloc_state_enum.dart';
 import 'package:moatikon_flutter/core/moa_navigator.dart';
 import 'package:moatikon_flutter/data/auth/dto/request/auth_request.dart';
@@ -15,7 +16,6 @@ import 'package:moatikon_flutter/presentation/auth/view_model/auth_event.dart';
 import 'package:moatikon_flutter/presentation/auth/view_model/text_field_error_func.dart';
 
 import '../../../tikon/ui/view/home_screen.dart';
-import '../../view_model/auth_state.dart';
 import '../widget/auth_rich_text_widget.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -69,7 +69,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool textFieldAllCorrect(AuthState authState) {
+    bool textFieldAllCorrect(BlocState authState) {
       if(_emailController.text.isEmpty && _passwordController.text.isEmpty && _passwordCompareController.text.isEmpty){
         return false;
       }
@@ -108,13 +108,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
       body: MultiBlocListener(
         listeners: [
-          BlocListener<AuthBloc, AuthState>(
-            listenWhen: (_, current) => current.authState == BlocStateEnum.loaded,
+          BlocListener<AuthBloc, BlocState>(
+            listenWhen: (_, current) => current.blocState == BlocStateEnum.loaded,
             listener: (_, __) => MoaNavigator.go(context, const HomeScreen()),
           ),
 
-          BlocListener<AuthBloc, AuthState>(
-            listenWhen: (_, current) => current.authState == BlocStateEnum.error,
+          BlocListener<AuthBloc, BlocState>(
+            listenWhen: (_, current) => current.blocState == BlocStateEnum.error,
             listener: (_, __) {
               _emailController.clear();
               _passwordController.clear();
@@ -122,7 +122,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             },
           ),
         ],
-        child: BlocBuilder<AuthBloc, AuthState>(
+        child: BlocBuilder<AuthBloc, BlocState>(
           builder: (_, state) {
             return Padding(
               padding: EdgeInsets.all(20.w),
