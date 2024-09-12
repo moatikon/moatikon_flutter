@@ -9,8 +9,8 @@ class RemoteAuthDataSource {
   Future<void> signup({required AuthRequest authRequest}) async {
     try{
       await dio.post('/auth/signup', data: authRequest.toJson());
-    } catch (err) {
-      throw Exception("이미 있는 아이디거나 비밀번호에 오류가 생겼습니다.");
+    } on DioException catch (_) {
+      rethrow;
     }
   }
 
@@ -18,8 +18,9 @@ class RemoteAuthDataSource {
     try{
       final response = await dio.post('/auth/signin', data: authRequest.toJson());
       return TokenDto.fromJson(response.data).toEntity();
-    } catch (err) {
-      throw Exception("유저 정보가 일치하지 않습니다.");
+    } on DioException catch (err) {
+      print("Error : ${err.response}");
+      rethrow;
     }
   }
 
@@ -30,8 +31,8 @@ class RemoteAuthDataSource {
     try{
       final response = await dio.get('/auth/re-issue', options: Options(headers: header));
       return TokenDto.fromJson(response.data).toEntity();
-    } catch (err) {
-      throw Exception("Refresh Token 만료");
+    } on DioException catch (_) {
+      rethrow;
     }
   }
 }
