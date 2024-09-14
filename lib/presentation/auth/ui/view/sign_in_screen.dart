@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +7,7 @@ import 'package:moatikon_flutter/component/text_widget.dart';
 import 'package:moatikon_flutter/component/toast_message.dart';
 import 'package:moatikon_flutter/core/moa_navigator.dart';
 import 'package:moatikon_flutter/data/auth/dto/request/auth_request.dart';
-import 'package:moatikon_flutter/presentation/auth/ui/view/resetting_password_screen.dart';
+import 'package:moatikon_flutter/presentation/auth/ui/view/send_code_screen.dart';
 import 'package:moatikon_flutter/presentation/auth/ui/view/sign_up_screen.dart';
 import 'package:moatikon_flutter/presentation/auth/ui/widget/auth_app_bar.dart';
 import 'package:moatikon_flutter/presentation/auth/ui/widget/auth_rich_text_widget.dart';
@@ -111,7 +110,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     GestureDetector(
-                      onTap: () => MoaNavigator.push(context, const ResettingPasswordScreen()),
+                      onTap: () => MoaNavigator.push(context, const SendCodeScreen()),
                       child: TextWidget(
                         text: "비밀번호를 잊으셨나요?",
                         textSize: 15.sp,

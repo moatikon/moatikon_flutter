@@ -11,4 +11,10 @@ abstract class AuthRepository {
   Future<void> sendPwCode({required String email});
 
   Future<String> sendPwCodeCheck({required String email, required String code});
+
+  Future<void> resettingPw({
+    required String email,
+    required String successCode,
+    required String password,
+  });
 }

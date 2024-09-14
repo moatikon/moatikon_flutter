@@ -4,6 +4,7 @@ import 'package:moatikon_flutter/data/auth/repository/auth_repository_impl.dart'
 import 'package:moatikon_flutter/data/tikon/data_source/remote/remote_tikon_data_source.dart';
 import 'package:moatikon_flutter/data/tikon/repository/tikon_repository_impl.dart';
 import 'package:moatikon_flutter/domain/auth/use_case/re_issue_use_case.dart';
+import 'package:moatikon_flutter/domain/auth/use_case/re_setting_pw_use_case.dart';
 import 'package:moatikon_flutter/domain/auth/use_case/send_pw_code_check_use_case.dart';
 import 'package:moatikon_flutter/domain/auth/use_case/send_pw_code_use_case.dart';
 import 'package:moatikon_flutter/domain/auth/use_case/sign_up_use_case.dart';
@@ -31,6 +32,7 @@ Future<List<BlocProvider>> di() async {
   ReIssueUseCase reIssueUseCase = ReIssueUseCase(authRepository: authRepositoryImpl);
   SendPwCodeUseCase sendPwCodeUseCase = SendPwCodeUseCase(authRepository: authRepositoryImpl);
   SendPwCodeCheckUseCase sendPwCodeCheckUseCase = SendPwCodeCheckUseCase(authRepository: authRepositoryImpl);
+  ResettingPwUseCase resettingPwUseCase = ResettingPwUseCase(authRepository: authRepositoryImpl);
 
   // tikon
   RemoteTikonDataSource remoteTikonDataSource = RemoteTikonDataSource();
@@ -48,6 +50,7 @@ Future<List<BlocProvider>> di() async {
       create: (context) => ResettingPwStateCubit(
         sendPwCodeUseCase: sendPwCodeUseCase,
         sendPwCodeCheckUseCase: sendPwCodeCheckUseCase,
+        resettingPwUseCase: resettingPwUseCase,
       ),
     ),
 

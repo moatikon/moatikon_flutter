@@ -31,7 +31,20 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<String> sendPwCodeCheck({required String email, required String code}) {
+  Future<String> sendPwCodeCheck({
+    required String email,
+    required String code,
+  }) {
     return _remoteAuthDataSource.sendPwCodeCheck(email: email, code: code);
+  }
+
+  @override
+  Future<void> resettingPw({
+    required String email,
+    required String successCode,
+    required String password,
+  }) async {
+    return _remoteAuthDataSource.resettingPw(
+        email: email, successCode: successCode, password: password);
   }
 }
