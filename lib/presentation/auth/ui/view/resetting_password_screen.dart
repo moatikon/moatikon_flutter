@@ -174,7 +174,6 @@ class _ResettingPasswordScreenState extends State<ResettingPasswordScreen> {
                 if (sendNow) {
                   return MoaButton(
                     onTap: () {
-                      print(_codeController.text);
                       context.read<ResettingPwStateCubit>().sendPwCodeCheck(
                             email: _emailController.text,
                             code: _codeController.text,
