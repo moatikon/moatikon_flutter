@@ -24,4 +24,9 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<TokenEntity> reIssue() {
     return _remoteAuthDataSource.reIssue();
   }
+
+  @override
+  Future<void> sendPwCode({required String email}) {
+    return _remoteAuthDataSource.sendPwCode(email: email);
+  }
 }

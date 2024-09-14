@@ -34,4 +34,13 @@ class RemoteAuthDataSource {
       rethrow;
     }
   }
+
+  Future<void> sendPwCode({required String email}) async {
+    try{
+      await dio.post('/auth/pw-code', data: { "email": email });
+      return;
+    } on DioException catch (_) {
+      rethrow;
+    }
+  }
 }

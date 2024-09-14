@@ -4,6 +4,7 @@ import 'package:moatikon_flutter/data/auth/repository/auth_repository_impl.dart'
 import 'package:moatikon_flutter/data/tikon/data_source/remote/remote_tikon_data_source.dart';
 import 'package:moatikon_flutter/data/tikon/repository/tikon_repository_impl.dart';
 import 'package:moatikon_flutter/domain/auth/use_case/re_issue_use_case.dart';
+import 'package:moatikon_flutter/domain/auth/use_case/send_pw_code_use_case.dart';
 import 'package:moatikon_flutter/domain/auth/use_case/sign_up_use_case.dart';
 import 'package:moatikon_flutter/domain/tikon/use_case/add_tikon_use_case.dart';
 import 'package:moatikon_flutter/domain/tikon/use_case/complete_tikon_use_case.dart';
@@ -17,6 +18,7 @@ import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_bloc.dart';
 import '../../presentation/tikon/view_model/add/add_screen_slider_state.dart';
 import '../../presentation/tikon/view_model/add/add_screen_category_state.dart';
 import '../domain/auth/use_case/sign_in_use_case.dart';
+import '../presentation/auth/view_model/resetting_pw_state_cubit.dart';
 
 Future<List<BlocProvider>> di() async {
   // auth
@@ -26,6 +28,7 @@ Future<List<BlocProvider>> di() async {
   SignUpUseCase signUpUseCase = SignUpUseCase(authRepository: authRepositoryImpl);
   SignInUseCase signInUseCase = SignInUseCase(authRepository: authRepositoryImpl);
   ReIssueUseCase reIssueUseCase = ReIssueUseCase(authRepository: authRepositoryImpl);
+  SendPwCodeUseCase sendPwCodeUseCase = SendPwCodeUseCase(authRepository: authRepositoryImpl);
 
   // tikon
   RemoteTikonDataSource remoteTikonDataSource = RemoteTikonDataSource();
@@ -39,6 +42,7 @@ Future<List<BlocProvider>> di() async {
     //auth
     BlocProvider<AuthBloc>(create: (context) => AuthBloc(signInUseCase: signInUseCase, signUpUseCase: signUpUseCase)),
     BlocProvider<SplashBloc>(create: (context) => SplashBloc(reIssueUseCase: reIssueUseCase)),
+    BlocProvider<ResettingPwStateCubit>(create: (context) => ResettingPwStateCubit(sendPwCodeUseCase: sendPwCodeUseCase)),
 
     // tikon
     BlocProvider<AddTikonImageStateCubit>(create: (context) => AddTikonImageStateCubit()),

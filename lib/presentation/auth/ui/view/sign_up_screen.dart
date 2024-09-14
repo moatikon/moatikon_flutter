@@ -103,8 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       bottomSheet: Padding(
         padding: EdgeInsets.only(bottom: 20.h),
         child: GestureDetector(
-          onTap: () =>
-              MoaNavigator.pushReplacement(context, const SignInScreen()),
+          onTap: () => MoaNavigator.pushReplacement(context, const SignInScreen()),
           child: const AuthRichTextWidget(
             firstText: "모아티콘을 사용했었다면?",
             secondText: "로그인",

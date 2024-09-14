@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/component/text_widget.dart';
 
@@ -7,16 +8,19 @@ class MoaButton extends StatelessWidget {
   final double textSize;
   final TextWeight textWeight;
   final double? width, height, borderRadius;
-  final Color? color, fontColor;
+  final Color? color, fontColor, loadingIndicatorColor;
   final Widget? leading;
   final GestureTapCallback? onTap;
   final EdgeInsets? padding;
   final BoxBorder? border;
+  final bool isLoading;
 
   const MoaButton({
     required this.text,
     required this.textSize,
     required this.textWeight,
+    this.isLoading = false,
+    this.loadingIndicatorColor = const Color(0xFFEA4E46),
     this.fontColor,
     this.width,
     this.height,
@@ -51,11 +55,25 @@ class MoaButton extends StatelessWidget {
               child: leading ?? const SizedBox.shrink(),
             ),
             Center(
-              child: TextWidget(
-                text: text,
-                color: fontColor,
-                textSize: textSize,
-                textWeight: textWeight,
+              child: Builder(
+                builder: (_) {
+                  if(isLoading){
+                    return SizedBox(
+                    height: textSize,
+                    width: textSize,
+                    child: CircularProgressIndicator(
+                      color: loadingIndicatorColor,
+                    ),
+                  );
+                } else {
+                    return TextWidget(
+                      text: text,
+                      color: fontColor,
+                      textSize: textSize,
+                      textWeight: textWeight,
+                    );
+                  }
+                }
               ),
             ),
           ],

@@ -7,4 +7,6 @@ abstract class AuthRepository {
   Future<TokenEntity> signin({required AuthRequest authRequest});
 
   Future<TokenEntity> reIssue();
+
+  Future<void> sendPwCode({required String email});
 }
