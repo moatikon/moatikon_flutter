@@ -9,4 +9,6 @@ abstract class AuthRepository {
   Future<TokenEntity> reIssue();
 
   Future<void> sendPwCode({required String email});
+
+  Future<String> sendPwCodeCheck({required String email, required String code});
 }

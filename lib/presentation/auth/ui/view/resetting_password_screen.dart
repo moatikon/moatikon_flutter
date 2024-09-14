@@ -36,7 +36,10 @@ class _ResettingPasswordScreenState extends State<ResettingPasswordScreen> {
     _emailController = TextEditingController()..addListener(() {
       setState(() => sendAble = regex.hasMatch(_emailController.text));
     });
-    _codeController = TextEditingController();
+    _codeController = TextEditingController()
+      ..addListener(() {
+        setState(() {});
+      });
 
     _emailNode = FocusNode();
     _codeNode = FocusNode();
@@ -79,6 +82,18 @@ class _ResettingPasswordScreenState extends State<ResettingPasswordScreen> {
               Overlay.of(context),
               const ToastMessage(
                 title: "인증코드가 정상적으로 보내졌어요",
+              ),
+            );
+          },
+        ),
+
+        BlocListener<ResettingPwStateCubit, BlocState<String>>(
+          listenWhen: (_, current) => current.blocState == BlocStateEnum.loaded,
+          listener: (_, state) {
+            showTopSnackBar(
+              Overlay.of(context),
+              const ToastMessage(
+                title: "인증코드 확인 완료",
               ),
             );
           },
@@ -158,6 +173,13 @@ class _ResettingPasswordScreenState extends State<ResettingPasswordScreen> {
               Builder(builder: (_) {
                 if (sendNow) {
                   return MoaButton(
+                    onTap: () {
+                      print(_codeController.text);
+                      context.read<ResettingPwStateCubit>().sendPwCodeCheck(
+                            email: _emailController.text,
+                            code: _codeController.text,
+                          );
+                    },
                     padding: EdgeInsets.symmetric(vertical: 17.h),
                     text: "인증번호 확인하기",
                     textSize: 20.sp,
