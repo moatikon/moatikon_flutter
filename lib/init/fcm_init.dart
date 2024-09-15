@@ -38,7 +38,7 @@ void fcmInit(BuildContext context) async {
 
   await flutterLocalNotificationsPlugin.initialize(
     const InitializationSettings(
-      android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+      android: AndroidInitializationSettings('@mipmap/notification_logo'),
       iOS: DarwinInitializationSettings(),
     ),
   );
