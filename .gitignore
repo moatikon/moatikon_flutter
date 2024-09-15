@@ -42,4 +42,6 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-lib/core/ignore/base_url.dart
+lib/core/ignore/
+firebase.json
+android/app/google-services.json

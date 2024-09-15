@@ -1,12 +1,20 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/core/dio_init.dart';
+import 'package:moatikon_flutter/init/fcm_init.dart';
 import 'package:moatikon_flutter/presentation/splash/ui/view/splash_screen.dart';
 
 import 'di/di.dart';
+import 'core/ignore/firebase_options.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   dioInit();
 
   runApp(MyApp(
@@ -27,15 +35,18 @@ class MyApp extends StatelessWidget {
         designSize: const Size(430, 932),
         minTextAdapt: true,
         splitScreenMode: false,
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            appBarTheme: const AppBarTheme(color: Colors.white, surfaceTintColor: Colors.white,titleSpacing: 0),
-            bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.white, surfaceTintColor: Colors.white),
-            scaffoldBackgroundColor: Colors.white,
-          ),
-          home: const SplashScreen(),
-        ),
+        builder: (context, child) {
+          fcmInit(context);
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              appBarTheme: const AppBarTheme(color: Colors.white, surfaceTintColor: Colors.white,titleSpacing: 0),
+              bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.white, surfaceTintColor: Colors.white),
+              scaffoldBackgroundColor: Colors.white,
+            ),
+            home: const SplashScreen(),
+          );
+        },
       ),
     );
   }
