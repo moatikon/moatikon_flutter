@@ -38,11 +38,11 @@ void fcmInit(BuildContext context) async {
 
   await flutterLocalNotificationsPlugin.initialize(
     const InitializationSettings(
-      android: AndroidInitializationSettings('@drawable/ic_notification'),
+      android: AndroidInitializationSettings('@mipmap/ic_launcher'),
       iOS: DarwinInitializationSettings(),
     ),
   );
-  FirebaseMessaging.onBackgroundMessage((message) async => await Firebase.initializeApp());
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   FirebaseMessaging.onMessage.listen(
     (RemoteMessage message) {
       // BlocProvider.of<ApplyBloc>(context).add(GetApplyListEvent(getApplyListRequest: GetApplyListRequest()));
@@ -64,4 +64,9 @@ void fcmInit(BuildContext context) async {
       }
     },
   );
+}
+
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
 }
