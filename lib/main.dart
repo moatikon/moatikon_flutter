@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/core/dio_init.dart';
 import 'package:moatikon_flutter/init/fcm_init.dart';
@@ -12,9 +12,11 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await setupFlutterNotifications();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.onMessage.listen(showFlutterNotification);
+
   dioInit();
 
   runApp(MyApp(
@@ -36,7 +38,6 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: false,
         builder: (context, child) {
-          fcmInit(context);
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
@@ -50,4 +51,10 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await setupFlutterNotifications();
 }
