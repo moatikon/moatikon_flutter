@@ -8,7 +8,7 @@ import 'package:moatikon_flutter/init/fcm_init.dart';
 import 'package:moatikon_flutter/presentation/splash/ui/view/splash_screen.dart';
 
 import 'di/di.dart';
-import 'core/ignore/firebase_options.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
