@@ -11,8 +11,13 @@ import '../../../../../component/text_widget.dart';
 
 class TikonListWidget extends StatelessWidget {
   final List<TikonEntity> tikonList;
+  final ScrollController controller;
 
-  const TikonListWidget({super.key, required this.tikonList});
+  const TikonListWidget({
+    super.key,
+    required this.tikonList,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +45,7 @@ class TikonListWidget extends StatelessWidget {
 
     return Expanded(
       child: ListView.builder(
+        controller: controller,
         itemCount: filterTikonList.length,
         itemBuilder: (_, index) {
           final TikonEntity tikonData = filterTikonList[index];

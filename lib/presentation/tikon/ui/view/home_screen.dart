@@ -5,6 +5,7 @@ import 'package:moatikon_flutter/presentation/tikon/ui/widget/home/home_screen_f
 import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_bloc.dart';
 import 'package:moatikon_flutter/presentation/tikon/ui/widget/home/tag_list_widget.dart';
 import 'package:moatikon_flutter/presentation/tikon/ui/widget/home/tikon_list_widget.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_event.dart';
 import '../../../../component/my_scaffold.dart';
 import '../../../../component/text_widget.dart';
 import '../../../../core/bloc/bloc_state_value.dart';
@@ -12,8 +13,39 @@ import '../../../../core/bloc_state_enum.dart';
 import '../../../../domain/tikon/entity/tikons_entity.dart';
 import '../widget/home/home_screen_app_bar.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late final ScrollController _tikonListController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tikonListController = ScrollController();
+    _tikonListController.addListener(_listener);
+  }
+
+  void _listener(){
+    if (_tikonListController.position.pixels ==
+        _tikonListController.position.maxScrollExtent) {
+      int tikonsLength = context.read<TikonBloc>().state.value.tikons.length;
+      if (tikonsLength % 15 == 0) {
+        context.read<TikonBloc>().add(GetAllTikonListEvent(page: tikonsLength ~/ 15));
+      }
+    }
+  }
+
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tikonListController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +79,7 @@ class HomeScreen extends StatelessWidget {
                   );
                 } else {
                   return TikonListWidget(
+                    controller: _tikonListController,
                     tikonList: context.read<TikonBloc>().state.value.tikons,
                   );
                 }

@@ -8,5 +8,6 @@ class GetAllTikonListUseCase{
     required TikonRepository tikonRepository,
   }) : _tikonRepository = tikonRepository;
 
-  Future<TikonsEntity> execute() async => _tikonRepository.getAllTikonList();
+  Future<TikonsEntity> execute({int page = 0}) async =>
+      _tikonRepository.getAllTikonList(page: page);
 }

@@ -6,12 +6,17 @@ import 'package:moatikon_flutter/data/tikon/dto/response/tikons_dto.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikons_entity.dart';
 
 class RemoteTikonDataSource {
-  Future<TikonsEntity> getAllTikonList() async {
+  Future<TikonsEntity> getAllTikonList({int page = 0}) async {
     String? accessToken = await TokenSecureStorage.readAccessToken();
     Map<String, dynamic> header = {"Authorization": "Bearer $accessToken"};
+    Map<String, dynamic> query = {"page": page};
 
     try {
-      final response = await dio.get('/tikon', options: Options(headers: header));
+      final response = await dio.get(
+        '/tikon',
+        options: Options(headers: header),
+        queryParameters: query,
+      );
       return TikonsDto.fromJson(response.data).toEntity();
     } on DioException catch(_) {
       rethrow;

@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
         BlocListener<SplashBloc, BlocState>(
           listenWhen: (_, current) => current.blocState == BlocStateEnum.loaded,
           listener: (_, __) {
-            context.read<TikonBloc>().add(GetAllTikonListEvent());
+            context.read<TikonBloc>().add(InitGetAllTikonListEvent());
             MoaNavigator.teleporting(context, const HomeScreen());
           },
         ),

@@ -20,20 +20,32 @@ class TikonBloc extends Bloc<TikonEvent, BlocState<TikonsEntity>> {
         _addTikonUseCase = addTikonUseCase,
         _completeTikonUseCase = completeTikonUseCase,
         super(Empty()) {
+    on<InitGetAllTikonListEvent>(_initGetAllTikonListHandler);
     on<GetAllTikonListEvent>(_getAllTikonListHandler);
     on<AddTikonEvent>(_addTikonHandler);
     on<CompleteTikonEvent>(_completeTikonHandler);
   }
 
-  void _getAllTikonListHandler(GetAllTikonListEvent event,
-      Emitter<BlocState<TikonsEntity>> emit) async {
-    try{
+  void _initGetAllTikonListHandler(
+    InitGetAllTikonListEvent event,
+    Emitter<BlocState<TikonsEntity>> emit,
+  ) async {
+    try {
       emit(Loading());
       final newEntity = await _getAllTikonListUseCase.execute();
       emit(Loaded(data: newEntity));
-    } on DioException catch(err){
+    } on DioException catch (err) {
       emit(Error(exception: err));
     }
+  }
+
+  void _getAllTikonListHandler(
+    GetAllTikonListEvent event,
+    Emitter<BlocState<TikonsEntity>> emit,
+  ) async {
+    final TikonsEntity newEntity = await _getAllTikonListUseCase.execute(page: event.page);
+    final TikonsEntity currentEntity = state.value;
+    emit(Loaded(data: TikonsEntity(tikons: currentEntity.tikons + newEntity.tikons)));
   }
 
   Future<void> _addTikonHandler(

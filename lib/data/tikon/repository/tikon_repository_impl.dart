@@ -11,8 +11,8 @@ class TikonRepositoryImpl implements TikonRepository {
   }) : _remoteTikonDataSource = remoteTikonDataSource;
 
   @override
-  Future<TikonsEntity> getAllTikonList() {
-    return _remoteTikonDataSource.getAllTikonList();
+  Future<TikonsEntity> getAllTikonList({int page = 0}) {
+    return _remoteTikonDataSource.getAllTikonList(page: page);
   }
 
   @override
