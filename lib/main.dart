@@ -16,6 +16,7 @@ void main() async {
   await setupFlutterNotifications();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   FirebaseMessaging.onMessage.listen(showFlutterNotification);
+  print(await FirebaseMessaging.instance.getToken());
 
   dioInit();
 

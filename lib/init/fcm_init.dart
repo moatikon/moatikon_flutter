@@ -13,7 +13,6 @@ Future<void> setupFlutterNotifications() async {
       android: AndroidInitializationSettings('@mipmap/notification_logo'),
     ),
   );
-
   channel = const AndroidNotificationChannel(
     'high_importance_channel',
     'High Importance Notifications',
