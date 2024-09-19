@@ -26,12 +26,16 @@ class RemoteTikonDataSource {
   Future<void> addTikon(AddTikonRequest addTikonRequest) async {
     String? accessToken = await TokenSecureStorage.readAccessToken();
     Map<String, dynamic> header = {"Authorization": "Bearer $accessToken"};
+    FormData formData = await addTikonRequest.toForm();
 
     try {
       await dio.post(
         '/tikon',
-        options: Options(headers: header, contentType: 'multipart/form-data'),
-        data: addTikonRequest.toForm(),
+        options: Options(
+          headers: header,
+          contentType: Headers.multipartFormDataContentType,
+        ),
+        data: formData,
       );
       return;
     } on DioException catch(_) {
@@ -39,14 +43,15 @@ class RemoteTikonDataSource {
     }
   }
 
-  Future<void> completeTikon({required int id}) async {
+  Future<void> completeTikon({required String id}) async {
     String? accessToken = await TokenSecureStorage.readAccessToken();
     Map<String, dynamic> header = {"Authorization": "Bearer $accessToken"};
 
     try {
       await dio.delete(
-        '/tikon/$id',
+        '/tikon',
         options: Options(headers: header),
+        queryParameters: { "id": id },
       );
       return;
     } on DioException catch (_) {

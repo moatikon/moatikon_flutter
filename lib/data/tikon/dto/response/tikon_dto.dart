@@ -1,8 +1,8 @@
 import 'package:moatikon_flutter/domain/tikon/entity/tikon_entity.dart';
 
 class TikonDto {
-  final String image, storeName, tikonName, category;
-  final int id, dDay, disCount;
+  final String id, image, storeName, tikonName, category;
+  final int dDay, disCount;
 
   const TikonDto({
     required this.id,

@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddTikonRequest {
@@ -15,7 +17,10 @@ class AddTikonRequest {
     required this.disCount,
   });
 
-  FormData toForm() {
+  Future<FormData> toForm() async {
+    String? nullAbleDeviceToken = await FirebaseMessaging.instance.getToken();
+    String deviceToken = nullAbleDeviceToken!;
+
     return FormData.fromMap({
       "image": MultipartFile.fromFileSync(imageFile.path),
       "storeName": storeName,
@@ -23,6 +28,7 @@ class AddTikonRequest {
       "category": category,
       "finishedTikon": finishedTikon,
       "discount": disCount,
+      "deviceToken": deviceToken,
     });
   }
 }

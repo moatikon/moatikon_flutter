@@ -1,6 +1,6 @@
 class TikonEntity {
-  final String image, storeName, tikonName, category;
-  final int dDay, disCount, id;
+  final String id, image, storeName, tikonName, category;
+  final int dDay, disCount;
 
   const TikonEntity({
     required this.id,

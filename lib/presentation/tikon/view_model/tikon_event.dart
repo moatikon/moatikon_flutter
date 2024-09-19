@@ -17,7 +17,7 @@ class AddTikonEvent extends TikonEvent {
 }
 
 class CompleteTikonEvent extends TikonEvent {
-  final int id;
+  final String id;
 
   CompleteTikonEvent({required this.id});
 }

@@ -94,8 +94,14 @@ class _AddScreenState extends State<AddScreen> {
                       if(imageFile == null){
                         return const AddImageButtonWidget();
                       } else {
-                        return Image.file(File(imageFile.path));
-                      }
+                        return SizedBox(
+                        height: 100.w,
+                        child: Image.file(
+                          File(imageFile.path),
+                          fit: BoxFit.cover,
+                        ),
+                      );
+                    }
                     }
                   ),
                 ),

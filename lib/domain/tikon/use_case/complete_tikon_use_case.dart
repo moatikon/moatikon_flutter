@@ -6,7 +6,7 @@ class CompleteTikonUseCase {
   const CompleteTikonUseCase({required TikonRepository tikonRepository})
       : _tikonRepository = tikonRepository;
 
-  Future<void> execute({required int id}) async {
+  Future<void> execute({required String id}) async {
     return _tikonRepository.completeTikon(id: id);
   }
 }
