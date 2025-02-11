@@ -1,9 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import '../core/dio.dart';
 import '../core/ignore/base_url.dart';
 import '../core/token_secure_storage.dart';
-
-final Dio dio = Dio(BaseOptions(baseUrl: baseUrl));
 
 void dioInit() => dio.interceptors.add(
       InterceptorsWrapper(
@@ -23,7 +22,7 @@ void dioInit() => dio.interceptors.add(
             if (storageRefreshToken == null) return handler.reject(error); // 실패하면 reject
 
             try{
-              Map<String, String> header = {"RF-TOKEN": storageRefreshToken};
+              Map<String, dynamic> header = {"Authorization": "Bearer $storageRefreshToken"};
               final response = await dio.get('/auth/re-issue', options: Options(headers: header));
 
               final String accessToken = response.data['accessToken'];

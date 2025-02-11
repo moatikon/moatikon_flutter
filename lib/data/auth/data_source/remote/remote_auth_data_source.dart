@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:moatikon_flutter/core/dio_init.dart';
+import 'package:moatikon_flutter/core/dio.dart';
 import 'package:moatikon_flutter/core/token_secure_storage.dart';
 import 'package:moatikon_flutter/data/auth/dto/request/signin_request.dart';
 import 'package:moatikon_flutter/data/auth/dto/request/signup_request.dart';
