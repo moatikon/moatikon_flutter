@@ -1,8 +1,8 @@
-class AuthRequest {
+class SignInRequest {
   final String email;
   final String password;
 
-  const AuthRequest({
+  const SignInRequest({
     required this.email,
     required this.password,
   });

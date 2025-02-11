@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:moatikon_flutter/core/dio_init.dart';
 import 'package:moatikon_flutter/core/token_secure_storage.dart';
-import 'package:moatikon_flutter/data/auth/dto/request/auth_request.dart';
+import 'package:moatikon_flutter/data/auth/dto/request/signin_request.dart';
 import 'package:moatikon_flutter/data/auth/dto/request/signup_request.dart';
 import 'package:moatikon_flutter/data/auth/dto/response/token_dto.dart';
 import 'package:moatikon_flutter/domain/auth/entity/token_entity.dart';
@@ -15,7 +15,7 @@ class RemoteAuthDataSource {
     }
   }
 
-  Future<TokenEntity> signin({required AuthRequest authRequest}) async {
+  Future<TokenEntity> signin({required SignInRequest authRequest}) async {
     try {
       final response = await dio.post('/auth/signin', data: authRequest.toJson());
       return TokenDto.fromJson(response.data).toEntity();

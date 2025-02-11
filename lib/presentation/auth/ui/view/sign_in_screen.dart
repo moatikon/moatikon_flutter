@@ -6,7 +6,7 @@ import 'package:moatikon_flutter/component/my_scaffold.dart';
 import 'package:moatikon_flutter/component/text_widget.dart';
 import 'package:moatikon_flutter/component/toast_message.dart';
 import 'package:moatikon_flutter/core/moa_navigator.dart';
-import 'package:moatikon_flutter/data/auth/dto/request/auth_request.dart';
+import 'package:moatikon_flutter/data/auth/dto/request/signin_request.dart';
 import 'package:moatikon_flutter/presentation/auth/ui/view/send_code_screen.dart';
 import 'package:moatikon_flutter/presentation/auth/ui/view/sign_up_screen.dart';
 import 'package:moatikon_flutter/presentation/auth/ui/widget/auth_app_bar.dart';
@@ -127,7 +127,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         _passwordController.text.isNotEmpty) {
                       context.read<AuthBloc>().add(
                             SignInEvent(
-                              authRequest: AuthRequest(
+                              authRequest: SignInRequest(
                                 email: _emailController.text,
                                 password: _passwordController.text,
                               ),

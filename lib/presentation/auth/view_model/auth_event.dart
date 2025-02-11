@@ -1,4 +1,4 @@
-import 'package:moatikon_flutter/data/auth/dto/request/auth_request.dart';
+import 'package:moatikon_flutter/data/auth/dto/request/signin_request.dart';
 import 'package:moatikon_flutter/data/auth/dto/request/signup_request.dart';
 
 class AuthEvent {}
@@ -6,7 +6,7 @@ class AuthEvent {}
 class EmptyEvent extends AuthEvent {}
 
 class SignInEvent extends AuthEvent {
-  final AuthRequest authRequest;
+  final SignInRequest authRequest;
 
   SignInEvent({required this.authRequest});
 }
