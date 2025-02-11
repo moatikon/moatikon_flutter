@@ -26,7 +26,7 @@ class RemoteAuthDataSource {
 
   Future<TokenEntity> reIssue() async {
     String? refreshToken = await TokenSecureStorage.readRefreshToken();
-    Map<String, dynamic> header = {"RE-TOKEN": refreshToken};
+    Map<String, dynamic> header = {"Authorization": "Bearer $refreshToken"};
 
     try {
       final response = await dio.get('/auth/re-issue', options: Options(headers: header));
