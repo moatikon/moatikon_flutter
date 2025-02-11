@@ -38,7 +38,7 @@ class AuthBloc extends Bloc<AuthEvent, BlocState> {
     emit(Loading());
 
     try {
-      await _signUpUsecase.execute(authRequest: event.authRequest);
+      await _signUpUsecase.execute(signupRequest: event.signupRequest);
       emit(Loaded());
     } on DioException catch (err) {
       emit(Error(exception: err));

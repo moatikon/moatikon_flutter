@@ -1,4 +1,5 @@
 import 'package:moatikon_flutter/data/auth/data_source/remote/remote_auth_data_source.dart';
+import 'package:moatikon_flutter/data/auth/dto/request/signup_request.dart';
 import 'package:moatikon_flutter/domain/auth/entity/token_entity.dart';
 import 'package:moatikon_flutter/domain/auth/repository/auth_repository.dart';
 
@@ -16,8 +17,8 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> signup({required AuthRequest authRequest}) {
-    return _remoteAuthDataSource.signup(authRequest: authRequest);
+  Future<void> signup({required SignupRequest signupRequest}) {
+    return _remoteAuthDataSource.signup(signupRequest: signupRequest);
   }
 
   @override

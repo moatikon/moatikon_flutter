@@ -8,6 +8,7 @@ import 'package:moatikon_flutter/core/bloc/bloc_state_none_value.dart';
 import 'package:moatikon_flutter/core/bloc_state_enum.dart';
 import 'package:moatikon_flutter/core/moa_navigator.dart';
 import 'package:moatikon_flutter/data/auth/dto/request/auth_request.dart';
+import 'package:moatikon_flutter/data/auth/dto/request/signup_request.dart';
 import 'package:moatikon_flutter/presentation/auth/ui/view/sign_in_screen.dart';
 import 'package:moatikon_flutter/presentation/auth/ui/widget/auth_app_bar.dart';
 import 'package:moatikon_flutter/presentation/auth/ui/widget/auth_text_field_widget.dart';
@@ -27,10 +28,12 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  late final TextEditingController _nicknameController;
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
   late final TextEditingController _passwordCompareController;
 
+  late final FocusNode _nicknameNode;
   late final FocusNode _emailNode;
   late final FocusNode _passwordNode;
   late final FocusNode _passwordCompareNode;
@@ -38,6 +41,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   void initState() {
     super.initState();
+    _nicknameController = TextEditingController()
+      ..addListener(() => setState(() {}));
     _emailController = TextEditingController()
       ..addListener(() => setState(() {}));
     _passwordController = TextEditingController()
@@ -45,6 +50,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _passwordCompareController = TextEditingController()
       ..addListener(() => setState(() {}));
 
+    _nicknameNode = FocusNode();
     _emailNode = FocusNode();
     _passwordNode = FocusNode();
     _passwordCompareNode = FocusNode();
@@ -71,6 +77,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     RegExp regex = RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
+    TextWidget? nicknameErrorText(){
+      if(_nicknameController.text.isEmpty){
+        return TextWidget(
+          text: "닉네임은 공백을 사용할 수 없습니다.",
+          textSize: 12.sp,
+          textWeight: TextWeight.regular,
+          color: const Color(0xFFF5290A),
+        );
+      }
+
+      return null;
+    }
+
     TextWidget? emailErrorText(){
       if(_emailController.text.isNotEmpty &&
           !regex.hasMatch(_emailController.text)){
@@ -137,6 +156,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: Column(
                 children: [
                   AuthTextFieldWidget(
+                    controller: _nicknameController,
+                    node: _nicknameNode,
+                    hintText: "닉네임",
+                    errorWidget: nicknameErrorText(),
+                  ),
+                  SizedBox(height: 20.h),
+                  AuthTextFieldWidget(
                     controller: _emailController,
                     node: _emailNode,
                     hintText: "이메일",
@@ -165,7 +191,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           passwordErrorText() == null) {
                         context.read<AuthBloc>().add(
                               SignUpEvent(
-                                authRequest: AuthRequest(
+                                signupRequest: SignupRequest(
+                                  nickname: _nicknameController.text,
                                   email: _emailController.text,
                                   password: _passwordController.text,
                                 ),
