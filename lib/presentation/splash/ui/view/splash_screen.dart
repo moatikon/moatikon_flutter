@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moatikon_flutter/core/bloc_state_enum.dart';
+import 'package:moatikon_flutter/core/bloc/bloc_state_enum.dart';
 import 'package:moatikon_flutter/core/moa_navigator.dart';
 import 'package:moatikon_flutter/presentation/on_boarding/ui/view/on_boarding_screen.dart';
 import 'package:moatikon_flutter/presentation/splash/view_model/splash_bloc.dart';

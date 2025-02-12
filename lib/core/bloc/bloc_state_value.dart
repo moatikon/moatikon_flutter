@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:moatikon_flutter/core/bloc/exception_response_model.dart';
 
-import '../../../core/bloc_state_enum.dart';
+import 'bloc_state_enum.dart';
 
 abstract class BlocState<T> {
   BlocStateEnum blocState;

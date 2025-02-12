@@ -9,7 +9,7 @@ import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_event.dart'
 import '../../../../component/my_scaffold.dart';
 import '../../../../component/text_widget.dart';
 import '../../../../core/bloc/bloc_state_value.dart';
-import '../../../../core/bloc_state_enum.dart';
+import '../../../../core/bloc/bloc_state_enum.dart';
 import '../../../../domain/tikon/entity/tikons_entity.dart';
 import '../widget/home/home_screen_app_bar.dart';
 

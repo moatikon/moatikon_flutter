@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../../../core/bloc_state_enum.dart';
+import 'bloc_state_enum.dart';
 import 'exception_response_model.dart';
 
 abstract class BlocState {

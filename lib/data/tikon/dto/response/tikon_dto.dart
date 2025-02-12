@@ -16,7 +16,7 @@ class TikonDto {
 
   factory TikonDto.fromJson(Map<String, dynamic> json) {
     int genDDay() {
-      DateTime targetDate = DateTime.parse(json['finishedTikon']);
+      DateTime targetDate = DateTime.parse(json['dDay']);
       DateTime now = DateTime(
         DateTime.now().year,
         DateTime.now().month,

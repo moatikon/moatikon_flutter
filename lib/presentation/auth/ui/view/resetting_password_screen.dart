@@ -13,7 +13,7 @@ import '../../../../component/moa_button.dart';
 import '../../../../component/text_widget.dart';
 import '../../../../component/toast_message.dart';
 import '../../../../core/bloc/bloc_state_value.dart';
-import '../../../../core/bloc_state_enum.dart';
+import '../../../../core/bloc/bloc_state_enum.dart';
 
 class ResettingPasswordScreen extends StatefulWidget {
   final String email;

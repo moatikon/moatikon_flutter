@@ -5,7 +5,7 @@ import 'package:moatikon_flutter/component/moa_button.dart';
 import 'package:moatikon_flutter/component/my_scaffold.dart';
 import 'package:moatikon_flutter/component/text_widget.dart';
 import 'package:moatikon_flutter/core/bloc/bloc_state_none_value.dart';
-import 'package:moatikon_flutter/core/bloc_state_enum.dart';
+import 'package:moatikon_flutter/core/bloc/bloc_state_enum.dart';
 import 'package:moatikon_flutter/core/moa_navigator.dart';
 import 'package:moatikon_flutter/data/auth/dto/request/signin_request.dart';
 import 'package:moatikon_flutter/data/auth/dto/request/signup_request.dart';

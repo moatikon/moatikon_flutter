@@ -18,7 +18,7 @@ import 'package:moatikon_flutter/presentation/splash/ui/view/splash_screen.dart'
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../../../core/bloc/bloc_state_none_value.dart';
-import '../../../../core/bloc_state_enum.dart';
+import '../../../../core/bloc/bloc_state_enum.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
