@@ -1,23 +1,21 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 
 class ExceptionResponseModel {
   final int statusCode;
-  final List<String> message;
-  final String timestamp;
+  final String message;
   final String path;
 
   const ExceptionResponseModel({
     required this.statusCode,
     required this.message,
-    required this.timestamp,
     required this.path,
   });
 
   factory ExceptionResponseModel.fromJson(Response<dynamic> response){
     return ExceptionResponseModel(
       statusCode: response.data['statusCode'],
-      message: List<String>.from(response.data['message']),
-      timestamp: response.data['timestamp'],
+      message: response.data['message'],
       path: response.data['path'],
     );
   }
