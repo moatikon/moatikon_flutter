@@ -5,6 +5,7 @@ import 'package:moatikon_flutter/component/moa_button.dart';
 import 'package:moatikon_flutter/component/my_scaffold.dart';
 import 'package:moatikon_flutter/component/text_widget.dart';
 import 'package:moatikon_flutter/component/toast_message.dart';
+import 'package:moatikon_flutter/core/moa_color.dart';
 import 'package:moatikon_flutter/core/moa_navigator.dart';
 import 'package:moatikon_flutter/data/auth/dto/request/signin_request.dart';
 import 'package:moatikon_flutter/presentation/auth/ui/view/send_code_screen.dart';
@@ -82,7 +83,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 Overlay.of(context),
                 ToastMessage(
                   isError: true,
-                  title: state.error.message[0],
+                  title: state.error.message,
                 ),
               );
             },
@@ -106,20 +107,20 @@ class _SignInScreenState extends State<SignInScreen> {
                   isObscure: true,
                 ),
                 SizedBox(height: 5.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    GestureDetector(
-                      onTap: () => MoaNavigator.push(context, const SendCodeScreen()),
-                      child: TextWidget(
-                        text: "비밀번호를 잊으셨나요?",
-                        textSize: 15.sp,
-                        textWeight: TextWeight.bold,
-                        color: const Color(0xFFEA4E46),
-                      ),
-                    ),
-                  ],
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.end,
+                //   children: [
+                //     GestureDetector(
+                //       onTap: () => MoaNavigator.push(context, const SendCodeScreen()),
+                //       child: TextWidget(
+                //         text: "비밀번호를 잊으셨나요?",
+                //         textSize: 15.sp,
+                //         textWeight: TextWeight.bold,
+                //         color: MoaColor.red100,
+                //       ),
+                //     ),
+                //   ],
+                // ),
                 SizedBox(height: 30.h),
                 MoaButton(
                   onTap: () {
@@ -138,9 +139,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   text: "로그인",
                   textSize: 20.sp,
                   textWeight: TextWeight.medium,
-                  fontColor: Colors.white,
+                  fontColor: MoaColor.white,
                   height: 58.h,
-                  color: const Color(0xFFEA4E46),
+                  color: MoaColor.red100,
                   borderRadius: 8.r,
                 )
               ],
