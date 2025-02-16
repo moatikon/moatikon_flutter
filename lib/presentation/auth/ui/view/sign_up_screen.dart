@@ -18,6 +18,7 @@ import 'package:moatikon_flutter/presentation/splash/ui/view/splash_screen.dart'
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../../../component/toast_message.dart';
+import '../../../../core/moa_color.dart';
 import '../widget/auth_rich_text_widget.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -83,7 +84,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           text: "닉네임은 공백을 사용할 수 없습니다.",
           textSize: 12.sp,
           textWeight: TextWeight.regular,
-          color: const Color(0xFFF5290A),
+          color: MoaColor.red200,
         );
       }
 
@@ -97,7 +98,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           text: "이메일 형식으로 입력해주세요",
           textSize: 12.sp,
           textWeight: TextWeight.regular,
-          color: const Color(0xFFF5290A),
+          color: MoaColor.red200,
         );
       }
 
@@ -110,7 +111,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           text: "비밀번호가 일치하지 않습니다.",
           textSize: 12.sp,
           textWeight: TextWeight.regular,
-          color: const Color(0xFFF5290A),
+          color: MoaColor.red200,
         );
       }
 
@@ -203,9 +204,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     text: "회원가입",
                     textSize: 20.sp,
                     textWeight: TextWeight.medium,
-                    fontColor: Colors.white,
+                    fontColor: MoaColor.white,
                     height: 58.h,
-                    color: const Color(0xFFEA4E46),
+                    color: MoaColor.red100,
                     borderRadius: 8.r,
                   )
                 ],

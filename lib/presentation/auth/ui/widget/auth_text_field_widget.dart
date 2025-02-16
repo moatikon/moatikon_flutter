@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moatikon_flutter/core/moa_color.dart';
 
 class AuthTextFieldWidget extends StatelessWidget {
   final TextEditingController controller;
@@ -29,12 +30,12 @@ class AuthTextFieldWidget extends StatelessWidget {
         height: 1.h,
         fontSize: 20.sp,
         fontWeight: FontWeight.w400,
-        color: Colors.black,
+        color: MoaColor.black,
         overflow: TextOverflow.visible,
       ),
       cursorHeight: 20.h,
-      cursorColor: Colors.black,
-      cursorErrorColor: Colors.black,
+      cursorColor: MoaColor.black,
+      cursorErrorColor: MoaColor.black,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.zero,
         hintText: hintText,
@@ -44,10 +45,10 @@ class AuthTextFieldWidget extends StatelessWidget {
           fontWeight: FontWeight.w400,
           color: const Color(0xFF939599),
         ),
-        focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Color(0xFFEA4E46))),
-        enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Color(0xFF939599))),
-        errorBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Color(0xFFF5290A))),
-        focusedErrorBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Color(0xFFF5290A))),
+        focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: MoaColor.red100)),
+        enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: MoaColor.red100)),
+        errorBorder: const UnderlineInputBorder(borderSide: BorderSide(color: MoaColor.red200)),
+        focusedErrorBorder: const UnderlineInputBorder(borderSide: BorderSide(color: MoaColor.red200)),
         error: errorWidget,
       ),
     );

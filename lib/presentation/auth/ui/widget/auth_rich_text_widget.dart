@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moatikon_flutter/core/moa_color.dart';
 
 class AuthRichTextWidget extends StatelessWidget {
   final String firstText, secondText;
@@ -21,7 +22,7 @@ class AuthRichTextWidget extends StatelessWidget {
                   fontFamily: "Pretendard",
                   fontSize: 15.sp,
                   fontWeight: FontWeight.w700,
-                  color: const Color(0xFF000000),
+                  color: MoaColor.black,
                 ),
               ),
               TextSpan(
@@ -30,7 +31,7 @@ class AuthRichTextWidget extends StatelessWidget {
                   fontFamily: "Pretendard",
                   fontSize: 15.sp,
                   fontWeight: FontWeight.w700,
-                  color: const Color(0xFFEA4E46),
+                  color: MoaColor.red200,
                 ),
               ),
             ]
