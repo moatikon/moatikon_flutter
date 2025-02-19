@@ -17,7 +17,6 @@ import 'package:moatikon_flutter/presentation/home/view_model/home_category_stat
 import 'package:moatikon_flutter/presentation/splash/view_model/splash_bloc.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_tikon_calender_state_cubit.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_tikon_image_state_cubit.dart';
-import 'package:moatikon_flutter/presentation/tikon/view_model/home/home_screen_tag_state.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_bloc.dart';
 import '../../presentation/tikon/view_model/add/add_screen_slider_state.dart';
 import '../../presentation/tikon/view_model/add/add_screen_category_state.dart';
@@ -63,7 +62,6 @@ Future<List<BlocProvider>> di() async {
     // tikon
     BlocProvider<AddTikonImageStateCubit>(create: (context) => AddTikonImageStateCubit()),
     BlocProvider<AddTikonCalenderStateCubit>(create: (context) => AddTikonCalenderStateCubit()),
-    BlocProvider<HomeScreenTagState>(create: (context) => HomeScreenTagState()),
     BlocProvider<AddScreenSliderState>(create: (context) => AddScreenSliderState()),
     BlocProvider<AddScreenCategoryState>(create: (context) => AddScreenCategoryState()),
     BlocProvider<TikonBloc>(
