@@ -8,6 +8,7 @@ import 'package:moatikon_flutter/core/bloc/bloc_state_value.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikons_entity.dart';
 import 'package:moatikon_flutter/presentation/home/ui/widget/home_category_widget.dart';
 import 'package:moatikon_flutter/presentation/home/ui/widget/home_screen_app_bar.dart';
+import 'package:moatikon_flutter/presentation/home/ui/widget/home_screen_floating_action_button.dart';
 import 'package:moatikon_flutter/presentation/home/ui/widget/home_tikons_grid_widget.dart';
 import 'package:moatikon_flutter/presentation/home/view_model/home_bloc.dart';
 import 'package:moatikon_flutter/presentation/home/view_model/home_event.dart';
@@ -52,6 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return MyScaffold(
       appbar: const HomeScreenAppBar(),
+      floatingActionButton: const HomeScreenFloatingActionButton(),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 15.w),
         child: Column(
