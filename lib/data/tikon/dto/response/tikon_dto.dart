@@ -38,14 +38,26 @@ class TikonDto {
   }
 
   TikonEntity toEntity() {
+    String dDayFactory(int dDay){
+      if(dDay == 0){
+        return "D-Day";
+      } else if (dDay > 30){
+        return "D-30+";
+      }
+
+      return "D-$dDay";
+    }
+
     return TikonEntity(
       id: id,
       image: image,
       storeName: storeName,
       tikonName: tikonName,
       category: category,
-      dDay: dDay,
-      disCount: disCount,
+      dDay: dDayFactory(dDay),
+      disCount: disCount == 100
+          ? "FREE"
+          : "$disCount%",
     );
   }
 }
