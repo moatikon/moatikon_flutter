@@ -11,6 +11,7 @@ class MoaFont {
       style: TextStyle(
         fontFamily: _pretendard,
         fontSize: 48.sp,
+        height: 64.h / 48.sp,
         fontWeight: FontWeight.w700,
         color: color ?? MoaColor.black,
       ),
@@ -23,6 +24,7 @@ class MoaFont {
       style: TextStyle(
         fontFamily: _pretendard,
         fontSize: 30.sp,
+        height: 34.h / 30.sp,
         fontWeight: FontWeight.w700,
         color: color ?? MoaColor.black,
       ),
@@ -35,6 +37,7 @@ class MoaFont {
       style: TextStyle(
         fontFamily: _pretendard,
         fontSize: 24.sp,
+        height: 32.h / 24.sp,
         fontWeight: FontWeight.w600,
         color: color ?? MoaColor.black,
       ),
@@ -47,6 +50,7 @@ class MoaFont {
       style: TextStyle(
         fontFamily: _pretendard,
         fontSize: 20.sp,
+        height: 24.h / 20.sp,
         fontWeight: FontWeight.w600,
         color: color ?? MoaColor.black,
       ),
@@ -59,6 +63,7 @@ class MoaFont {
       style: TextStyle(
         fontFamily: _pretendard,
         fontSize: 18.sp,
+        height: 22.h / 18.sp,
         fontWeight: FontWeight.w600,
         color: color ?? MoaColor.black,
       ),
@@ -71,6 +76,7 @@ class MoaFont {
       style: TextStyle(
         fontFamily: _pretendard,
         fontSize: 16.sp,
+        height: 20.h / 16.sp,
         fontWeight: FontWeight.w600,
         color: color ?? MoaColor.black,
       ),
@@ -83,6 +89,7 @@ class MoaFont {
       style: TextStyle(
         fontFamily: _pretendard,
         fontSize: 20.sp,
+        height: 24.h / 20.sp,
         fontWeight: FontWeight.w500,
         color: color ?? MoaColor.black,
       ),
@@ -95,6 +102,7 @@ class MoaFont {
       style: TextStyle(
         fontFamily: _pretendard,
         fontSize: 18.sp,
+        height: 22.h / 18.sp,
         fontWeight: FontWeight.w500,
         color: color ?? MoaColor.black,
       ),
@@ -107,6 +115,7 @@ class MoaFont {
       style: TextStyle(
         fontFamily: _pretendard,
         fontSize: 16.sp,
+        height: 20.h / 16.sp,
         fontWeight: FontWeight.w500,
         color: color ?? MoaColor.black,
       ),
@@ -119,6 +128,7 @@ class MoaFont {
       style: TextStyle(
         fontFamily: _pretendard,
         fontSize: 14.sp,
+        height: 18.h / 14.sp,
         fontWeight: FontWeight.w500,
         color: color ?? MoaColor.black,
       ),
@@ -131,6 +141,7 @@ class MoaFont {
       style: TextStyle(
         fontFamily: _pretendard,
         fontSize: 20.sp,
+        height: 24.h / 20.sp,
         fontWeight: FontWeight.w400,
         color: color ?? MoaColor.black,
       ),
@@ -143,6 +154,7 @@ class MoaFont {
       style: TextStyle(
         fontFamily: _pretendard,
         fontSize: 16.sp,
+        height: 20.h / 16.sp,
         fontWeight: FontWeight.w400,
         color: color ?? MoaColor.black,
       ),
@@ -155,6 +167,7 @@ class MoaFont {
       style: TextStyle(
         fontFamily: _pretendard,
         fontSize: 14.sp,
+        height: 18.h / 14.sp,
         fontWeight: FontWeight.w400,
         color: color ?? MoaColor.black,
       ),
@@ -167,6 +180,7 @@ class MoaFont {
       style: TextStyle(
         fontFamily: _pretendard,
         fontSize: 12.sp,
+        height: 16.h / 12.sp,
         fontWeight: FontWeight.w400,
         color: color ?? MoaColor.black,
       ),
