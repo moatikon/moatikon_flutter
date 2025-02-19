@@ -12,6 +12,8 @@ import 'package:moatikon_flutter/domain/tikon/use_case/add_tikon_use_case.dart';
 import 'package:moatikon_flutter/domain/tikon/use_case/complete_tikon_use_case.dart';
 import 'package:moatikon_flutter/domain/tikon/use_case/get_all_tikon_list_use_case.dart';
 import 'package:moatikon_flutter/presentation/auth/view_model/auth_bloc.dart';
+import 'package:moatikon_flutter/presentation/home/view_model/home_bloc.dart';
+import 'package:moatikon_flutter/presentation/home/view_model/home_category_state.dart';
 import 'package:moatikon_flutter/presentation/splash/view_model/splash_bloc.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_tikon_calender_state_cubit.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_tikon_image_state_cubit.dart';
@@ -53,6 +55,10 @@ Future<List<BlocProvider>> di() async {
         resettingPwUseCase: resettingPwUseCase,
       ),
     ),
+
+    // home
+    BlocProvider<HomeCategoryState>(create: (context) => HomeCategoryState()),
+    BlocProvider<HomeBloc>(create: (context) => HomeBloc(getAllTikonListUseCase: getAllTikonListUseCase)),
 
     // tikon
     BlocProvider<AddTikonImageStateCubit>(create: (context) => AddTikonImageStateCubit()),
