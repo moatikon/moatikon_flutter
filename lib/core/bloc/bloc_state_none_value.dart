@@ -3,11 +3,11 @@ import 'package:dio/dio.dart';
 import 'bloc_state_enum.dart';
 import 'exception_response_model.dart';
 
-abstract class BlocState {
+abstract class BlocStateNoneValue {
   BlocStateEnum blocState;
   DioException? errorOfNull;
 
-  BlocState({
+  BlocStateNoneValue({
     required this.blocState,
     this.errorOfNull,
   });
@@ -16,21 +16,21 @@ abstract class BlocState {
       ExceptionResponseModel.fromJson(errorOfNull!.response!);
 }
 
-class Empty extends BlocState {
+class Empty extends BlocStateNoneValue {
   Empty() : super(blocState: BlocStateEnum.empty);
 }
 
-class Loading extends BlocState {
+class Loading extends BlocStateNoneValue {
   Loading() : super(blocState: BlocStateEnum.loading);
 }
 
-class Error extends BlocState {
+class Error extends BlocStateNoneValue {
   final DioException exception;
 
   Error({required this.exception})
       : super(blocState: BlocStateEnum.error, errorOfNull: exception);
 }
 
-class Loaded extends BlocState {
+class Loaded extends BlocStateNoneValue {
   Loaded() : super(blocState: BlocStateEnum.loaded);
 }

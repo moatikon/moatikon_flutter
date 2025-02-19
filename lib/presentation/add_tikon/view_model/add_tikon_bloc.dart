@@ -4,7 +4,7 @@ import 'package:moatikon_flutter/core/bloc/bloc_state_none_value.dart';
 import 'package:moatikon_flutter/domain/tikon/use_case/add_tikon_use_case.dart';
 import 'package:moatikon_flutter/presentation/add_tikon/view_model/add_tikon_event.dart';
 
-class AddTikonBloc extends Bloc<AddTikonEvent, BlocState> {
+class AddTikonBloc extends Bloc<AddTikonEvent, BlocStateNoneValue> {
   final AddTikonUseCase _addTikonUseCase;
 
   AddTikonBloc({required AddTikonUseCase addTikonUseCase})
@@ -13,7 +13,7 @@ class AddTikonBloc extends Bloc<AddTikonEvent, BlocState> {
     on<AddTikonEvent>(_addTikonEventHandler);
   }
 
-  void _addTikonEventHandler(AddTikonEvent event, Emitter<BlocState> emit) async {
+  void _addTikonEventHandler(AddTikonEvent event, Emitter<BlocStateNoneValue> emit) async {
     emit(Loading());
 
     try {

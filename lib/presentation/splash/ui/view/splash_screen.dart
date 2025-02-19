@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [
-        BlocListener<SplashBloc, BlocState>(
+        BlocListener<SplashBloc, BlocStateNoneValue>(
           listenWhen: (_, current) => current.blocState == BlocStateEnum.loaded,
           listener: (_, __) {
             context.read<HomeBloc>().add(InitGetAllTikonsEvent());
@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
           },
         ),
 
-        BlocListener<SplashBloc, BlocState>(
+        BlocListener<SplashBloc, BlocStateNoneValue>(
           listenWhen: (_, current) => current.blocState == BlocStateEnum.error,
           listener: (_, __) => MoaNavigator.teleporting(context, const OnBoardingScreen()),
         )

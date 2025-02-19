@@ -71,12 +71,12 @@ class _SignInScreenState extends State<SignInScreen> {
       ),
       body: MultiBlocListener(
         listeners: [
-          BlocListener<AuthBloc, BlocState>(
+          BlocListener<AuthBloc, BlocStateNoneValue>(
             listenWhen: (_, current) => current.blocState == BlocStateEnum.loaded,
             listener: (_, __) => MoaNavigator.go(context, const SplashScreen()),
           ),
 
-          BlocListener<AuthBloc, BlocState>(
+          BlocListener<AuthBloc, BlocStateNoneValue>(
             listenWhen: (_, current) => current.blocState == BlocStateEnum.error,
             listener: (_, state) {
               showTopSnackBar(
@@ -89,7 +89,7 @@ class _SignInScreenState extends State<SignInScreen> {
             },
           ),
         ],
-        child: BlocBuilder<AuthBloc, BlocState>(builder: (_, state) {
+        child: BlocBuilder<AuthBloc, BlocStateNoneValue>(builder: (_, state) {
           return Padding(
             padding: EdgeInsets.only(top: 20.h, left: 20.w, right: 20.w),
             child: Column(
