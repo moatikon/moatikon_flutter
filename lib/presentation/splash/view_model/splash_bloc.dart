@@ -6,7 +6,7 @@ import 'package:moatikon_flutter/domain/auth/entity/token_entity.dart';
 import 'package:moatikon_flutter/domain/auth/use_case/re_issue_use_case.dart';
 import 'package:moatikon_flutter/presentation/splash/view_model/splash_event.dart';
 
-class SplashBloc extends Bloc<SplashEvent, BlocState> {
+class SplashBloc extends Bloc<SplashEvent, BlocStateNoneValue> {
   final ReIssueUseCase _reIssueUseCase;
 
   SplashBloc({required ReIssueUseCase reIssueUseCase})
@@ -15,7 +15,7 @@ class SplashBloc extends Bloc<SplashEvent, BlocState> {
     on<ReIssueEvent>(reissueHandler);
   }
 
-  void reissueHandler(ReIssueEvent event, Emitter<BlocState> emit) async {
+  void reissueHandler(ReIssueEvent event, Emitter<BlocStateNoneValue> emit) async {
     emit(Loading());
 
     try {

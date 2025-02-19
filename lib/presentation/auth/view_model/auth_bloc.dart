@@ -9,7 +9,7 @@ import 'package:moatikon_flutter/presentation/auth/view_model/auth_event.dart';
 import '../../../domain/auth/use_case/sign_in_use_case.dart';
 import '../../../domain/auth/use_case/sign_up_use_case.dart';
 
-class AuthBloc extends Bloc<AuthEvent, BlocState> {
+class AuthBloc extends Bloc<AuthEvent, BlocStateNoneValue> {
   final SignInUseCase _signInUsecase;
   final SignUpUseCase _signUpUsecase;
 
@@ -26,14 +26,14 @@ class AuthBloc extends Bloc<AuthEvent, BlocState> {
 
   void _emptyHandler(
       EmptyEvent event,
-      Emitter<BlocState> emit,
+      Emitter<BlocStateNoneValue> emit,
       ) async {
     emit(Empty());
   }
 
   void _signUpHandler(
     SignUpEvent event,
-    Emitter<BlocState> emit,
+    Emitter<BlocStateNoneValue> emit,
   ) async {
     emit(Loading());
 
@@ -47,7 +47,7 @@ class AuthBloc extends Bloc<AuthEvent, BlocState> {
 
   void _signInHandler(
     SignInEvent event,
-    Emitter<BlocState> emit,
+    Emitter<BlocStateNoneValue> emit,
   ) async {
     emit(Loading());
 
