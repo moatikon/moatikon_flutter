@@ -6,6 +6,7 @@ import 'package:moatikon_flutter/component/my_scaffold.dart';
 import 'package:moatikon_flutter/core/bloc/bloc_state_enum.dart';
 import 'package:moatikon_flutter/core/bloc/bloc_state_value.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikons_entity.dart';
+import 'package:moatikon_flutter/presentation/add_tikon/view_model/add_tikon_bloc.dart';
 import 'package:moatikon_flutter/presentation/home/ui/widget/home_category_widget.dart';
 import 'package:moatikon_flutter/presentation/home/ui/widget/home_screen_app_bar.dart';
 import 'package:moatikon_flutter/presentation/home/ui/widget/home_screen_floating_action_button.dart';
@@ -35,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (_tikonListController.position.pixels ==
         _tikonListController.position.maxScrollExtent) {
       int tikonsLength = context.read<TikonBloc>().state.value.tikons.length;
-      if (tikonsLength % 15 == 0) {
+      if (tikonsLength % 10 == 0) {
         context
             .read<HomeBloc>()
             .add(GetAllTikonsEvent(page: tikonsLength ~/ 10));
@@ -62,16 +63,28 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.only(bottom: 20.h),
               child: const HomeCategoryWidget(),
             ),
-            BlocBuilder<HomeBloc, BlocState<TikonsEntity>>(
-              builder: (context, state) {
-                if (state.blocState == BlocStateEnum.loading) {
-                  return const MoaLoadingIndicator();
-                } else if (state.blocState == BlocStateEnum.error) {
-                  return Text("Error :: ${state.error.message}");
-                } else {
-                  return HomeTikonsGridWidget(tikonsEntity: state.value);
-                }
-              },
+            MultiBlocListener(
+              listeners: [
+                // BlocListener<AddTikonBloc, BlocState>(
+                //   listenWhen: (_, current) => current.blocState == BlocStateEnum.loaded,
+                //   listener: (_, __) {
+                //     context.read<HomeBloc>().add(InitGetAllTikonsEvent());
+                //     MoaNavigator.teleporting(context, const HomeScreen());
+                //   },
+                // ),
+                // BlocListener(listener: (context, state) => ,)
+              ],
+              child: BlocBuilder<HomeBloc, BlocState<TikonsEntity>>(
+                builder: (context, state) {
+                  if (state.blocState == BlocStateEnum.loading) {
+                    return const MoaLoadingIndicator();
+                  } else if (state.blocState == BlocStateEnum.error) {
+                    return Text("Error :: ${state.error.message}");
+                  } else {
+                    return HomeTikonsGridWidget(tikonsEntity: state.value);
+                  }
+                },
+              ),
             )
           ],
         ),
