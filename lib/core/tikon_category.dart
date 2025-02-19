@@ -1,0 +1,1 @@
+List<String> tikonCategory = ["전체", "식사류", "음료", "물건", "기타"];

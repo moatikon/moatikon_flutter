@@ -5,7 +5,7 @@ import 'package:moatikon_flutter/component/moa_button.dart';
 import 'package:moatikon_flutter/component/text_widget.dart';
 import 'package:moatikon_flutter/core/moa_color.dart';
 import 'package:moatikon_flutter/core/moa_font.dart';
-import 'package:moatikon_flutter/core/tag_list.dart';
+import 'package:moatikon_flutter/core/tikon_category.dart';
 import 'package:moatikon_flutter/presentation/home/view_model/home_category_state.dart';
 
 class HomeCategoryWidget extends StatelessWidget {

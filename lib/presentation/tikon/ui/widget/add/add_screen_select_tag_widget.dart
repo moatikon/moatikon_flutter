@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/presentation/tikon/view_model/add/add_screen_category_state.dart';
 
 import '../../../../../component/text_widget.dart';
-import '../../../../../core/tag_list.dart';
+import '../../../../../core/tikon_category.dart';
 
 
 class AddScreenSelectTagWidget extends StatelessWidget {
@@ -13,7 +13,7 @@ class AddScreenSelectTagWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> subTagList = tagList.sublist(1);
+    List<String> subTagList = tikonCategory.sublist(1);
 
     return BlocBuilder<AddScreenCategoryState, int>(
       builder: (context, state) {
