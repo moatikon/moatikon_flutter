@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/component/moa_button.dart';
+import 'package:moatikon_flutter/core/moa_color.dart';
 import 'package:moatikon_flutter/core/moa_navigator.dart';
 import 'package:moatikon_flutter/presentation/auth/ui/view/sign_up_screen.dart';
 
@@ -23,10 +24,10 @@ class OnBoardingBottomSheet extends StatelessWidget {
             text: "로그인",
             textSize: 20.sp,
             textWeight: TextWeight.medium,
-            fontColor: Colors.white,
-            color: const Color(0xFFEA4E46),
+            fontColor: MoaColor.white,
+            color: MoaColor.red100,
             borderRadius: 8.r,
-            padding: EdgeInsets.symmetric(vertical: 17.h),
+            padding: EdgeInsets.symmetric(vertical: 20.h),
           ),
           SizedBox(height: 20.h),
           MoaButton(
@@ -35,10 +36,10 @@ class OnBoardingBottomSheet extends StatelessWidget {
             text: "회원가입",
             textSize: 20.sp,
             textWeight: TextWeight.medium,
-            fontColor: Colors.black,
-            border: Border.all(color: const Color(0xFFEA4E46)),
+            fontColor: MoaColor.black,
+            border: Border.all(color: MoaColor.red100),
             borderRadius: 8.r,
-            padding: EdgeInsets.symmetric(vertical: 17.h),
+            padding: EdgeInsets.symmetric(vertical: 20.h),
           ),
         ],
       ),
