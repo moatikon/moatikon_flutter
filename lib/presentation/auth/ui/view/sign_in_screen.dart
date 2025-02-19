@@ -91,7 +91,7 @@ class _SignInScreenState extends State<SignInScreen> {
         ],
         child: BlocBuilder<AuthBloc, BlocState>(builder: (_, state) {
           return Padding(
-            padding: EdgeInsets.all(20.w),
+            padding: EdgeInsets.only(top: 20.h, left: 20.w, right: 20.w),
             child: Column(
               children: [
                 AuthTextFieldWidget(
@@ -106,7 +106,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   hintText: "비밀번호",
                   isObscure: true,
                 ),
-                SizedBox(height: 5.h),
+                // SizedBox(height: 5.h),
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.end,
                 //   children: [
@@ -134,6 +134,14 @@ class _SignInScreenState extends State<SignInScreen> {
                               ),
                             ),
                           );
+                    } else {
+                      showTopSnackBar(
+                        Overlay.of(context),
+                        const ToastMessage(
+                          isError: true,
+                          title: "아이디와 비밀번호 모두 입력해 주세요.",
+                        ),
+                      );
                     }
                   },
                   text: "로그인",

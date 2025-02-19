@@ -6,8 +6,8 @@ import 'package:moatikon_flutter/component/my_scaffold.dart';
 import 'package:moatikon_flutter/component/text_widget.dart';
 import 'package:moatikon_flutter/core/bloc/bloc_state_none_value.dart';
 import 'package:moatikon_flutter/core/bloc/bloc_state_enum.dart';
+import 'package:moatikon_flutter/core/moa_font.dart';
 import 'package:moatikon_flutter/core/moa_navigator.dart';
-import 'package:moatikon_flutter/data/auth/dto/request/signin_request.dart';
 import 'package:moatikon_flutter/data/auth/dto/request/signup_request.dart';
 import 'package:moatikon_flutter/presentation/auth/ui/view/sign_in_screen.dart';
 import 'package:moatikon_flutter/presentation/auth/ui/widget/auth_app_bar.dart';
@@ -78,12 +78,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     RegExp regex = RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
-    TextWidget? nicknameErrorText(){
-      if(_nicknameController.text.isEmpty){
-        return TextWidget(
+    Text? nicknameErrorText() {
+      if (_nicknameController.text.isEmpty) {
+        return MoaFont.bodySmall(
           text: "닉네임은 공백을 사용할 수 없습니다.",
-          textSize: 12.sp,
-          textWeight: TextWeight.regular,
           color: MoaColor.red200,
         );
       }
@@ -91,13 +89,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
       return null;
     }
 
-    TextWidget? emailErrorText(){
-      if(_emailController.text.isNotEmpty &&
-          !regex.hasMatch(_emailController.text)){
-        return TextWidget(
-          text: "이메일 형식으로 입력해주세요",
-          textSize: 12.sp,
-          textWeight: TextWeight.regular,
+    Text? emailErrorText() {
+      if (_emailController.text.isNotEmpty &&
+          !regex.hasMatch(_emailController.text)) {
+        return MoaFont.bodySmall(
+          text: "이메일 형식으로 입력해 주세요.",
           color: MoaColor.red200,
         );
       }
@@ -105,12 +101,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
       return null;
     }
 
-    TextWidget? passwordErrorText(){
-      if(_passwordController.text != _passwordCompareController.text){
-        return TextWidget(
+    Text? passwordErrorText() {
+      if (_passwordController.text != _passwordCompareController.text) {
+        return MoaFont.bodySmall(
           text: "비밀번호가 일치하지 않습니다.",
-          textSize: 12.sp,
-          textWeight: TextWeight.regular,
           color: MoaColor.red200,
         );
       }
@@ -136,7 +130,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
             listenWhen: (_, current) => current.blocState == BlocStateEnum.loaded,
             listener: (_, __) => MoaNavigator.go(context, const SplashScreen()),
           ),
-
           BlocListener<AuthBloc, BlocState>(
             listenWhen: (_, current) => current.blocState == BlocStateEnum.error,
             listener: (_, state) {
@@ -144,7 +137,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Overlay.of(context),
                 ToastMessage(
                   isError: true,
-                  title: state.error.message[0],
+                  title: state.error.message,
                 ),
               );
             },
@@ -153,7 +146,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: BlocBuilder<AuthBloc, BlocState>(
           builder: (_, state) {
             return Padding(
-              padding: EdgeInsets.all(20.w),
+              padding: EdgeInsets.only(top: 20.h, left: 20.w, right: 20.w),
               child: Column(
                 children: [
                   AuthTextFieldWidget(
@@ -188,8 +181,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(height: 30.h),
                   MoaButton(
                     onTap: () {
-                      if (emailErrorText() == null &&
-                          passwordErrorText() == null) {
+                      if (nicknameErrorText() == null && emailErrorText() == null && passwordErrorText() == null) {
                         context.read<AuthBloc>().add(
                               SignUpEvent(
                                 signupRequest: SignupRequest(
@@ -199,6 +191,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ),
                             );
+                      } else {
+                        showTopSnackBar(
+                          Overlay.of(context),
+                          const ToastMessage(
+                            isError: true,
+                            title: "닉네임, 아이디, 비밀번호 모두 입력해 주세요.",
+                          ),
+                        );
                       }
                     },
                     text: "회원가입",

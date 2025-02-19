@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/component/image_widget.dart';
 import 'package:moatikon_flutter/component/text_widget.dart';
+import 'package:moatikon_flutter/core/moa_font.dart';
 import 'package:moatikon_flutter/core/moa_navigator.dart';
 
 class AuthAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -32,7 +33,7 @@ class AuthAppBar extends StatelessWidget implements PreferredSizeWidget {
                   width: 24.w,
                 ),
               ),
-              TextWidget(text: title, textSize: 20.sp, textWeight: TextWeight.medium),
+              MoaFont.titleMedium(text: title),
               SizedBox(width: 24.w),
             ],
           ),
