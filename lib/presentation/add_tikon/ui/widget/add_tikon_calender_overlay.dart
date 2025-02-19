@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/component/text_widget.dart';
+import 'package:moatikon_flutter/core/moa_color.dart';
+import 'package:moatikon_flutter/core/moa_font.dart';
 
 import '../../../../../component/image_widget.dart';
 
-class AddScreenCalenderOverlay extends StatefulWidget {
+class AddTikonCalenderOverlay extends StatefulWidget {
   final LayerLink link;
   final DateTime selectedDate;
   final Function({required DateTime date}) saveDate;
   final Function removeCalender;
 
-  const AddScreenCalenderOverlay({
+  const AddTikonCalenderOverlay({
     super.key,
     required this.link,
     required this.selectedDate,
@@ -19,11 +21,11 @@ class AddScreenCalenderOverlay extends StatefulWidget {
   });
 
   @override
-  State<AddScreenCalenderOverlay> createState() =>
-      _AddScreenCalenderOverlayState();
+  State<AddTikonCalenderOverlay> createState() =>
+      _AddTikonCalenderOverlayState();
 }
 
-class _AddScreenCalenderOverlayState extends State<AddScreenCalenderOverlay> {
+class _AddTikonCalenderOverlayState extends State<AddTikonCalenderOverlay> {
   late final PageController _pageController;
 
   // 정확히는 선택한 년도, DateTime.now()는 기본값
@@ -41,15 +43,12 @@ class _AddScreenCalenderOverlayState extends State<AddScreenCalenderOverlay> {
     _pageController.dispose();
   }
 
-
   Widget _buildWeekDay(String day) {
     return Padding(
       padding: EdgeInsets.only(right: 8.0.w),
-      child: TextWidget(
+      child: MoaFont.bodySmall(
         text: day,
-        textSize: 14.sp,
-        textWeight: TextWeight.regular,
-        color: const Color(0xFFADAFB2),
+        color: MoaColor.gray200,
       ),
     );
   }
@@ -103,31 +102,27 @@ class _AddScreenCalenderOverlayState extends State<AddScreenCalenderOverlay> {
                     height: 40.h,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Color(0xFFEA4E46),
+                      color: MoaColor.red100,
                     ),
                     child: Center(
-                      child: TextWidget(
+                      child: MoaFont.labelMedium(
                         text: dayText,
-                        textSize: 20.sp,
-                        textWeight: TextWeight.regular,
-                        color: Colors.white,
+                        color: MoaColor.white,
                       ),
                     ),
                   );
                 } else if (isToday) {
                   return Container(
-                    width: 40.w ,
+                    width: 40.w,
                     height: 40.h,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Color(0xFFFF857E),
+                      color: MoaColor.red50,
                     ),
                     child: Center(
-                      child: TextWidget(
+                      child: MoaFont.labelMedium(
                         text: dayText,
-                        textSize: 20.sp,
-                        textWeight: TextWeight.regular,
-                        color: Colors.white,
+                        color: MoaColor.black,
                       ),
                     ),
                   );
@@ -136,11 +131,9 @@ class _AddScreenCalenderOverlayState extends State<AddScreenCalenderOverlay> {
                     width: 40.w,
                     height: 40.h,
                     child: Center(
-                      child: TextWidget(
+                      child: MoaFont.labelMedium(
                         text: dayText,
-                        textSize: 20.sp,
-                        textWeight: TextWeight.regular,
-                        color: Colors.black,
+                        color: MoaColor.black,
                       ),
                     ),
                   );
@@ -170,7 +163,7 @@ class _AddScreenCalenderOverlayState extends State<AddScreenCalenderOverlay> {
             alignment: Alignment.center,
             child: CompositedTransformFollower(
               link: widget.link,
-              offset: Offset(0, 79.h),
+              offset: const Offset(0, 0),
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
                 width: 1.sw - 40.w,
@@ -197,7 +190,8 @@ class _AddScreenCalenderOverlayState extends State<AddScreenCalenderOverlay> {
                         children: [
                           // 현재 month
                           TextWidget(
-                            text: '${_currentDateTime.year}년 ${_currentDateTime.month}월',
+                            text:
+                                '${_currentDateTime.year}년 ${_currentDateTime.month}월',
                             textSize: 16.sp,
                             textWeight: TextWeight.semiBold,
                           ),
@@ -213,7 +207,7 @@ class _AddScreenCalenderOverlayState extends State<AddScreenCalenderOverlay> {
                                       // page 뒤로가기
                                       _pageController.previousPage(
                                         duration:
-                                        const Duration(milliseconds: 300),
+                                            const Duration(milliseconds: 300),
                                         curve: Curves.easeInOut,
                                       );
                                     } else {
@@ -228,7 +222,7 @@ class _AddScreenCalenderOverlayState extends State<AddScreenCalenderOverlay> {
                                   child: ImageWidget(
                                     image: 'assets/image/arrow_left_icon.png',
                                     height: 17.h,
-                                    color: const Color(0xFFFF857E),
+                                    color: MoaColor.red100,
                                   ),
                                 ),
                                 GestureDetector(
@@ -238,7 +232,7 @@ class _AddScreenCalenderOverlayState extends State<AddScreenCalenderOverlay> {
                                       setState(() {
                                         _pageController.nextPage(
                                           duration:
-                                          const Duration(milliseconds: 300),
+                                              const Duration(milliseconds: 300),
                                           curve: Curves.easeInOut,
                                         );
                                       });
@@ -254,7 +248,7 @@ class _AddScreenCalenderOverlayState extends State<AddScreenCalenderOverlay> {
                                   child: ImageWidget(
                                     image: 'assets/image/arrow_right_icon.png',
                                     height: 17.h,
-                                    color: const Color(0xFFFF857E),
+                                    color: MoaColor.red100,
                                   ),
                                 ),
                               ],

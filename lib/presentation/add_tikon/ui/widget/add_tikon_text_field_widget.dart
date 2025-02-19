@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moatikon_flutter/core/moa_color.dart';
+import 'package:moatikon_flutter/core/moa_font.dart';
 
 import '../../../../../component/text_widget.dart';
 
-class AddScreenTextFieldWidget extends StatelessWidget {
+class AddTikonTextFieldWidget extends StatelessWidget {
   final String title, hintText;
   final TextEditingController controller;
   final FocusNode node;
 
-  const AddScreenTextFieldWidget({
+  const AddTikonTextFieldWidget({
     super.key,
     required this.title,
     required this.hintText,
@@ -18,22 +20,16 @@ class AddScreenTextFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextStyle fieldTextStyle = TextStyle(
-      fontSize: 15.sp,
-      fontWeight: FontWeight.w600,
-      color: const Color(0xFF939493),
-    );
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextWidget(text: title, textSize: 15.sp, textWeight: TextWeight.semiBold),
+        MoaFont.titleTiny(text: title),
         SizedBox(height: 5.h),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 9.h),
           width: MediaQuery.of(context).size.width - 40.w,
           decoration: BoxDecoration(
-            border: Border.all(color: const Color(0xFFEA4E46)),
+            border: Border.all(color: MoaColor.red100),
             borderRadius: BorderRadius.circular(20.r),
           ),
           child: TextField(
@@ -45,7 +41,11 @@ class AddScreenTextFieldWidget extends StatelessWidget {
               contentPadding: EdgeInsets.zero,
               border: InputBorder.none,
               hintText: hintText,
-              hintStyle: fieldTextStyle,
+              hintStyle: TextStyle(
+                fontSize: 15.sp,
+                fontWeight: FontWeight.w600,
+                color: MoaColor.gray200,
+              ),
             ),
             style: TextStyle(
               fontSize: 15.sp,
