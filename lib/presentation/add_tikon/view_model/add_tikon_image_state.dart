@@ -1,14 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
-class AddTikonImageStateCubit extends Cubit<XFile?> {
-  AddTikonImageStateCubit() : super(null);
+class AddTikonImageState extends Cubit<XFile?> {
+  AddTikonImageState() : super(null);
 
   XFile? get file => state;
-
-  void init() {
-    emit(null);
-  }
 
   void setFile(XFile file) {
     emit(file);
