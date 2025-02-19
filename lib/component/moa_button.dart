@@ -43,22 +43,28 @@ class MoaButton extends StatelessWidget {
         height: height,
         padding: padding,
         decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(borderRadius ?? 0),
-          border: border
-        ),
+            color: color,
+            borderRadius: BorderRadius.circular(borderRadius ?? 0),
+            border: border),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: EdgeInsets.only(right: 8.w),
-              child: leading ?? const SizedBox.shrink(),
+            Builder(
+              builder: (context) {
+                if (leading == null) {
+                  return const SizedBox.shrink();
+                } else {
+                  return Padding(
+                    padding: EdgeInsets.only(right: 8.w),
+                    child: leading,
+                  );
+                }
+              },
             ),
             Center(
-              child: Builder(
-                builder: (_) {
-                  if(isLoading){
-                    return SizedBox(
+              child: Builder(builder: (_) {
+                if (isLoading) {
+                  return SizedBox(
                     height: textSize,
                     width: textSize,
                     child: CircularProgressIndicator(
@@ -66,15 +72,14 @@ class MoaButton extends StatelessWidget {
                     ),
                   );
                 } else {
-                    return TextWidget(
-                      text: text,
-                      color: fontColor,
-                      textSize: textSize,
-                      textWeight: textWeight,
-                    );
-                  }
+                  return TextWidget(
+                    text: text,
+                    color: fontColor,
+                    textSize: textSize,
+                    textWeight: textWeight,
+                  );
                 }
-              ),
+              }),
             ),
           ],
         ),
