@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/core/bloc/bloc_state_enum.dart';
 import 'package:moatikon_flutter/core/moa_navigator.dart';
+import 'package:moatikon_flutter/presentation/home/ui/home_screen.dart';
+import 'package:moatikon_flutter/presentation/home/view_model/home_bloc.dart';
+import 'package:moatikon_flutter/presentation/home/view_model/home_event.dart';
 import 'package:moatikon_flutter/presentation/on_boarding/ui/view/on_boarding_screen.dart';
 import 'package:moatikon_flutter/presentation/splash/view_model/splash_bloc.dart';
 import 'package:moatikon_flutter/presentation/splash/view_model/splash_event.dart';
-import 'package:moatikon_flutter/presentation/tikon/ui/view/home_screen.dart';
-import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_bloc.dart';
-import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_event.dart';
 
 import '../../../../component/bhs_text_widget.dart';
 import '../../../../component/image_widget.dart';
@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
         BlocListener<SplashBloc, BlocState>(
           listenWhen: (_, current) => current.blocState == BlocStateEnum.loaded,
           listener: (_, __) {
-            context.read<TikonBloc>().add(InitGetAllTikonListEvent());
+            context.read<HomeBloc>().add(InitGetAllTikonsEvent());
             MoaNavigator.teleporting(context, const HomeScreen());
           },
         ),
