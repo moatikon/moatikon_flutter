@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/component/image_widget.dart';
 import 'package:moatikon_flutter/core/moa_color.dart';
 import 'package:moatikon_flutter/core/moa_font.dart';
+import 'package:moatikon_flutter/core/tikon_category.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikon_entity.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikons_entity.dart';
 import 'package:moatikon_flutter/presentation/home/view_model/home_category_state.dart';
@@ -17,13 +18,8 @@ class HomeTikonsGridWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final categoryIdx = context.watch<HomeCategoryState>().state;
     final filterTikons = tikonsEntity.tikons.where((e) {
-      switch(categoryIdx) {
-        case 1: return e.category == "MEAL";
-        case 2: return e.category == "DRINK";
-        case 3: return e.category == "OBJECT";
-        case 4: return e.category == "ETC";
-        default: return true;
-      }
+      return tikonCategory[categoryIdx] == e.category ||
+          tikonCategory[categoryIdx] == "전체";
     }).toList();
 
     return Expanded(
