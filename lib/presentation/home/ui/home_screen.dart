@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moatikon_flutter/component/image_widget.dart';
 import 'package:moatikon_flutter/component/moa_loading_Indicator.dart';
 import 'package:moatikon_flutter/component/my_scaffold.dart';
 import 'package:moatikon_flutter/core/bloc/bloc_state_enum.dart';
 import 'package:moatikon_flutter/core/bloc/bloc_state_value.dart';
-import 'package:moatikon_flutter/core/moa_color.dart';
-import 'package:moatikon_flutter/core/moa_font.dart';
-import 'package:moatikon_flutter/domain/tikon/entity/tikon_entity.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikons_entity.dart';
 import 'package:moatikon_flutter/presentation/home/ui/widget/home_category_widget.dart';
 import 'package:moatikon_flutter/presentation/home/ui/widget/home_screen_app_bar.dart';

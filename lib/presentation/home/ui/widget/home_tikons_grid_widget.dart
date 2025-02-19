@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/component/image_widget.dart';
 import 'package:moatikon_flutter/core/moa_color.dart';
 import 'package:moatikon_flutter/core/moa_font.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikon_entity.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikons_entity.dart';
+import 'package:moatikon_flutter/presentation/home/view_model/home_category_state.dart';
 
 class HomeTikonsGridWidget extends StatelessWidget {
   final TikonsEntity tikonsEntity;
@@ -13,9 +15,20 @@ class HomeTikonsGridWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final categoryIdx = context.watch<HomeCategoryState>().state;
+    final filterTikons = tikonsEntity.tikons.where((e) {
+      switch(categoryIdx) {
+        case 1: return e.category == "MEAL";
+        case 2: return e.category == "DRINK";
+        case 3: return e.category == "OBJECT";
+        case 4: return e.category == "ETC";
+        default: return true;
+      }
+    }).toList();
+
     return Expanded(
       child: GridView.builder(
-        itemCount: tikonsEntity.tikons.length,
+        itemCount: filterTikons.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           // 세로
@@ -25,7 +38,7 @@ class HomeTikonsGridWidget extends StatelessWidget {
           childAspectRatio: 195.w / 291.h,
         ),
         itemBuilder: (context, index) {
-          TikonEntity tikonData = tikonsEntity.tikons[index];
+          TikonEntity tikonData = filterTikons[index];
 
           return SizedBox(
             child: Column(
