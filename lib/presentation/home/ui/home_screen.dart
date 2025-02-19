@@ -67,12 +67,8 @@ class _HomeScreenState extends State<HomeScreen> {
             MultiBlocListener(
               listeners: [
                 BlocListener<AddTikonBloc, BlocStateNoneValue>(
-                  listenWhen: (_, current) =>
-                      current.blocState == BlocStateEnum.loaded ||
-                      current.blocState == BlocStateEnum.error,
-                  listener: (_, __) {
-                    context.read<HomeBloc>().add(InitGetAllTikonsEvent());
-                  },
+                  listenWhen: (_, current) => current.blocState == BlocStateEnum.loaded,
+                  listener: (_, __) => context.read<HomeBloc>().add(InitGetAllTikonsEvent()),
                 ),
               ],
               child: BlocBuilder<HomeBloc, BlocState<TikonsEntity>>(
