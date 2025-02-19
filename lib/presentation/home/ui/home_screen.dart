@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/component/moa_loading_Indicator.dart';
 import 'package:moatikon_flutter/component/my_scaffold.dart';
 import 'package:moatikon_flutter/core/bloc/bloc_state_enum.dart';
+import 'package:moatikon_flutter/core/bloc/bloc_state_none_value.dart';
 import 'package:moatikon_flutter/core/bloc/bloc_state_value.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikons_entity.dart';
 import 'package:moatikon_flutter/presentation/add_tikon/view_model/add_tikon_bloc.dart';
@@ -65,14 +66,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             MultiBlocListener(
               listeners: [
-                // BlocListener<AddTikonBloc, BlocState>(
-                //   listenWhen: (_, current) => current.blocState == BlocStateEnum.loaded,
-                //   listener: (_, __) {
-                //     context.read<HomeBloc>().add(InitGetAllTikonsEvent());
-                //     MoaNavigator.teleporting(context, const HomeScreen());
-                //   },
-                // ),
-                // BlocListener(listener: (context, state) => ,)
+                BlocListener<AddTikonBloc, BlocStateNoneValue>(
+                  listenWhen: (_, current) =>
+                      current.blocState == BlocStateEnum.loaded ||
+                      current.blocState == BlocStateEnum.error,
+                  listener: (_, __) {
+                    context.read<HomeBloc>().add(InitGetAllTikonsEvent());
+                  },
+                ),
               ],
               child: BlocBuilder<HomeBloc, BlocState<TikonsEntity>>(
                 builder: (context, state) {
