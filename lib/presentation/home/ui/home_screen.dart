@@ -1,0 +1,83 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moatikon_flutter/component/image_widget.dart';
+import 'package:moatikon_flutter/component/moa_loading_Indicator.dart';
+import 'package:moatikon_flutter/component/my_scaffold.dart';
+import 'package:moatikon_flutter/core/bloc/bloc_state_enum.dart';
+import 'package:moatikon_flutter/core/bloc/bloc_state_value.dart';
+import 'package:moatikon_flutter/core/moa_color.dart';
+import 'package:moatikon_flutter/core/moa_font.dart';
+import 'package:moatikon_flutter/domain/tikon/entity/tikon_entity.dart';
+import 'package:moatikon_flutter/domain/tikon/entity/tikons_entity.dart';
+import 'package:moatikon_flutter/presentation/home/ui/widget/home_category_widget.dart';
+import 'package:moatikon_flutter/presentation/home/ui/widget/home_screen_app_bar.dart';
+import 'package:moatikon_flutter/presentation/home/ui/widget/home_tikons_grid_widget.dart';
+import 'package:moatikon_flutter/presentation/home/view_model/home_bloc.dart';
+import 'package:moatikon_flutter/presentation/home/view_model/home_event.dart';
+import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_bloc.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late final ScrollController _tikonListController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tikonListController = ScrollController();
+    _tikonListController.addListener(_listener);
+  }
+
+  void _listener() {
+    if (_tikonListController.position.pixels ==
+        _tikonListController.position.maxScrollExtent) {
+      int tikonsLength = context.read<TikonBloc>().state.value.tikons.length;
+      if (tikonsLength % 15 == 0) {
+        context
+            .read<HomeBloc>()
+            .add(GetAllTikonsEvent(page: tikonsLength ~/ 10));
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tikonListController.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MyScaffold(
+      appbar: const HomeScreenAppBar(),
+      body: Padding(
+        padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 15.w),
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(bottom: 20.h),
+              child: const HomeCategoryWidget(),
+            ),
+            BlocBuilder<HomeBloc, BlocState<TikonsEntity>>(
+              builder: (context, state) {
+                if (state.blocState == BlocStateEnum.loading) {
+                  return const MoaLoadingIndicator();
+                } else if (state.blocState == BlocStateEnum.error) {
+                  return Text("Error :: ${state.error.message}");
+                } else {
+                  return HomeTikonsGridWidget(tikonsEntity: state.value);
+                }
+              },
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
