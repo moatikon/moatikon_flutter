@@ -55,9 +55,9 @@ class TikonDto {
       tikonName: tikonName,
       category: category,
       dDay: dDayFactory(dDay),
-      disCount: disCount == 100
+      disCount: disCount == 10
           ? "FREE"
-          : "$disCount%",
+          : "${disCount}0%",
     );
   }
 }
