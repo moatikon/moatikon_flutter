@@ -8,13 +8,13 @@ import 'package:moatikon_flutter/core/bloc/bloc_state_none_value.dart';
 import 'package:moatikon_flutter/core/bloc/bloc_state_value.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikons_entity.dart';
 import 'package:moatikon_flutter/presentation/add_tikon/view_model/add_tikon_bloc.dart';
+import 'package:moatikon_flutter/presentation/detail_tikon/view_model/detail_tikon_bloc.dart';
 import 'package:moatikon_flutter/presentation/home/ui/widget/home_category_widget.dart';
 import 'package:moatikon_flutter/presentation/home/ui/widget/home_screen_app_bar.dart';
 import 'package:moatikon_flutter/presentation/home/ui/widget/home_screen_floating_action_button.dart';
 import 'package:moatikon_flutter/presentation/home/ui/widget/home_tikons_grid_widget.dart';
 import 'package:moatikon_flutter/presentation/home/view_model/home_bloc.dart';
 import 'package:moatikon_flutter/presentation/home/view_model/home_event.dart';
-import 'package:moatikon_flutter/presentation/tikon/view_model/tikon_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void _listener() {
     if (_tikonListController.position.pixels ==
         _tikonListController.position.maxScrollExtent) {
-      int tikonsLength = context.read<TikonBloc>().state.value.tikons.length;
+      int tikonsLength = context.read<HomeBloc>().state.value.tikons.length;
       if (tikonsLength % 10 == 0) {
         context
             .read<HomeBloc>()
@@ -67,6 +67,11 @@ class _HomeScreenState extends State<HomeScreen> {
             MultiBlocListener(
               listeners: [
                 BlocListener<AddTikonBloc, BlocStateNoneValue>(
+                  listenWhen: (_, current) => current.blocState == BlocStateEnum.loaded,
+                  listener: (_, __) => context.read<HomeBloc>().add(InitGetAllTikonsEvent()),
+                ),
+
+                BlocListener<DetailTikonBloc, BlocStateNoneValue>(
                   listenWhen: (_, current) => current.blocState == BlocStateEnum.loaded,
                   listener: (_, __) => context.read<HomeBloc>().add(InitGetAllTikonsEvent()),
                 ),
