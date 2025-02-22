@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/core/moa_color.dart';
-import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_slider_state.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_edit_tikon_slider_state.dart';
 import '../../../../../component/text_widget.dart';
 
-class AddTikonSliderWidget extends StatefulWidget {
-  const AddTikonSliderWidget({super.key});
+class AddEditTikonSliderWidget extends StatefulWidget {
+  const AddEditTikonSliderWidget({super.key});
 
   @override
-  State<AddTikonSliderWidget> createState() => _AddTikonSliderWidgetState();
+  State<AddEditTikonSliderWidget> createState() => _AddEditTikonSliderWidgetState();
 }
 
-class _AddTikonSliderWidgetState extends State<AddTikonSliderWidget> {
+class _AddEditTikonSliderWidgetState extends State<AddEditTikonSliderWidget> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AddTikonSliderState, double>(builder: (context, state) {
+    return BlocBuilder<AddEditTikonSliderState, double>(builder: (context, state) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -35,7 +35,7 @@ class _AddTikonSliderWidgetState extends State<AddTikonSliderWidget> {
             activeColor: MoaColor.red100,
             value: state,
             onChanged: (value) =>
-                context.read<AddTikonSliderState>().changeState(value),
+                context.read<AddEditTikonSliderState>().changeState(value),
           ),
         ],
       );

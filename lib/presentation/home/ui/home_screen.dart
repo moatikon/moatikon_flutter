@@ -7,7 +7,7 @@ import 'package:moatikon_flutter/core/bloc/bloc_state_enum.dart';
 import 'package:moatikon_flutter/core/bloc/bloc_state_none_value.dart';
 import 'package:moatikon_flutter/core/bloc/bloc_state_value.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikons_entity.dart';
-import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_bloc.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_edit_tikon_bloc.dart';
 import 'package:moatikon_flutter/presentation/detail_tikon/view_model/detail_tikon_bloc.dart';
 import 'package:moatikon_flutter/presentation/home/ui/widget/home_category_widget.dart';
 import 'package:moatikon_flutter/presentation/home/ui/widget/home_screen_app_bar.dart';
@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             MultiBlocListener(
               listeners: [
-                BlocListener<AddTikonBloc, BlocStateNoneValue>(
+                BlocListener<AddEditTikonBloc, BlocStateNoneValue>(
                   listenWhen: (_, current) => current.blocState == BlocStateEnum.loaded,
                   listener: (_, __) => context.read<HomeBloc>().add(InitGetAllTikonsEvent()),
                 ),

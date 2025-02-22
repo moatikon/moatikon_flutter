@@ -5,19 +5,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:moatikon_flutter/core/moa_color.dart';
-import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_image_state.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_edit_tikon_image_state.dart';
 
 import '../../../../../component/image_widget.dart';
 
-class AddTikonImageButtonWidget extends StatefulWidget {
-  const AddTikonImageButtonWidget({super.key});
+class AddEditTikonImageButtonWidget extends StatefulWidget {
+  const AddEditTikonImageButtonWidget({super.key});
 
   @override
-  State<AddTikonImageButtonWidget> createState() =>
-      _AddTikonImageButtonWidgetState();
+  State<AddEditTikonImageButtonWidget> createState() =>
+      _AddEditTikonImageButtonWidgetState();
 }
 
-class _AddTikonImageButtonWidgetState extends State<AddTikonImageButtonWidget> {
+class _AddEditTikonImageButtonWidgetState extends State<AddEditTikonImageButtonWidget> {
   final ImagePicker imagePicker = ImagePicker();
 
   @override
@@ -28,10 +28,10 @@ class _AddTikonImageButtonWidgetState extends State<AddTikonImageButtonWidget> {
             source: ImageSource.gallery, imageQuality: 100);
 
         if (context.mounted) {
-          context.read<AddTikonImageState>().setFile(imageFile!);
+          context.read<AddEditTikonImageState>().setFile(imageFile!);
         }
       },
-      child: BlocBuilder<AddTikonImageState, XFile?>(builder: (context, state) {
+      child: BlocBuilder<AddEditTikonImageState, XFile?>(builder: (context, state) {
         if (state == null) {
           return Container(
             width: 195.w,

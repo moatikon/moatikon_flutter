@@ -4,8 +4,8 @@ import 'package:moatikon_flutter/core/moa_font.dart';
 
 import '../../../../component/image_widget.dart';
 
-class AddTikonAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const AddTikonAppBar({super.key});
+class AddEditTikonAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const AddEditTikonAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {

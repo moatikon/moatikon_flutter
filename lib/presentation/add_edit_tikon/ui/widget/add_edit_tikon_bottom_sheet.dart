@@ -8,18 +8,18 @@ import 'package:moatikon_flutter/component/toast_message.dart';
 import 'package:moatikon_flutter/core/moa_color.dart';
 import 'package:moatikon_flutter/core/tikon_category.dart';
 import 'package:moatikon_flutter/data/tikon/dto/request/add_tikon_request.dart';
-import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_bloc.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_edit_tikon_bloc.dart';
 import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_calender_state.dart';
-import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_category_state.dart';
-import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_event.dart';
-import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_image_state.dart';
-import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_slider_state.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_edit_tikon_category_state.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_edit_tikon_event.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_edit_tikon_image_state.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_edit_tikon_slider_state.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-class AddTikonBottomSheet extends StatelessWidget {
+class AddEditTikonBottomSheet extends StatelessWidget {
   final TextEditingController tikonNameController, storeNameController;
 
-  const AddTikonBottomSheet({
+  const AddEditTikonBottomSheet({
     super.key,
     required this.tikonNameController,
     required this.storeNameController,
@@ -38,12 +38,12 @@ class AddTikonBottomSheet extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 30.h),
       child: MoaButton(
         onTap: () {
-          XFile? imageFile = context.read<AddTikonImageState>().state;
+          XFile? imageFile = context.read<AddEditTikonImageState>().state;
           String? storeName = storeNameController.text;
           String? tikonName = tikonNameController.text;
-          String category = tikonCategory[context.read<AddTikonCategoryState>().state + 1];
-          String finishedTikon = context.read<AddTikonCalenderState>().dateTimeFormat();
-          int disCount = context.read<AddTikonSliderState>().state.round();
+          String category = tikonCategory[context.read<AddEditTikonCategoryState>().state + 1];
+          String finishedTikon = context.read<AddEditTikonCalenderState>().dateTimeFormat();
+          int disCount = context.read<AddEditTikonSliderState>().state.round();
 
           if (imageFile == null) {
             showToastMessage(message: "이미지를 추가해 주세요");
@@ -57,7 +57,7 @@ class AddTikonBottomSheet extends StatelessWidget {
             showToastMessage(message: "사용처를 적어주세요");
           }
 
-          context.read<AddTikonBloc>().add(
+          context.read<AddEditTikonBloc>().add(
                 AddTikonEvent(
                   addTikonRequest: AddTikonRequest(
                     imageFile: imageFile!,

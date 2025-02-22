@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:moatikon_flutter/presentation/add_edit_tikon/ui/widget/add_tikon_calender_overlay.dart';
-import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_calender_model.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/ui/widget/add_edit_tikon_calender_overlay.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_edit_tikon_calender_model.dart';
 
-
-class AddTikonCalenderState extends Cubit<AddTikonCalenderModel>{
-  AddTikonCalenderState()
+class AddEditTikonCalenderState extends Cubit<AddEditTikonCalenderModel> {
+  AddEditTikonCalenderState()
       : super(
-          AddTikonCalenderModel(
+          AddEditTikonCalenderModel(
             isActive: false,
             overlay: null,
             date: DateTime(
@@ -20,7 +19,7 @@ class AddTikonCalenderState extends Cubit<AddTikonCalenderModel>{
         );
 
   void init() {
-    emit(AddTikonCalenderModel(
+    emit(AddEditTikonCalenderModel(
       isActive: false,
       overlay: null,
       date: DateTime(
@@ -36,7 +35,7 @@ class AddTikonCalenderState extends Cubit<AddTikonCalenderModel>{
       state.copyWith(
         isActive: true,
         overlay: OverlayEntry(
-          builder: (_) => AddTikonCalenderOverlay(
+          builder: (_) => AddEditTikonCalenderOverlay(
             link: state.calenderLayerLink,
             selectedDate: state.date,
             saveDate: saveDate,

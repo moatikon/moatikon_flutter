@@ -3,14 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/core/moa_color.dart';
 import 'package:moatikon_flutter/core/moa_font.dart';
 
-import '../../../../../component/text_widget.dart';
-
-class AddTikonTextFieldWidget extends StatelessWidget {
+class AddEditTikonTextFieldWidget extends StatelessWidget {
   final String title, hintText;
   final TextEditingController controller;
   final FocusNode node;
 
-  const AddTikonTextFieldWidget({
+  const AddEditTikonTextFieldWidget({
     super.key,
     required this.title,
     required this.hintText,

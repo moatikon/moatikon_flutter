@@ -1,7 +1,11 @@
 import 'package:moatikon_flutter/data/tikon/dto/request/add_tikon_request.dart';
 
-class AddTikonEvent {
+abstract class AddEditTikonEvent {}
+
+class AddTikonEvent extends AddEditTikonEvent {
   final AddTikonRequest addTikonRequest;
 
   AddTikonEvent({required this.addTikonRequest});
 }
+
+

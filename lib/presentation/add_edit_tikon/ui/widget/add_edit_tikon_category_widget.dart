@@ -4,14 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/core/moa_color.dart';
 import 'package:moatikon_flutter/core/moa_font.dart';
 import 'package:moatikon_flutter/core/tikon_category.dart';
-import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_category_state.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_edit_tikon_category_state.dart';
 
-class AddTikonCategoryWidget extends StatelessWidget {
-  const AddTikonCategoryWidget({super.key});
+class AddEditTikonCategoryWidget extends StatelessWidget {
+  const AddEditTikonCategoryWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AddTikonCategoryState, int>(builder: (context, state) {
+    return BlocBuilder<AddEditTikonCategoryState, int>(builder: (context, state) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -26,7 +26,7 @@ class AddTikonCategoryWidget extends StatelessWidget {
                 (index) {
                   return GestureDetector(
                     onTap: () => context
-                        .read<AddTikonCategoryState>()
+                        .read<AddEditTikonCategoryState>()
                         .changeState(index),
                     behavior: HitTestBehavior.opaque,
                     child: Row(

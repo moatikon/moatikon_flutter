@@ -11,7 +11,7 @@ import 'package:moatikon_flutter/domain/auth/use_case/sign_up_use_case.dart';
 import 'package:moatikon_flutter/domain/tikon/use_case/add_tikon_use_case.dart';
 import 'package:moatikon_flutter/domain/tikon/use_case/delete_tikon_use_case.dart';
 import 'package:moatikon_flutter/domain/tikon/use_case/get_all_tikon_list_use_case.dart';
-import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_bloc.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_edit_tikon_bloc.dart';
 import 'package:moatikon_flutter/presentation/auth/view_model/auth_bloc.dart';
 import 'package:moatikon_flutter/presentation/detail_tikon/view_model/detail_tikon_bloc.dart';
 import 'package:moatikon_flutter/presentation/home/view_model/home_bloc.dart';
@@ -73,8 +73,8 @@ Future<List<BlocProvider>> di() async {
             HomeBloc(getAllTikonListUseCase: getAllTikonListUseCase)),
 
     // add_tikon
-    BlocProvider<AddTikonBloc>(
-        create: (context) => AddTikonBloc(addTikonUseCase: addTikonUseCase)),
+    BlocProvider<AddEditTikonBloc>(
+        create: (context) => AddEditTikonBloc(addTikonUseCase: addTikonUseCase)),
 
     // detail_tikon
     BlocProvider<DetailTikonBloc>(

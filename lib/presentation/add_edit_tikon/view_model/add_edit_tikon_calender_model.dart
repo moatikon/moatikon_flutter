@@ -1,23 +1,23 @@
 import 'package:flutter/cupertino.dart';
 
-class AddTikonCalenderModel {
+class AddEditTikonCalenderModel {
   final LayerLink calenderLayerLink = LayerLink();
   DateTime date;
   bool isActive;
   OverlayEntry? overlay;
 
-  AddTikonCalenderModel({
+  AddEditTikonCalenderModel({
     required this.isActive,
     required this.overlay,
     required this.date,
   });
 
-  AddTikonCalenderModel copyWith({
+  AddEditTikonCalenderModel copyWith({
     bool? isActive,
     OverlayEntry? overlay,
     DateTime? date,
   }) {
-    return AddTikonCalenderModel(
+    return AddEditTikonCalenderModel(
       isActive: isActive ?? this.isActive,
       overlay: overlay ?? this.overlay,
       date: date ?? this.date,

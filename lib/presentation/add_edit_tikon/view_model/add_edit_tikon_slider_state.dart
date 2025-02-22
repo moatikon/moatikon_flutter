@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AddTikonSliderState extends Cubit<double>{
-  AddTikonSliderState() : super(1);
+class AddEditTikonSliderState extends Cubit<double>{
+  AddEditTikonSliderState() : super(1);
 
   void init(){
     emit(1);

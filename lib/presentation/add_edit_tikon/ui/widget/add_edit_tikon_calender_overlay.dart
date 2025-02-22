@@ -6,13 +6,13 @@ import 'package:moatikon_flutter/core/moa_font.dart';
 
 import '../../../../../component/image_widget.dart';
 
-class AddTikonCalenderOverlay extends StatefulWidget {
+class AddEditTikonCalenderOverlay extends StatefulWidget {
   final LayerLink link;
   final DateTime selectedDate;
   final Function({required DateTime date}) saveDate;
   final Function removeCalender;
 
-  const AddTikonCalenderOverlay({
+  const AddEditTikonCalenderOverlay({
     super.key,
     required this.link,
     required this.selectedDate,
@@ -21,11 +21,11 @@ class AddTikonCalenderOverlay extends StatefulWidget {
   });
 
   @override
-  State<AddTikonCalenderOverlay> createState() =>
-      _AddTikonCalenderOverlayState();
+  State<AddEditTikonCalenderOverlay> createState() =>
+      _AddEditTikonCalenderOverlayState();
 }
 
-class _AddTikonCalenderOverlayState extends State<AddTikonCalenderOverlay> {
+class _AddEditTikonCalenderOverlayState extends State<AddEditTikonCalenderOverlay> {
   late final PageController _pageController;
 
   // 정확히는 선택한 년도, DateTime.now()는 기본값
