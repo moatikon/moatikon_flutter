@@ -21,7 +21,7 @@ class TikonRepositoryImpl implements TikonRepository {
   }
 
   @override
-  Future<void> completeTikon({required String id}) {
-    return _remoteTikonDataSource.completeTikon(id: id);
+  Future<void> deleteTikon({required String id}) {
+    return _remoteTikonDataSource.deleteTikon(id: id);
   }
 }

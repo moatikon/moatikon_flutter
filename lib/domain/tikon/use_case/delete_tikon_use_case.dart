@@ -1,12 +1,12 @@
 import '../repository/tikon_repository.dart';
 
-class CompleteTikonUseCase {
+class DeleteTikonUseCase {
   final TikonRepository _tikonRepository;
 
-  const CompleteTikonUseCase({required TikonRepository tikonRepository})
+  const DeleteTikonUseCase({required TikonRepository tikonRepository})
       : _tikonRepository = tikonRepository;
 
   Future<void> execute({required String id}) async {
-    return _tikonRepository.completeTikon(id: id);
+    return _tikonRepository.deleteTikon(id: id);
   }
 }

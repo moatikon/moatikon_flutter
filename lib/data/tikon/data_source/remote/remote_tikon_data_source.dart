@@ -18,7 +18,7 @@ class RemoteTikonDataSource {
         queryParameters: query,
       );
       return TikonsDto.fromJson(response.data).toEntity();
-    } on DioException catch(_) {
+    } on DioException catch (_) {
       rethrow;
     }
   }
@@ -38,20 +38,19 @@ class RemoteTikonDataSource {
         data: formData,
       );
       return;
-    } on DioException catch(_) {
+    } on DioException catch (_) {
       rethrow;
     }
   }
 
-  Future<void> completeTikon({required String id}) async {
+  Future<void> deleteTikon({required String id}) async {
     String? accessToken = await TokenSecureStorage.readAccessToken();
     Map<String, dynamic> header = {"Authorization": "Bearer $accessToken"};
 
     try {
       await dio.delete(
-        '/tikon',
+        '/tikon/$id',
         options: Options(headers: header),
-        queryParameters: { "id": id },
       );
       return;
     } on DioException catch (_) {
