@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/core/moa_color.dart';
 import 'package:moatikon_flutter/core/moa_font.dart';
 import 'package:moatikon_flutter/core/tikon_category.dart';
-import 'package:moatikon_flutter/presentation/add_tikon/view_model/add_tikon_category_state.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_category_state.dart';
 
 class AddTikonCategoryWidget extends StatelessWidget {
   const AddTikonCategoryWidget({super.key});

@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:moatikon_flutter/core/moa_color.dart';
-import 'package:moatikon_flutter/presentation/add_tikon/view_model/add_tikon_image_state.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_image_state.dart';
 
 import '../../../../../component/image_widget.dart';
 

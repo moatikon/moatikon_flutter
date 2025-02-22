@@ -6,14 +6,14 @@ import 'package:moatikon_flutter/component/toast_message.dart';
 import 'package:moatikon_flutter/core/bloc/bloc_state_enum.dart';
 import 'package:moatikon_flutter/core/bloc/bloc_state_none_value.dart';
 import 'package:moatikon_flutter/core/moa_navigator.dart';
-import 'package:moatikon_flutter/presentation/add_tikon/ui/widget/add_tikon_app_bar.dart';
-import 'package:moatikon_flutter/presentation/add_tikon/ui/widget/add_tikon_bottom_sheet.dart';
-import 'package:moatikon_flutter/presentation/add_tikon/ui/widget/add_tikon_calender_widget.dart';
-import 'package:moatikon_flutter/presentation/add_tikon/ui/widget/add_tikon_category_widget.dart';
-import 'package:moatikon_flutter/presentation/add_tikon/ui/widget/add_tikon_image_button_widget.dart';
-import 'package:moatikon_flutter/presentation/add_tikon/ui/widget/add_tikon_slider_widget.dart';
-import 'package:moatikon_flutter/presentation/add_tikon/ui/widget/add_tikon_text_field_widget.dart';
-import 'package:moatikon_flutter/presentation/add_tikon/view_model/add_tikon_bloc.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/ui/widget/add_tikon_app_bar.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/ui/widget/add_tikon_bottom_sheet.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/ui/widget/add_tikon_calender_widget.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/ui/widget/add_tikon_category_widget.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/ui/widget/add_tikon_image_button_widget.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/ui/widget/add_tikon_slider_widget.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/ui/widget/add_tikon_text_field_widget.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_bloc.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class AddTikonScreen extends StatefulWidget {

@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moatikon_flutter/core/bloc/bloc_state_none_value.dart';
 import 'package:moatikon_flutter/domain/tikon/use_case/add_tikon_use_case.dart';
-import 'package:moatikon_flutter/presentation/add_tikon/view_model/add_tikon_event.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_event.dart';
 
 class AddTikonBloc extends Bloc<AddTikonEvent, BlocStateNoneValue> {
   final AddTikonUseCase _addTikonUseCase;

@@ -8,12 +8,12 @@ import 'package:moatikon_flutter/component/toast_message.dart';
 import 'package:moatikon_flutter/core/moa_color.dart';
 import 'package:moatikon_flutter/core/tikon_category.dart';
 import 'package:moatikon_flutter/data/tikon/dto/request/add_tikon_request.dart';
-import 'package:moatikon_flutter/presentation/add_tikon/view_model/add_tikon_bloc.dart';
-import 'package:moatikon_flutter/presentation/add_tikon/view_model/add_tikon_calender_state.dart';
-import 'package:moatikon_flutter/presentation/add_tikon/view_model/add_tikon_category_state.dart';
-import 'package:moatikon_flutter/presentation/add_tikon/view_model/add_tikon_event.dart';
-import 'package:moatikon_flutter/presentation/add_tikon/view_model/add_tikon_image_state.dart';
-import 'package:moatikon_flutter/presentation/add_tikon/view_model/add_tikon_slider_state.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_bloc.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_calender_state.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_category_state.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_event.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_image_state.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_slider_state.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class AddTikonBottomSheet extends StatelessWidget {

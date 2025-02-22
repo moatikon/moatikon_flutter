@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/core/moa_color.dart';
 import 'package:moatikon_flutter/core/moa_font.dart';
-import 'package:moatikon_flutter/presentation/add_tikon/view_model/add_tikon_calender_model.dart';
-import 'package:moatikon_flutter/presentation/add_tikon/view_model/add_tikon_calender_state.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_calender_model.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_calender_state.dart';
 
 import '../../../../../component/text_widget.dart';
 
