@@ -6,11 +6,9 @@ class MoaLoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Expanded(
-      child: Center(
-        child: CircularProgressIndicator(
-          color: MoaColor.red100,
-        ),
+    return const Center(
+      child: CircularProgressIndicator(
+        color: MoaColor.red100,
       ),
     );
   }
