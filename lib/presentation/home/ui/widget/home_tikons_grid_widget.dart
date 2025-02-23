@@ -24,6 +24,24 @@ class HomeTikonsGridWidget extends StatelessWidget {
           tikonCategory[categoryIdx] == "전체";
     }).toList();
 
+    String dDayFactory(DateTime targetDate){
+      DateTime now = DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+      );
+
+      int dDay = targetDate.difference(now).inDays;
+
+      if(dDay == 0){
+        return "D-Day";
+      } else if (dDay > 30){
+        return "D-30+";
+      }
+
+      return "D-$dDay";
+    }
+
     return Expanded(
       child: GridView.builder(
         itemCount: filterTikons.length,
@@ -78,7 +96,7 @@ class HomeTikonsGridWidget extends StatelessWidget {
                         ),
                       ),
                       child: MoaFont.titleTiny(
-                        text: tikonData.dDay,
+                        text: dDayFactory(tikonData.dDay),
                         color: MoaColor.white,
                       ),
                     ),
@@ -91,7 +109,9 @@ class HomeTikonsGridWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 5.h),
                 MoaFont.titleMedium(
-                  text: tikonData.disCount,
+                  text: tikonData.disCount == 10
+                      ? "FREE"
+                      : "${tikonData.disCount}0%",
                   color: MoaColor.red100,
                 ),
                 SizedBox(height: 5.h),
