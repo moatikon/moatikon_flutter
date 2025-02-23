@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:moatikon_flutter/core/dio.dart';
 import 'package:moatikon_flutter/core/token_secure_storage.dart';
 import 'package:moatikon_flutter/data/tikon/dto/request/add_tikon_request.dart';
+import 'package:moatikon_flutter/data/tikon/dto/request/edit_tikon_request.dart';
 import 'package:moatikon_flutter/data/tikon/dto/response/tikons_dto.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikons_entity.dart';
 
@@ -31,6 +32,26 @@ class RemoteTikonDataSource {
     try {
       await dio.post(
         '/tikon',
+        options: Options(
+          headers: header,
+          contentType: Headers.multipartFormDataContentType,
+        ),
+        data: formData,
+      );
+      return;
+    } on DioException catch (_) {
+      rethrow;
+    }
+  }
+
+  Future<void> editTikon(EditTikonRequest editTikonRequest) async {
+    String? accessToken = await TokenSecureStorage.readAccessToken();
+    Map<String, dynamic> header = {"Authorization": "Bearer $accessToken"};
+    FormData formData = await editTikonRequest.toForm();
+
+    try {
+      await dio.patch(
+        '/tikon/${editTikonRequest.id}',
         options: Options(
           headers: header,
           contentType: Headers.multipartFormDataContentType,

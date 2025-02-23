@@ -1,5 +1,6 @@
 import 'package:moatikon_flutter/data/tikon/data_source/remote/remote_tikon_data_source.dart';
 import 'package:moatikon_flutter/data/tikon/dto/request/add_tikon_request.dart';
+import 'package:moatikon_flutter/data/tikon/dto/request/edit_tikon_request.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikons_entity.dart';
 import 'package:moatikon_flutter/domain/tikon/repository/tikon_repository.dart';
 
@@ -23,5 +24,10 @@ class TikonRepositoryImpl implements TikonRepository {
   @override
   Future<void> deleteTikon({required String id}) {
     return _remoteTikonDataSource.deleteTikon(id: id);
+  }
+
+  @override
+  Future<void> editTikon(EditTikonRequest request) {
+    return _remoteTikonDataSource.editTikon(request);
   }
 }
