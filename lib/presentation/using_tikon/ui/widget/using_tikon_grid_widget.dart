@@ -3,8 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/component/image_widget.dart';
 import 'package:moatikon_flutter/core/moa_color.dart';
 import 'package:moatikon_flutter/core/moa_font.dart';
+import 'package:moatikon_flutter/core/moa_navigator.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikon_entity.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikons_entity.dart';
+import 'package:moatikon_flutter/presentation/detail_tikon/ui/detail_tikon_screen.dart';
 
 class UsingTikonGridWidget extends StatelessWidget {
   final ScrollController scrollController;
@@ -33,7 +35,13 @@ class UsingTikonGridWidget extends StatelessWidget {
         TikonEntity tikonData = tikonsEntity.tikons[index];
 
         return GestureDetector(
-          onTap: () {},
+          onTap: () => MoaNavigator.push(
+            context,
+            DetailTikonScreen(
+              tikonEntity: tikonData,
+              wantUse: false,
+            ),
+          ),
           behavior: HitTestBehavior.opaque,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

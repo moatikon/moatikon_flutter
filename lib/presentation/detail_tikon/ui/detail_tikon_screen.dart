@@ -13,15 +13,18 @@ import 'package:moatikon_flutter/core/moa_navigator.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikon_entity.dart';
 import 'package:moatikon_flutter/presentation/detail_tikon/ui/widget/detail_tikon_app_bar.dart';
 import 'package:moatikon_flutter/presentation/detail_tikon/view_model/detail_tikon_bloc.dart';
+import 'package:moatikon_flutter/presentation/detail_tikon/view_model/detail_tikon_event.dart';
 import 'package:moatikon_flutter/presentation/home/ui/home_screen.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class DetailTikonScreen extends StatelessWidget {
+  final bool wantUse;
   final TikonEntity tikonEntity;
 
   const DetailTikonScreen({
     super.key,
     required this.tikonEntity,
+    this.wantUse = true,
   });
 
   @override
@@ -33,7 +36,7 @@ class DetailTikonScreen extends StatelessWidget {
           listener: (context, state) {
             showTopSnackBar(
               Overlay.of(context),
-              const ToastMessage(title: "삭제가 완료되었습니다."),
+              const ToastMessage(title: "완료되었습니다."),
             );
             MoaNavigator.teleporting(context, const HomeScreen());
           },
@@ -43,23 +46,34 @@ class DetailTikonScreen extends StatelessWidget {
           listener: (context, state) {
             showTopSnackBar(
               Overlay.of(context),
-              ToastMessage(title: state.error.message),
+              ToastMessage(
+                title: state.error.message,
+                isError: true,
+              ),
             );
           },
         )
       ],
       child: MyScaffold(
-        appbar: DetailTikonAppBar(tikon: tikonEntity),
+        appbar: DetailTikonAppBar(
+          tikon: tikonEntity,
+          wantUse: wantUse,
+        ),
         bottomSheet: Container(
           width: 1.sw,
           height: 78.h,
           alignment: Alignment.center,
           child: MoaButton(
+            onTap: () => context.read<DetailTikonBloc>().add(
+                  ToggleTikonEvent(
+                    id: tikonEntity.id,
+                  ),
+                ),
             width: 1.sw - 40.w,
             height: 58.h,
             borderRadius: 8.r,
             color: MoaColor.red100,
-            text: "기프티콘 사용 완료",
+            text: wantUse ? "기프티콘 사용 완료" : "기프티콘 복구하기",
             textSize: 20.sp,
             textWeight: TextWeight.semiBold,
             fontColor: MoaColor.white,
