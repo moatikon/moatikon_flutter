@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/component/image_widget.dart';
 import 'package:moatikon_flutter/core/moa_font.dart';
+import 'package:moatikon_flutter/core/moa_navigator.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikon_entity.dart';
 import 'package:moatikon_flutter/presentation/detail_tikon/ui/widget/detail_tikon_option_dialog.dart';
 
@@ -25,7 +26,7 @@ class DetailTikonAppBar extends StatelessWidget implements PreferredSizeWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
-                onTap: () => Navigator.pop(context),
+                onTap: () => MoaNavigator.pop(context),
                 child: ImageWidget(
                   image: 'assets/image/arrow_left_icon.png',
                   width: 24.w,
