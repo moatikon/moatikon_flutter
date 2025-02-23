@@ -83,7 +83,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   } else if (state.blocState == BlocStateEnum.error) {
                     return Text("Error :: ${state.error.message}");
                   } else {
-                    return HomeTikonsGridWidget(tikonsEntity: state.value);
+                    return HomeTikonsGridWidget(
+                      tikonListController: _tikonListController,
+                      tikonsEntity: state.value,
+                    );
                   }
                 },
               ),

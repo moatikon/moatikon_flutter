@@ -12,9 +12,14 @@ import 'package:moatikon_flutter/presentation/detail_tikon/ui/detail_tikon_scree
 import 'package:moatikon_flutter/presentation/home/view_model/home_category_state.dart';
 
 class HomeTikonsGridWidget extends StatelessWidget {
+  final ScrollController tikonListController;
   final TikonsEntity tikonsEntity;
 
-  const HomeTikonsGridWidget({super.key, required this.tikonsEntity});
+  const HomeTikonsGridWidget({
+    super.key,
+    required this.tikonListController,
+    required this.tikonsEntity,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +29,7 @@ class HomeTikonsGridWidget extends StatelessWidget {
           tikonCategory[categoryIdx] == "전체";
     }).toList();
 
-    String dDayFactory(DateTime targetDate){
+    String dDayFactory(DateTime targetDate) {
       DateTime now = DateTime(
         DateTime.now().year,
         DateTime.now().month,
@@ -33,9 +38,9 @@ class HomeTikonsGridWidget extends StatelessWidget {
 
       int dDay = targetDate.difference(now).inDays;
 
-      if(dDay == 0){
+      if (dDay == 0) {
         return "D-Day";
-      } else if (dDay > 30){
+      } else if (dDay > 30) {
         return "D-30+";
       }
 
@@ -44,6 +49,7 @@ class HomeTikonsGridWidget extends StatelessWidget {
 
     return Expanded(
       child: GridView.builder(
+        controller: tikonListController,
         itemCount: filterTikons.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
