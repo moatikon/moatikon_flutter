@@ -7,6 +7,7 @@ class AddEditTikonTextFieldWidget extends StatelessWidget {
   final String title, hintText;
   final TextEditingController controller;
   final FocusNode node;
+  final ValueChanged<String>? onSubmit;
 
   const AddEditTikonTextFieldWidget({
     super.key,
@@ -14,6 +15,7 @@ class AddEditTikonTextFieldWidget extends StatelessWidget {
     required this.hintText,
     required this.controller,
     required this.node,
+    this.onSubmit,
   });
 
   @override
@@ -33,6 +35,7 @@ class AddEditTikonTextFieldWidget extends StatelessWidget {
           child: TextField(
             controller: controller,
             focusNode: node,
+            onSubmitted: onSubmit,
             onTapOutside: (event) => node.unfocus(),
             decoration: InputDecoration(
               isDense: true,

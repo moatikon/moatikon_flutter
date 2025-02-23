@@ -43,6 +43,9 @@ class AddEditTikonScreen extends StatefulWidget {
 }
 
 class _AddEditTikonScreenState extends State<AddEditTikonScreen> {
+  bool moved = false;
+
+  late ScrollController _scrollController;
   late TextEditingController _tikonNameController;
   late TextEditingController _storeNameController;
 
@@ -52,28 +55,58 @@ class _AddEditTikonScreenState extends State<AddEditTikonScreen> {
   @override
   void initState() {
     super.initState();
+    _scrollController = ScrollController();
+
     _tikonNameController = TextEditingController(text: widget.tikonName ?? '');
     _storeNameController = TextEditingController(text: widget.storeName ?? '');
     if (widget.image != null) {
       context.read<AddEditTikonImageState>().urlToXFile(widget.image!);
     }
-    if(widget.dDay != null) {
+    if (widget.dDay != null) {
       context.read<AddEditTikonCalenderState>().saveDate(date: widget.dDay!);
     }
-    if(widget.discount != null) {
+    if (widget.discount != null) {
       context.read<AddEditTikonSliderState>().changeState(widget.discount! / 1);
     }
-    if(widget.category != null) {
-      context.read<AddEditTikonCategoryState>().changeState(tikonCategory.indexOf(widget.category!) - 1);
+    if (widget.category != null) {
+      context
+          .read<AddEditTikonCategoryState>()
+          .changeState(tikonCategory.indexOf(widget.category!) - 1);
     }
 
-    _tikonNameNode = FocusNode();
-    _storeNameNode = FocusNode();
+    _tikonNameNode = FocusNode()
+      ..addListener(() {
+        if (!_storeNameNode.hasFocus && !_tikonNameNode.hasFocus) {
+          moved = false;
+        }
+      });
+
+    _storeNameNode = FocusNode()
+      ..addListener(
+        () {
+          if (_storeNameNode.hasFocus && !moved) {
+            moved = true;
+            Future.delayed(const Duration(milliseconds: 150), () {
+              _scrollController.animateTo(
+                _scrollController.position.pixels + 140.h,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+            });
+          }
+
+          if (!_storeNameNode.hasFocus && !_tikonNameNode.hasFocus) {
+            moved = false;
+          }
+        },
+      );
   }
 
   @override
   void dispose() {
     super.dispose();
+    _scrollController.dispose();
+
     _tikonNameController.dispose();
     _storeNameController.dispose();
 
@@ -113,31 +146,36 @@ class _AddEditTikonScreenState extends State<AddEditTikonScreen> {
         ),
         body: Padding(
           padding: EdgeInsets.only(top: 30.h, left: 20.w, right: 20.w),
-          child: Center(
-            child: Column(
-              children: [
-                const AddEditTikonImageButtonWidget(),
-                SizedBox(height: 20.h),
-                AddEditTikonTextFieldWidget(
-                  title: "기프티콘명",
-                  hintText: "기프티콘에 이름을 지어주세요!",
-                  controller: _tikonNameController,
-                  node: _tikonNameNode,
-                ),
-                SizedBox(height: 20.h),
-                AddEditTikonTextFieldWidget(
-                  title: "기프티콘 사용처",
-                  hintText: "어디서 사용하나요? ex) 모아티콘",
-                  controller: _storeNameController,
-                  node: _storeNameNode,
-                ),
-                SizedBox(height: 20.h),
-                const AddEditTikonCalenderWidget(),
-                SizedBox(height: 20.h),
-                const AddEditTikonSliderWidget(),
-                SizedBox(height: 20.h),
-                const AddEditTikonCategoryWidget()
-              ],
+          child: SingleChildScrollView(
+            controller: _scrollController,
+            physics: const NeverScrollableScrollPhysics(),
+            child: Center(
+              child: Column(
+                children: [
+                  const AddEditTikonImageButtonWidget(),
+                  SizedBox(height: 20.h),
+                  AddEditTikonTextFieldWidget(
+                    title: "기프티콘명",
+                    hintText: "기프티콘에 이름을 지어주세요!",
+                    onSubmit: (value) => FocusScope.of(context).requestFocus(_storeNameNode),
+                    controller: _tikonNameController,
+                    node: _tikonNameNode,
+                  ),
+                  SizedBox(height: 20.h),
+                  AddEditTikonTextFieldWidget(
+                    title: "기프티콘 사용처",
+                    hintText: "어디서 사용하나요? ex) 모아티콘",
+                    controller: _storeNameController,
+                    node: _storeNameNode,
+                  ),
+                  SizedBox(height: 20.h),
+                  const AddEditTikonCalenderWidget(),
+                  SizedBox(height: 20.h),
+                  const AddEditTikonSliderWidget(),
+                  SizedBox(height: 20.h),
+                  const AddEditTikonCategoryWidget()
+                ],
+              ),
             ),
           ),
         ),
