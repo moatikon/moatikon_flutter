@@ -18,6 +18,7 @@ import 'package:moatikon_flutter/presentation/detail_tikon/view_model/detail_tik
 import 'package:moatikon_flutter/presentation/home/view_model/home_bloc.dart';
 import 'package:moatikon_flutter/presentation/home/view_model/home_category_state.dart';
 import 'package:moatikon_flutter/presentation/splash/view_model/splash_bloc.dart';
+import 'package:moatikon_flutter/presentation/using_tikon/view_model/using_tikon_bloc.dart';
 import '../domain/auth/use_case/sign_in_use_case.dart';
 import '../presentation/auth/view_model/resetting_pw_state_cubit.dart';
 
@@ -85,8 +86,16 @@ Future<List<BlocProvider>> di() async {
 
     // detail_tikon
     BlocProvider<DetailTikonBloc>(
-      create: (context) =>
-          DetailTikonBloc(deleteTikonUseCase: deleteTikonUseCase),
+      create: (context) => DetailTikonBloc(
+        deleteTikonUseCase: deleteTikonUseCase,
+      ),
     ),
+
+    // using_tikon
+    BlocProvider<UsingTikonBloc>(
+      create: (context) => UsingTikonBloc(
+        getAllTikonListUseCase: getAllTikonListUseCase,
+      ),
+    )
   ];
 }

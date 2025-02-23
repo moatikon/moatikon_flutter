@@ -34,8 +34,6 @@ class HomeBloc extends Bloc<HomeEvent, BlocState<TikonsEntity>> {
     GetAllTikonsEvent event,
     Emitter<BlocState<TikonsEntity>> emit,
   ) async {
-    emit(Loading());
-
     try {
       TikonsEntity currentTikons = state.value;
       TikonsEntity tikons =

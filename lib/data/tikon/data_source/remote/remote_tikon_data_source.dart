@@ -7,10 +7,13 @@ import 'package:moatikon_flutter/data/tikon/dto/response/tikons_dto.dart';
 import 'package:moatikon_flutter/domain/tikon/entity/tikons_entity.dart';
 
 class RemoteTikonDataSource {
-  Future<TikonsEntity> getAllTikonList({int page = 0}) async {
+  Future<TikonsEntity> getAllTikonList({
+    int? page,
+    int? available,
+  }) async {
     String? accessToken = await TokenSecureStorage.readAccessToken();
     Map<String, dynamic> header = {"Authorization": "Bearer $accessToken"};
-    Map<String, dynamic> query = {"page": page};
+    Map<String, dynamic> query = {"page": page ?? 0, "available": available ?? 1};
 
     try {
       final response = await dio.get(
