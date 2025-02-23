@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/component/image_widget.dart';
 import 'package:moatikon_flutter/core/moa_font.dart';
+import 'package:moatikon_flutter/domain/tikon/entity/tikon_entity.dart';
 import 'package:moatikon_flutter/presentation/detail_tikon/ui/widget/detail_tikon_option_dialog.dart';
 
 class DetailTikonAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String title, tikonId;
+  final TikonEntity tikon;
 
   const DetailTikonAppBar({
     super.key,
-    required this.title,
-    required this.tikonId,
+    required this.tikon,
   });
 
   @override
@@ -31,14 +31,14 @@ class DetailTikonAppBar extends StatelessWidget implements PreferredSizeWidget {
                   width: 24.w,
                 ),
               ),
-              MoaFont.titleSmall(text: title),
+              MoaFont.titleSmall(text: tikon.tikonName),
               GestureDetector(
                 onTap: () {
                   showGeneralDialog(
                     context: context,
                     barrierColor: Colors.black.withOpacity(0),
                     pageBuilder: (_, __, ___) {
-                      return DetailTikonOptionDialog(id: tikonId);
+                      return DetailTikonOptionDialog(tikon: tikon);
                     },
                   );
                 },

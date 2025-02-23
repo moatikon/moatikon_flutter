@@ -4,13 +4,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moatikon_flutter/component/moa_dialog.dart';
 import 'package:moatikon_flutter/core/moa_font.dart';
 import 'package:moatikon_flutter/core/moa_navigator.dart';
+import 'package:moatikon_flutter/domain/tikon/entity/tikon_entity.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/ui/add_edit_tikon_screen.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_edit_tikon_category_state.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_edit_tikon_image_state.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_edit_tikon_slider_state.dart';
+import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_calender_state.dart';
 import 'package:moatikon_flutter/presentation/detail_tikon/view_model/detail_tikon_bloc.dart';
 import 'package:moatikon_flutter/presentation/detail_tikon/view_model/detail_tikon_event.dart';
 
 class DetailTikonOptionDialog extends StatelessWidget {
-  final String id;
+  final TikonEntity tikon;
 
-  const DetailTikonOptionDialog({super.key, required this.id});
+  const DetailTikonOptionDialog({super.key, required this.tikon});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +49,34 @@ class DetailTikonOptionDialog extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      MoaNavigator.push(
+                        context,
+                        MultiBlocProvider(
+                          providers: [
+                            BlocProvider<AddEditTikonCalenderState>(
+                                create: (context) =>
+                                    AddEditTikonCalenderState()),
+                            BlocProvider<AddEditTikonSliderState>(
+                                create: (context) => AddEditTikonSliderState()),
+                            BlocProvider<AddEditTikonCategoryState>(
+                                create: (context) =>
+                                    AddEditTikonCategoryState()),
+                            BlocProvider<AddEditTikonImageState>(
+                                create: (context) => AddEditTikonImageState()),
+                          ],
+                          child: AddEditTikonScreen(
+                            id: tikon.id,
+                            image: tikon.image,
+                            tikonName: tikon.tikonName,
+                            storeName: tikon.storeName,
+                            dDay: tikon.dDay,
+                            discount: tikon.disCount,
+                            category: tikon.category,
+                          ),
+                        ),
+                      );
+                    },
                     behavior: HitTestBehavior.opaque,
                     child: Container(
                       padding: EdgeInsets.symmetric(
@@ -63,7 +96,7 @@ class DetailTikonOptionDialog extends StatelessWidget {
                             onYes: () {
                               context
                                   .read<DetailTikonBloc>()
-                                  .add(DeleteTikonEvent(id: id));
+                                  .add(DeleteTikonEvent(id: tikon.id));
                             },
                             onNo: () => MoaNavigator.pop(context),
                             title: "기프티콘 삭제",

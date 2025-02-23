@@ -8,6 +8,7 @@ import 'package:moatikon_flutter/component/toast_message.dart';
 import 'package:moatikon_flutter/core/moa_color.dart';
 import 'package:moatikon_flutter/core/tikon_category.dart';
 import 'package:moatikon_flutter/data/tikon/dto/request/add_tikon_request.dart';
+import 'package:moatikon_flutter/data/tikon/dto/request/edit_tikon_request.dart';
 import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_edit_tikon_bloc.dart';
 import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_tikon_calender_state.dart';
 import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_edit_tikon_category_state.dart';
@@ -17,10 +18,12 @@ import 'package:moatikon_flutter/presentation/add_edit_tikon/view_model/add_edit
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class AddEditTikonBottomSheet extends StatelessWidget {
+  final String? id;
   final TextEditingController tikonNameController, storeNameController;
 
   const AddEditTikonBottomSheet({
     super.key,
+    this.id,
     required this.tikonNameController,
     required this.storeNameController,
   });
@@ -57,18 +60,36 @@ class AddEditTikonBottomSheet extends StatelessWidget {
             showToastMessage(message: "사용처를 적어주세요");
           }
 
-          context.read<AddEditTikonBloc>().add(
-                AddTikonEvent(
-                  addTikonRequest: AddTikonRequest(
-                    imageFile: imageFile!,
-                    storeName: storeName,
-                    tikonName: tikonName,
-                    category: category,
-                    finishedTikon: finishedTikon,
-                    disCount: disCount,
-                  ),
+          if(id == null) {
+            context.read<AddEditTikonBloc>().add(
+              AddTikonEvent(
+                addTikonRequest: AddTikonRequest(
+                  imageFile: imageFile!,
+                  storeName: storeName,
+                  tikonName: tikonName,
+                  category: category,
+                  finishedTikon: finishedTikon,
+                  disCount: disCount,
                 ),
-              );
+              ),
+            );
+          } else {
+            context.read<AddEditTikonBloc>().add(
+              EditTikonEvent(
+                editTikonRequest: EditTikonRequest(
+                  id: id!,
+                  imageFile: imageFile!,
+                  storeName: storeName,
+                  tikonName: tikonName,
+                  category: category,
+                  finishedTikon: finishedTikon,
+                  disCount: disCount,
+                ),
+              ),
+            );
+          }
+
+
         },
         width: MediaQuery.of(context).size.width - 40.w,
         height: 58.h,

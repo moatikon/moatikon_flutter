@@ -38,7 +38,6 @@ class DetailTikonScreen extends StatelessWidget {
             MoaNavigator.teleporting(context, const HomeScreen());
           },
         ),
-
         BlocListener<DetailTikonBloc, BlocStateNoneValue>(
           listenWhen: (_, current) => current.blocState == BlocStateEnum.error,
           listener: (context, state) {
@@ -50,10 +49,7 @@ class DetailTikonScreen extends StatelessWidget {
         )
       ],
       child: MyScaffold(
-        appbar: DetailTikonAppBar(
-          title: tikonEntity.tikonName,
-          tikonId: tikonEntity.id,
-        ),
+        appbar: DetailTikonAppBar(tikon: tikonEntity),
         bottomSheet: Container(
           width: 1.sw,
           height: 78.h,
