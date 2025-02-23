@@ -22,7 +22,7 @@ class UsingTikonBloc extends Bloc<UsingTikonEvent, BlocState<TikonsEntity>> {
     emit(Loading());
 
     try {
-      TikonsEntity tikons = await _getAllTikonListUseCase.execute(available: 1);
+      TikonsEntity tikons = await _getAllTikonListUseCase.execute(available: 0);
       emit(Loaded(data: tikons));
     } on DioException catch (error) {
       emit(Error(exception: error));
@@ -37,7 +37,7 @@ class UsingTikonBloc extends Bloc<UsingTikonEvent, BlocState<TikonsEntity>> {
       TikonsEntity currentTikons = state.value;
       TikonsEntity tikons = await _getAllTikonListUseCase.execute(
         page: event.page,
-        available: 1,
+        available: 0,
       );
 
       emit(Loaded(data: TikonsEntity(tikons: currentTikons.tikons + tikons.tikons)));
