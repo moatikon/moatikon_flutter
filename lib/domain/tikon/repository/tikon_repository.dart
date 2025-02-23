@@ -9,5 +9,7 @@ abstract class TikonRepository {
 
   Future<void> editTikon(EditTikonRequest request);
 
+  Future<void> toggleTikon({required String id});
+
   Future<void> deleteTikon({required String id});
 }

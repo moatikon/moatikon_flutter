@@ -33,4 +33,9 @@ class TikonRepositoryImpl implements TikonRepository {
   Future<void> editTikon(EditTikonRequest request) {
     return _remoteTikonDataSource.editTikon(request);
   }
+
+  @override
+  Future<void> toggleTikon({required String id}) {
+    return _remoteTikonDataSource.toggleTikon(id: id);
+  }
 }

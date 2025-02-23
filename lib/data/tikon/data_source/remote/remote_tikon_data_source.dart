@@ -67,6 +67,21 @@ class RemoteTikonDataSource {
     }
   }
 
+  Future<void> toggleTikon({required String id}) async {
+    String? accessToken = await TokenSecureStorage.readAccessToken();
+    Map<String, dynamic> header = {"Authorization": "Bearer $accessToken"};
+
+    try {
+      await dio.patch(
+        '/tikon/toggle/$id',
+        options: Options(headers: header),
+      );
+      return;
+    } on DioException catch (_) {
+      rethrow;
+    }
+  }
+
   Future<void> deleteTikon({required String id}) async {
     String? accessToken = await TokenSecureStorage.readAccessToken();
     Map<String, dynamic> header = {"Authorization": "Bearer $accessToken"};

@@ -5,3 +5,9 @@ class DeleteTikonEvent extends DetailTikonEvent {
 
   DeleteTikonEvent({required this.id});
 }
+
+class ToggleTikonEvent extends DetailTikonEvent {
+  final String id;
+
+  ToggleTikonEvent({required this.id});
+}
