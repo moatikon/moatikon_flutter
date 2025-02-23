@@ -6,6 +6,7 @@ import 'package:moatikon_flutter/core/moa_color.dart';
 import 'package:moatikon_flutter/core/moa_navigator.dart';
 import 'package:moatikon_flutter/presentation/profile/ui/widget/profile_action_button.dart';
 import 'package:moatikon_flutter/presentation/profile/ui/widget/profile_app_bar.dart';
+import 'package:moatikon_flutter/presentation/using_tikon/ui/using_tikon_screen.dart';
 
 class UserScreen extends StatelessWidget {
   const UserScreen({super.key});
@@ -19,7 +20,7 @@ class UserScreen extends StatelessWidget {
         child: Column(
           children: [
             ProfileActionButton(
-              onTap: () {},
+              onTap: () => MoaNavigator.push(context, const UsingTikonScreen()),
               title: "사용한 기프티콘",
             ),
             SizedBox(height: 10.h),
