@@ -10,6 +10,7 @@ const _storage = FlutterSecureStorage(
 class TokenSecureStorage {
   static const String _accessTokenKey = secureAccessTokenKey;
   static const String _refreshTokenKey = secureRefreshTokenKey;
+  static const String _deviceTokenKey = secureDeviceTokenKey;
 
   static Future<void> writeAccessToken(String? accessToken) async {
     debugPrint('access : $accessToken');
@@ -21,11 +22,20 @@ class TokenSecureStorage {
     await _storage.write(key: _refreshTokenKey, value: refreshToken);
   }
 
+  static Future<void> writeDeviceToken(String? deviceToken) async {
+    debugPrint('device : $deviceToken');
+    await _storage.write(key: _deviceTokenKey, value: deviceToken);
+  }
+
   static Future<String?> readAccessToken() async {
     return await _storage.read(key: _accessTokenKey);
   }
 
   static Future<String?> readRefreshToken() async {
     return await _storage.read(key: _refreshTokenKey);
+  }
+
+  static Future<String?> readDeviceToken() async {
+    return await _storage.read(key: _deviceTokenKey);
   }
 }

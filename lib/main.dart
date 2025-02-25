@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moatikon_flutter/core/token_secure_storage.dart';
 import 'package:moatikon_flutter/init/dio_init.dart';
 import 'package:moatikon_flutter/init/fcm_init.dart';
 import 'package:moatikon_flutter/presentation/splash/ui/view/splash_screen.dart';
@@ -16,7 +17,8 @@ void main() async {
   await setupFlutterNotifications();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   FirebaseMessaging.onMessage.listen(showFlutterNotification);
-  print(await FirebaseMessaging.instance.getToken());
+
+  await TokenSecureStorage.writeDeviceToken(await FirebaseMessaging.instance.getToken());
 
   dioInit();
 

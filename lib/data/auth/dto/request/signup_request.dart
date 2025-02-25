@@ -1,3 +1,5 @@
+import 'package:moatikon_flutter/core/token_secure_storage.dart';
+
 class SignupRequest {
   final String email;
   final String password;
@@ -9,12 +11,13 @@ class SignupRequest {
     required this.nickname,
   });
 
-  Map<String, dynamic> toJson(){
+  Future<Map<String, dynamic>> toJson() async {
     Map<String, dynamic> data = <String, dynamic>{};
 
     data['email'] = email;
     data['nickname'] = nickname;
     data['password'] = password;
+    data['deviceToken'] = await TokenSecureStorage.readDeviceToken();
 
     return data;
   }
