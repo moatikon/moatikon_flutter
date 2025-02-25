@@ -48,4 +48,9 @@ class AuthRepositoryImpl implements AuthRepository {
     return _remoteAuthDataSource.resettingPw(
         email: email, successCode: successCode, password: password);
   }
+
+  @override
+  Future<void> withdraw() {
+    return _remoteAuthDataSource.withdraw();
+  }
 }

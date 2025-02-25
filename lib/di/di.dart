@@ -8,6 +8,7 @@ import 'package:moatikon_flutter/domain/auth/use_case/re_setting_pw_use_case.dar
 import 'package:moatikon_flutter/domain/auth/use_case/send_pw_code_check_use_case.dart';
 import 'package:moatikon_flutter/domain/auth/use_case/send_pw_code_use_case.dart';
 import 'package:moatikon_flutter/domain/auth/use_case/sign_up_use_case.dart';
+import 'package:moatikon_flutter/domain/auth/use_case/withdraw_use_case.dart';
 import 'package:moatikon_flutter/domain/tikon/use_case/add_tikon_use_case.dart';
 import 'package:moatikon_flutter/domain/tikon/use_case/delete_tikon_use_case.dart';
 import 'package:moatikon_flutter/domain/tikon/use_case/edit_tikon_use_case.dart';
@@ -18,6 +19,7 @@ import 'package:moatikon_flutter/presentation/auth/view_model/auth_bloc.dart';
 import 'package:moatikon_flutter/presentation/detail_tikon/view_model/detail_tikon_bloc.dart';
 import 'package:moatikon_flutter/presentation/home/view_model/home_bloc.dart';
 import 'package:moatikon_flutter/presentation/home/view_model/home_category_state.dart';
+import 'package:moatikon_flutter/presentation/profile/view_model/profile_bloc.dart';
 import 'package:moatikon_flutter/presentation/splash/view_model/splash_bloc.dart';
 import 'package:moatikon_flutter/presentation/using_tikon/view_model/using_tikon_bloc.dart';
 import '../domain/auth/use_case/sign_in_use_case.dart';
@@ -35,6 +37,8 @@ Future<List<BlocProvider>> di() async {
       SignInUseCase(authRepository: authRepositoryImpl);
   ReIssueUseCase reIssueUseCase =
       ReIssueUseCase(authRepository: authRepositoryImpl);
+  WithdrawUseCase withdrawUseCase =
+      WithdrawUseCase(authRepository: authRepositoryImpl);
   SendPwCodeUseCase sendPwCodeUseCase =
       SendPwCodeUseCase(authRepository: authRepositoryImpl);
   SendPwCodeCheckUseCase sendPwCodeCheckUseCase =
@@ -100,6 +104,12 @@ Future<List<BlocProvider>> di() async {
       create: (context) => UsingTikonBloc(
         getAllTikonListUseCase: getAllTikonListUseCase,
       ),
-    )
+    ),
+
+    BlocProvider<ProfileBloc>(
+      create: (context) => ProfileBloc(
+        withdrawUseCase: withdrawUseCase,
+      ),
+    ),
   ];
 }

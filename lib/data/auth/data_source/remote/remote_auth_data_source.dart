@@ -36,6 +36,17 @@ class RemoteAuthDataSource {
     }
   }
 
+  Future<void> withdraw() async {
+    String? accessToken = await TokenSecureStorage.readAccessToken();
+    Map<String, dynamic> header = {"Authorization": "Bearer $accessToken"};
+
+    try {
+      await dio.post('/auth/withdraw', options: Options(headers: header));
+    } on DioException catch (_) {
+      rethrow;
+    }
+  }
+
   Future<void> sendPwCode({required String email}) async {
     try {
       await dio.post('/auth/pw-code', data: {"email": email});
