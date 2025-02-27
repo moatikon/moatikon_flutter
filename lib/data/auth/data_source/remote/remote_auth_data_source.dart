@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:moatikon_flutter/core/dio.dart';
 import 'package:moatikon_flutter/core/token_secure_storage.dart';
+import 'package:moatikon_flutter/data/auth/dto/request/send_change_pw_code_request.dart';
 import 'package:moatikon_flutter/data/auth/dto/request/signin_request.dart';
 import 'package:moatikon_flutter/data/auth/dto/request/signup_request.dart';
 import 'package:moatikon_flutter/data/auth/dto/response/token_dto.dart';
@@ -47,35 +48,21 @@ class RemoteAuthDataSource {
     }
   }
 
-  Future<void> sendPwCode({required String email}) async {
+  Future<void> sendChangePWCode({required SendChangePwCodeRequest request}) async {
     try {
-      await dio.post('/auth/pw-code', data: {"email": email});
-      return;
+      await dio.post('/auth/send/code', data: request.toJson());
     } on DioException catch (_) {
       rethrow;
     }
   }
 
-  Future<String> sendPwCodeCheck({
-    required String email,
-    required String code,
-  }) async {
-    try {
-      final response = await dio
-          .post('/auth/pw-code-check', data: {"email": email, "code": code});
-      return response.data;
-    } on DioException catch (_) {
-      rethrow;
-    }
-  }
-
-  Future<void> resettingPw({
+  Future<void> editPassword({
     required String email,
     required String successCode,
     required String password,
   }) async {
     try {
-      await dio.post('/auth/edit-pw', data: {
+      await dio.post('/auth/edit/password', data: {
         "email": email,
         "successCode": successCode,
         "password": password,

@@ -3,10 +3,9 @@ import 'package:moatikon_flutter/data/auth/data_source/remote/remote_auth_data_s
 import 'package:moatikon_flutter/data/auth/repository/auth_repository_impl.dart';
 import 'package:moatikon_flutter/data/tikon/data_source/remote/remote_tikon_data_source.dart';
 import 'package:moatikon_flutter/data/tikon/repository/tikon_repository_impl.dart';
+import 'package:moatikon_flutter/domain/auth/use_case/edit_password_use_case.dart';
 import 'package:moatikon_flutter/domain/auth/use_case/re_issue_use_case.dart';
-import 'package:moatikon_flutter/domain/auth/use_case/re_setting_pw_use_case.dart';
-import 'package:moatikon_flutter/domain/auth/use_case/send_pw_code_check_use_case.dart';
-import 'package:moatikon_flutter/domain/auth/use_case/send_pw_code_use_case.dart';
+import 'package:moatikon_flutter/domain/auth/use_case/send_change_pw_code_use_case.dart';
 import 'package:moatikon_flutter/domain/auth/use_case/sign_up_use_case.dart';
 import 'package:moatikon_flutter/domain/auth/use_case/withdraw_use_case.dart';
 import 'package:moatikon_flutter/domain/tikon/use_case/add_tikon_use_case.dart';
@@ -20,10 +19,10 @@ import 'package:moatikon_flutter/presentation/detail_tikon/view_model/detail_tik
 import 'package:moatikon_flutter/presentation/home/view_model/home_bloc.dart';
 import 'package:moatikon_flutter/presentation/home/view_model/home_category_state.dart';
 import 'package:moatikon_flutter/presentation/profile/view_model/profile_bloc.dart';
+import 'package:moatikon_flutter/presentation/reset_password/view_model/reset_password_bloc.dart';
 import 'package:moatikon_flutter/presentation/splash/view_model/splash_bloc.dart';
 import 'package:moatikon_flutter/presentation/using_tikon/view_model/using_tikon_bloc.dart';
 import '../domain/auth/use_case/sign_in_use_case.dart';
-import '../presentation/auth/view_model/resetting_pw_state_cubit.dart';
 
 Future<List<BlocProvider>> di() async {
   // auth
@@ -39,12 +38,10 @@ Future<List<BlocProvider>> di() async {
       ReIssueUseCase(authRepository: authRepositoryImpl);
   WithdrawUseCase withdrawUseCase =
       WithdrawUseCase(authRepository: authRepositoryImpl);
-  SendPwCodeUseCase sendPwCodeUseCase =
-      SendPwCodeUseCase(authRepository: authRepositoryImpl);
-  SendPwCodeCheckUseCase sendPwCodeCheckUseCase =
-      SendPwCodeCheckUseCase(authRepository: authRepositoryImpl);
-  ResettingPwUseCase resettingPwUseCase =
-      ResettingPwUseCase(authRepository: authRepositoryImpl);
+  SendChangePWCodeUseCase sendChangePWCodeUseCase =
+      SendChangePWCodeUseCase(authRepository: authRepositoryImpl);
+  EditPasswordUseCase editPasswordUseCase =
+      EditPasswordUseCase(authRepository: authRepositoryImpl);
 
   // tikon
   RemoteTikonDataSource remoteTikonDataSource = RemoteTikonDataSource();
@@ -69,13 +66,6 @@ Future<List<BlocProvider>> di() async {
             signInUseCase: signInUseCase, signUpUseCase: signUpUseCase)),
     BlocProvider<SplashBloc>(
         create: (context) => SplashBloc(reIssueUseCase: reIssueUseCase)),
-    BlocProvider<ResettingPwStateCubit>(
-      create: (context) => ResettingPwStateCubit(
-        sendPwCodeUseCase: sendPwCodeUseCase,
-        sendPwCodeCheckUseCase: sendPwCodeCheckUseCase,
-        resettingPwUseCase: resettingPwUseCase,
-      ),
-    ),
 
     // home
     BlocProvider<HomeCategoryState>(create: (context) => HomeCategoryState()),
@@ -106,10 +96,18 @@ Future<List<BlocProvider>> di() async {
       ),
     ),
 
+    // profile
     BlocProvider<ProfileBloc>(
       create: (context) => ProfileBloc(
         withdrawUseCase: withdrawUseCase,
       ),
     ),
+
+    BlocProvider<ResetPasswordBloc>(
+      create: (context) => ResetPasswordBloc(
+        sendChangePWCodeUseCase: sendChangePWCodeUseCase,
+        editPasswordUseCase: editPasswordUseCase,
+      ),
+    )
   ];
 }

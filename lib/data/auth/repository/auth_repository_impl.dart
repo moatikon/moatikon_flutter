@@ -1,4 +1,5 @@
 import 'package:moatikon_flutter/data/auth/data_source/remote/remote_auth_data_source.dart';
+import 'package:moatikon_flutter/data/auth/dto/request/send_change_pw_code_request.dart';
 import 'package:moatikon_flutter/data/auth/dto/request/signup_request.dart';
 import 'package:moatikon_flutter/domain/auth/entity/token_entity.dart';
 import 'package:moatikon_flutter/domain/auth/repository/auth_repository.dart';
@@ -27,25 +28,17 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> sendPwCode({required String email}) {
-    return _remoteAuthDataSource.sendPwCode(email: email);
+  Future<void> sendChangePWCode({required SendChangePwCodeRequest request}) {
+    return _remoteAuthDataSource.sendChangePWCode(request: request);
   }
 
   @override
-  Future<String> sendPwCodeCheck({
-    required String email,
-    required String code,
-  }) {
-    return _remoteAuthDataSource.sendPwCodeCheck(email: email, code: code);
-  }
-
-  @override
-  Future<void> resettingPw({
+  Future<void> editPassword({
     required String email,
     required String successCode,
     required String password,
   }) async {
-    return _remoteAuthDataSource.resettingPw(
+    return _remoteAuthDataSource.editPassword(
         email: email, successCode: successCode, password: password);
   }
 

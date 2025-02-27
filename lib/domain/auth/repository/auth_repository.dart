@@ -1,3 +1,4 @@
+import 'package:moatikon_flutter/data/auth/dto/request/send_change_pw_code_request.dart';
 import 'package:moatikon_flutter/data/auth/dto/request/signup_request.dart';
 
 import '../../../data/auth/dto/request/signin_request.dart';
@@ -12,11 +13,9 @@ abstract class AuthRepository {
 
   Future<void> withdraw();
 
-  Future<void> sendPwCode({required String email});
+  Future<void> sendChangePWCode({required SendChangePwCodeRequest request});
 
-  Future<String> sendPwCodeCheck({required String email, required String code});
-
-  Future<void> resettingPw({
+  Future<void> editPassword({
     required String email,
     required String successCode,
     required String password,

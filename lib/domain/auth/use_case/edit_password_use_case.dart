@@ -1,9 +1,9 @@
 import 'package:moatikon_flutter/domain/auth/repository/auth_repository.dart';
 
-class ResettingPwUseCase {
+class EditPasswordUseCase {
   final AuthRepository _authRepository;
 
-  ResettingPwUseCase({required AuthRepository authRepository})
+  EditPasswordUseCase({required AuthRepository authRepository})
       : _authRepository = authRepository;
 
   Future<void> execute({
@@ -11,7 +11,7 @@ class ResettingPwUseCase {
     required String successCode,
     required String password,
   }) =>
-      _authRepository.resettingPw(
+      _authRepository.editPassword(
         email: email,
         successCode: successCode,
         password: password,
